@@ -74,9 +74,9 @@ export const journeyAssets = {
 
 /**
  * Journey track height in viewport heights.
- * Sticky viewport + scrub (not GSAP pin) — ~3 screens for 4 cities + reveal.
+ * Sticky viewport + scrub — medium pace (~4.5–5 screens).
  */
-export const journeyScrollVh = 320;
+export const journeyScrollVh = 480;
 
 const FADE = 0.03;
 

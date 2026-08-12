@@ -2,17 +2,24 @@ import type { Dictionary } from "@/i18n/types";
 
 export const tr: Dictionary = {
   meta: {
-    title: "Beşinci Mevsim | Seyahat & Turizm Taşımacılık",
+    title: "Beşinci Mevsim | VIP Transfer & Turizm Taşımacılık",
     description:
-      "Beşinci Mevsim; VIP transfer, turizm taşımacılığı, kurumsal seyahat ve konaklama hizmetleri.",
+      "Beşinci Mevsim ile VIP transfer, havaalanı transferi, turizm taşımacılığı, kurumsal seyahat ve konaklama hizmetleri. Konforlu ve güvenilir yolculuk deneyimi.",
     keywords: [
       "Beşinci Mevsim",
+      "Besinci Mevsim",
       "VIP transfer",
-      "turizm taşımacılığı",
-      "kurumsal seyahat",
+      "VIP transfer Türkiye",
       "havaalanı transfer",
+      "havaalanı transferi",
+      "turizm taşımacılığı",
+      "turizm taşımacılık",
+      "kurumsal seyahat",
+      "kurumsal transfer",
       "konaklama hizmetleri",
-      "Mercedes Vito",
+      "Mercedes Vito transfer",
+      "özel transfer",
+      "seyahat acentesi",
     ],
   },
   nav: {

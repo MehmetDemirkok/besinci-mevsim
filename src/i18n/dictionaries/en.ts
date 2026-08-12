@@ -2,17 +2,20 @@ import type { Dictionary } from "@/i18n/types";
 
 export const en: Dictionary = {
   meta: {
-    title: "Beşinci Mevsim | Seyahat & Turizm Taşımacılık",
+    title: "Beşinci Mevsim | VIP Transfer & Tourism Transportation",
     description:
-      "Beşinci Mevsim; VIP transportation, tourism transportation, corporate travel and accommodation services.",
+      "Beşinci Mevsim offers VIP transfer, airport transfer, tourism transportation, corporate travel and accommodation services — comfortable, reliable journeys.",
     keywords: [
       "Beşinci Mevsim",
-      "VIP transportation",
+      "Besinci Mevsim",
+      "VIP transfer Turkey",
+      "airport transfer",
       "tourism transportation",
       "corporate travel",
-      "airport transfer",
+      "private transfer",
+      "Mercedes Vito transfer",
       "accommodation services",
-      "Mercedes Vito",
+      "travel agency Turkey",
     ],
   },
   nav: {

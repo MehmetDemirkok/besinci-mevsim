@@ -1,37 +1,32 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { siteConfig } from "@/lib/site";
 
 export function LogoMark({
-  className = "h-9 w-auto",
+  className = "h-11 w-11",
 }: {
   className?: string;
 }) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 64 64"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
+    <span
+      className={`relative inline-flex shrink-0 items-center justify-center ${className}`}
+      aria-hidden
     >
-      <circle cx="32" cy="32" r="30" stroke="#18BBD0" strokeWidth="1.5" />
-      <path
-        d="M18 38c4-12 10-18 14-20 4 2 10 8 14 20"
-        stroke="#18BBD0"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M22 36c3.5-8 7.5-12 10-13.5C34.5 24 38.5 28 42 36"
-        stroke="#F4B51B"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-      />
-      <circle cx="32" cy="22" r="2.5" fill="#F4B51B" />
-    </svg>
+      <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_25%,rgba(24,187,208,0.35),transparent_60%)] opacity-80" />
+      <span className="absolute -inset-[2px] rounded-full bg-[conic-gradient(from_210deg,#18BBD0,#F4B51B,#18BBD0)] opacity-70" />
+      <span className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full border border-white/10 bg-[#f7fafb] p-[7%]">
+        <Image
+          src="/images/brand/logo.png"
+          alt=""
+          width={96}
+          height={80}
+          className="h-full w-full object-contain"
+          priority
+        />
+      </span>
+      <span className="absolute -right-[1px] top-[8%] h-2 w-2 rounded-full bg-gold shadow-[0_0_10px_rgba(244,181,27,0.7)]" />
+    </span>
   );
 }
 
@@ -40,39 +35,17 @@ export function BrandWordmark({
 }: {
   compact?: boolean;
 }) {
-  const [hasLogo, setHasLogo] = useState(false);
-
-  useEffect(() => {
-    let active = true;
-    const img = new window.Image();
-    img.onload = () => {
-      if (active) setHasLogo(true);
-    };
-    img.onerror = () => {
-      if (active) setHasLogo(false);
-    };
-    img.src = "/images/brand/logo.png";
-    return () => {
-      active = false;
-    };
-  }, []);
-
   return (
-    <div className="flex items-center gap-3">
-      {hasLogo ? (
-        <span className={`relative ${compact ? "h-8 w-8" : "h-10 w-10"}`}>
-          <Image
-            src="/images/brand/logo.png"
-            alt=""
-            fill
-            className="object-contain"
-            sizes="40px"
-          />
-        </span>
-      ) : (
-        <LogoMark className={compact ? "h-8 w-8" : "h-10 w-10"} />
-      )}
-      <div className="leading-none">
+    <div className="group flex items-center gap-3 md:gap-3.5">
+      <LogoMark
+        className={
+          compact
+            ? "h-9 w-9 transition-transform duration-500 group-hover:scale-[1.03]"
+            : "h-11 w-11 md:h-12 md:w-12 transition-transform duration-500 group-hover:scale-[1.03]"
+        }
+      />
+
+      <div className="min-w-0 leading-none">
         <p
           className={`font-medium tracking-tight text-mist ${
             compact ? "text-[0.95rem]" : "text-base md:text-lg"
@@ -81,10 +54,17 @@ export function BrandWordmark({
           {siteConfig.name}
         </p>
         {!compact ? (
-          <p className="mt-1 hidden text-[0.58rem] tracking-[0.18em] text-mist-soft sm:block sm:tracking-[0.22em]">
+          <div className="mt-1.5 hidden items-center gap-2 sm:flex">
+            <span className="h-px w-4 bg-cyan/70" aria-hidden />
+            <p className="text-[0.58rem] tracking-[0.18em] text-mist-soft sm:tracking-[0.2em]">
+              {siteConfig.tagline}
+            </p>
+          </div>
+        ) : (
+          <p className="mt-1 hidden text-[0.52rem] tracking-[0.16em] text-mist-soft/90 sm:block">
             {siteConfig.tagline}
           </p>
-        ) : null}
+        )}
       </div>
     </div>
   );

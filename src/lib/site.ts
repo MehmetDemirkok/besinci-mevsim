@@ -1,10 +1,14 @@
 export const siteConfig = {
   name: "Beşinci Mevsim",
   tagline: "SEYAHAT & TURİZM TAŞIMACILIK",
-  title: "Beşinci Mevsim | Seyahat & Turizm Taşımacılık",
+  title: "Beşinci Mevsim | VIP Transfer & Turizm Taşımacılık",
   description:
-    "Beşinci Mevsim; VIP transfer, turizm taşımacılığı, kurumsal seyahat ve konaklama hizmetleri.",
+    "Beşinci Mevsim ile VIP transfer, havaalanı transferi, turizm taşımacılığı, kurumsal seyahat ve konaklama hizmetleri. Konforlu ve güvenilir yolculuk deneyimi.",
   url: "https://besincimevsim.com",
+  /** Production / preview host used in sitemap & canonicals */
+  locale: "tr_TR",
+  logo: "/images/brand/logo.png",
+  ogImage: "/images/brand/og.png",
   nav: [
     { key: "about" as const, href: "#about" },
     { key: "services" as const, href: "#services" },
