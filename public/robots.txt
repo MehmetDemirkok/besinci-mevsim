@@ -1,0 +1,5 @@
+# Beşinci Mevsim
+User-agent: *
+Allow: /
+
+Sitemap: https://besincimevsim.com/sitemap.xml

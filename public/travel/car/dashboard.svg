@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420" fill="none" preserveAspectRatio="xMidYMax meet">
+  <defs>
+    <linearGradient id="dash" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#071014" stop-opacity="0"/>
+      <stop offset="25%" stop-color="#0b151a" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#05090c" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#152228"/>
+      <stop offset="100%" stop-color="#0b151a"/>
+    </linearGradient>
+  </defs>
+  <rect y="0" width="1600" height="420" fill="url(#dash)"/>
+  <path d="M120 150 C480 95, 1120 95, 1480 150 L1520 420 L80 420 Z" fill="url(#panel)" opacity="0.92"/>
+  <path d="M200 175 C520 130, 1080 130, 1400 175" stroke="#18BBD0" stroke-opacity="0.18" stroke-width="2"/>
+  <path d="M260 210 C560 175, 1040 175, 1340 210" stroke="#F4B51B" stroke-opacity="0.08" stroke-width="1.5"/>
+  <!-- steering silhouette -->
+  <ellipse cx="520" cy="340" rx="110" ry="95" stroke="#F5F7F8" stroke-opacity="0.12" stroke-width="8" fill="none"/>
+  <ellipse cx="520" cy="340" rx="42" ry="36" fill="#0b151a" stroke="#F5F7F8" stroke-opacity="0.08" stroke-width="3"/>
+  <!-- subtle screen -->
+  <rect x="980" y="210" width="220" height="110" rx="8" fill="#101a1f" stroke="#18BBD0" stroke-opacity="0.15"/>
+  <rect x="1000" y="230" width="180" height="8" rx="2" fill="#18BBD0" fill-opacity="0.25"/>
+  <rect x="1000" y="250" width="120" height="6" rx="2" fill="#F5F7F8" fill-opacity="0.12"/>
+  <rect x="1000" y="268" width="150" height="6" rx="2" fill="#F5F7F8" fill-opacity="0.08"/>
+</svg>

@@ -1,0 +1,207 @@
+"use client";
+
+import { useEffect, useMemo, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  activeSceneIndex,
+  holdOpacity,
+  journeyScenes,
+  journeyScrollVh,
+} from "@/data/journey";
+import { useLanguage } from "@/i18n/LanguageProvider";
+import { WindshieldFrame } from "@/components/cinematic/WindshieldFrame";
+import { JourneyViewport } from "@/components/cinematic/JourneyViewport";
+import { CityTitle } from "@/components/cinematic/CityTitle";
+import { BrandReveal } from "@/components/cinematic/BrandReveal";
+
+gsap.registerPlugin(ScrollTrigger);
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return reduced;
+}
+
+function useIsMobile() {
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return mobile;
+}
+
+export function CinematicJourney() {
+  const reduce = usePrefersReducedMotion();
+  const isMobile = useIsMobile();
+
+  if (reduce) return <JourneyReduced />;
+  return <JourneyPinned isMobile={isMobile} />;
+}
+
+function JourneyReduced() {
+  const { t } = useLanguage();
+
+  return (
+    <section
+      id="journey"
+      className="bg-ink px-5 py-24 md:px-8 md:py-32 lg:px-10"
+      aria-label={t.journey.aria}
+    >
+      <div className="mx-auto max-w-[1100px]">
+        <p className="text-eyebrow text-cyan">{t.journey.reducedTitle}</p>
+        <p className="mt-5 max-w-2xl text-lg text-mist-muted">
+          {t.journey.reducedBody}
+        </p>
+        <ol className="mt-14 grid gap-8 sm:grid-cols-2">
+          {t.journey.scenes.map((scene, index) => (
+            <li key={scene.id} className="border-t border-line pt-6">
+              <p className="text-eyebrow text-gold">
+                {t.journey.chapterLabel} {String(index + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-3 text-3xl font-medium tracking-tight text-mist">
+                {scene.title}
+              </h3>
+              <p className="mt-3 text-mist-muted">{scene.subtitle}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-16 border-t border-line pt-10 text-center">
+          <p className="text-2xl font-medium tracking-[0.06em] text-mist md:text-3xl">
+            {t.journey.revealLine}
+          </p>
+          <p className="mt-6 text-eyebrow text-cyan">{t.journey.revealBrand}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function JourneyPinned({ isMobile }: { isMobile: boolean }) {
+  const { t } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  const activeIndex = useMemo(() => activeSceneIndex(progress), [progress]);
+  const revealProgress = Math.max(0, (progress - 0.82) / 0.18);
+  const pullOut = Math.max(0, (progress - 0.8) / 0.2);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const vh = isMobile ? Math.round(journeyScrollVh * 0.75) : journeyScrollVh;
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        end: () => `+=${window.innerHeight * (vh / 100)}`,
+        pin: true,
+        scrub: 0.55,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => setProgress(self.progress),
+      });
+    }, section);
+
+    // Recalculate after images / fonts / Lenis settle
+    const refresh = () => ScrollTrigger.refresh();
+    const t1 = window.setTimeout(refresh, 200);
+    const t2 = window.setTimeout(refresh, 800);
+    window.addEventListener("load", refresh);
+
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.removeEventListener("load", refresh);
+      ctx.revert();
+    };
+  }, [isMobile]);
+
+  const copyFor = (id: string) =>
+    t.journey.scenes.find((s) => s.id === id) ?? t.journey.scenes[0];
+
+  return (
+    <section
+      id="journey"
+      ref={sectionRef}
+      className="relative z-10 bg-void"
+      aria-label={t.journey.aria}
+    >
+      <div className="relative h-[100svh] w-full overflow-hidden">
+        <JourneyViewport
+          scenes={journeyScenes}
+          progress={progress}
+          activeIndex={activeIndex}
+          isMobile={isMobile}
+        />
+
+        <WindshieldFrame compact={isMobile} pullOut={pullOut} />
+
+        {journeyScenes.map((scene, index) => {
+          const copy = copyFor(scene.id);
+          const visibility = holdOpacity(progress, scene.hold);
+          const visible = visibility > 0.35 && revealProgress < 0.15;
+
+          return (
+            <CityTitle
+              key={scene.id}
+              title={copy.title}
+              subtitle={copy.subtitle}
+              chapterLabel={t.journey.chapterLabel}
+              chapterIndex={index}
+              visible={visible}
+            />
+          );
+        })}
+
+        <BrandReveal
+          line={t.journey.revealLine}
+          brand={t.journey.revealBrand}
+          progress={revealProgress}
+        />
+
+        <div className="absolute bottom-[9%] left-1/2 z-30 hidden w-[min(480px,72vw)] -translate-x-1/2 md:block">
+          <div className="h-px w-full bg-mist/15">
+            <div
+              className="h-px bg-cyan"
+              style={{ width: `${Math.min(100, progress * 100)}%` }}
+            />
+          </div>
+          <div className="mt-3 flex justify-between text-[0.58rem] tracking-[0.18em] text-mist-soft">
+            {t.journey.scenes.map((s, i) => {
+              const active = activeIndex === i && revealProgress < 0.2;
+              return (
+                <span
+                  key={s.id}
+                  className={active ? "text-cyan" : undefined}
+                >
+                  {s.title}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+
+        <p
+          className={`absolute bottom-5 left-1/2 z-30 w-[90%] -translate-x-1/2 text-center text-[0.6rem] tracking-[0.16em] text-mist-soft transition-opacity duration-500 safe-pb sm:bottom-6 sm:text-[0.65rem] sm:tracking-[0.22em] ${
+            progress < 0.03 ? "opacity-80" : "opacity-0"
+          }`}
+        >
+          {t.journey.scrollHint}
+        </p>
+      </div>
+    </section>
+  );
+}
