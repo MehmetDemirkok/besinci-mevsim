@@ -253,13 +253,47 @@ export const tr: Dictionary = {
     eyebrow: "İletişim",
     titleLine1: "Bir sonraki yolculuğunuzu",
     titleLine2: "konforlu hale getirelim.",
-    body: "Taşımacılık, turizm ve konaklama hizmetleri için Beşinci Mevsim ile iletişime geçin.",
-    cta: "Bize Ulaşın",
+    body: "VIP transfer, turizm taşımacılığı, kurumsal seyahat veya konaklama için Beşinci Mevsim ile iletişime geçin. Size dönüş yapmak için buradayız.",
+    cta: "E-posta Gönder",
     comingSoon: "İletişim bilgileri yakında",
     phone: "Telefon",
-    email: "E-posta",
+    email: "Kurumsal e-posta",
     address: "Adres",
     toBeProvided: "Yakında paylaşılacak",
+    writeUs: "Bize yazın",
+    emailHint: "Tek tıkla kurumsal e-postamıza ulaşın.",
+    topicsLabel: "Ne hakkında yazmak istersiniz?",
+    topics: [
+      {
+        id: "vip",
+        label: "VIP Transfer",
+        subject: "VIP Transfer Talebi — Beşinci Mevsim",
+      },
+      {
+        id: "fleet",
+        label: "Filo / Araç",
+        subject: "Filo Bilgi Talebi — Beşinci Mevsim",
+      },
+      {
+        id: "tourism",
+        label: "Turizm",
+        subject: "Turizm Taşımacılığı — Beşinci Mevsim",
+      },
+      {
+        id: "stay",
+        label: "Konaklama",
+        subject: "Konaklama Hizmeti — Beşinci Mevsim",
+      },
+      {
+        id: "general",
+        label: "Genel",
+        subject: "İletişim — Beşinci Mevsim",
+      },
+    ],
+    responseNote:
+      "Mesajlarınıza mümkün olan en kısa sürede dönüş yapıyoruz.",
+    copy: "Kopyala",
+    copied: "Kopyalandı",
   },
   footer: {
     blurb:

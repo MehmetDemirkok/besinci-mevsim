@@ -133,6 +133,13 @@ export type Dictionary = {
     email: string;
     address: string;
     toBeProvided: string;
+    writeUs: string;
+    emailHint: string;
+    topicsLabel: string;
+    topics: { id: string; label: string; subject: string }[];
+    responseNote: string;
+    copy: string;
+    copied: string;
   };
   footer: {
     blurb: string;

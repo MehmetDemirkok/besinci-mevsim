@@ -22,7 +22,7 @@ export function SmoothScrollProvider({
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
 
-    document.documentElement.classList.add("lenis");
+    document.documentElement.classList.add("lenis", "lenis-smooth");
     document.documentElement.style.scrollBehavior = "auto";
 
     const lenis = new Lenis({
@@ -30,8 +30,9 @@ export function SmoothScrollProvider({
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       touchMultiplier: 1.35,
-      // Avoid fighting GSAP pin sections
+      // Native touch scrolling — avoids fighting sticky journey scrub
       syncTouch: false,
+      autoRaf: false,
     });
     lenisRef.current = lenis;
 
@@ -43,20 +44,25 @@ export function SmoothScrollProvider({
     gsap.ticker.add(ticker);
     gsap.ticker.lagSmoothing(0);
 
-    const onResize = () => {
-      ScrollTrigger.refresh();
-    };
+    const refresh = () => ScrollTrigger.refresh();
+    const onResize = () => refresh();
     window.addEventListener("resize", onResize);
+    window.addEventListener("load", refresh);
 
-    // Initial refresh after mount
-    requestAnimationFrame(() => ScrollTrigger.refresh());
+    // After layout / fonts / images settle
+    requestAnimationFrame(refresh);
+    const t1 = window.setTimeout(refresh, 120);
+    const t2 = window.setTimeout(refresh, 600);
 
     return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("load", refresh);
       gsap.ticker.remove(ticker);
       lenis.destroy();
       lenisRef.current = null;
-      document.documentElement.classList.remove("lenis");
+      document.documentElement.classList.remove("lenis", "lenis-smooth");
       document.documentElement.style.scrollBehavior = "";
     };
   }, []);

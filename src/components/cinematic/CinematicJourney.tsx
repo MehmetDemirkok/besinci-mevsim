@@ -90,44 +90,59 @@ function JourneyReduced() {
 function JourneyPinned({ isMobile }: { isMobile: boolean }) {
   const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
+  const progressRef = useRef(0);
   const [progress, setProgress] = useState(0);
 
   const activeIndex = useMemo(() => activeSceneIndex(progress), [progress]);
   const revealProgress = Math.max(0, (progress - 0.82) / 0.18);
   const pullOut = Math.max(0, (progress - 0.8) / 0.2);
 
+  // Tall track + sticky viewport (no GSAP pin — reliable with Lenis)
+  const trackVh = isMobile
+    ? Math.round(journeyScrollVh * 0.85)
+    : journeyScrollVh;
+
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
-
-    const vh = isMobile ? Math.round(journeyScrollVh * 0.75) : journeyScrollVh;
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: () => `+=${window.innerHeight * (vh / 100)}`,
-        pin: true,
-        scrub: 0.55,
-        anticipatePin: 1,
+        end: "bottom bottom",
+        scrub: 0.45,
         invalidateOnRefresh: true,
-        onUpdate: (self) => setProgress(self.progress),
+        onUpdate: (self) => {
+          const next = self.progress;
+          // Skip tiny deltas to keep React renders from fighting Lenis
+          if (Math.abs(next - progressRef.current) < 0.0015) return;
+          progressRef.current = next;
+          setProgress(next);
+        },
       });
     }, section);
 
-    // Recalculate after images / fonts / Lenis settle
     const refresh = () => ScrollTrigger.refresh();
-    const t1 = window.setTimeout(refresh, 200);
-    const t2 = window.setTimeout(refresh, 800);
+    const t1 = window.setTimeout(refresh, 80);
+    const t2 = window.setTimeout(refresh, 500);
+    const t3 = window.setTimeout(refresh, 1200);
     window.addEventListener("load", refresh);
+
+    // Images loading can shift layout above the journey
+    const images = Array.from(document.images);
+    images.forEach((img) => {
+      if (!img.complete) img.addEventListener("load", refresh, { once: true });
+    });
 
     return () => {
       window.clearTimeout(t1);
       window.clearTimeout(t2);
+      window.clearTimeout(t3);
       window.removeEventListener("load", refresh);
       ctx.revert();
     };
-  }, [isMobile]);
+  }, [trackVh]);
 
   const copyFor = (id: string) =>
     t.journey.scenes.find((s) => s.id === id) ?? t.journey.scenes[0];
@@ -137,9 +152,10 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
       id="journey"
       ref={sectionRef}
       className="relative z-10 bg-void"
+      style={{ height: `${trackVh}vh` }}
       aria-label={t.journey.aria}
     >
-      <div className="relative h-[100svh] w-full overflow-hidden">
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         <JourneyViewport
           scenes={journeyScenes}
           progress={progress}

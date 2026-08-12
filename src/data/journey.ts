@@ -72,8 +72,11 @@ export const journeyAssets = {
   },
 } as const;
 
-/** Pinned journey length in viewport heights — keep short */
-export const journeyScrollVh = 200;
+/**
+ * Journey track height in viewport heights.
+ * Sticky viewport + scrub (not GSAP pin) — ~3 screens for 4 cities + reveal.
+ */
+export const journeyScrollVh = 320;
 
 const FADE = 0.03;
 

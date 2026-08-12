@@ -23,6 +23,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* clip (not hidden) — overflow-x:hidden on html/body breaks sticky + GSAP pin */
+    overflow-x: clip;
   }
 
   html.lenis,
@@ -31,6 +33,10 @@
   }
 
   .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  html.lenis {
     scroll-behavior: auto !important;
   }
 
@@ -56,7 +62,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
   }
 
   img,

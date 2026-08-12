@@ -68,7 +68,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className={`${manrope.variable} antialiased`}>
-      <body className="min-h-screen bg-void text-mist overflow-x-hidden">
+      <body className="min-h-screen bg-void text-mist">
         <LanguageProvider>
           <SmoothScrollProvider>{children}</SmoothScrollProvider>
         </LanguageProvider>
