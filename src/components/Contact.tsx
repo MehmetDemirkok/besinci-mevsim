@@ -40,15 +40,16 @@ export function Contact() {
     >
       <div className="absolute inset-0">
         <BrandImage
-          src="/images/services/accommodation.png"
+          src="/images/brand/contact-bg.png"
           alt=""
-          atmosphere="hotel"
+          atmosphere="road"
           className="h-full w-full"
           sizes="100vw"
+          imageClassName="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-void/78" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.55)_0%,rgba(7,16,20,0.82)_45%,rgba(7,16,20,0.96)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(24,187,208,0.14),transparent_45%)]" />
+        <div className="absolute inset-0 bg-void/80" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.5)_0%,rgba(7,16,20,0.84)_48%,rgba(7,16,20,0.97)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(24,187,208,0.16),transparent_45%)]" />
       </div>
 
       <div className="relative z-10 mx-auto grid max-w-[1440px] gap-12 safe-px py-20 md:gap-16 md:px-8 md:py-28 lg:grid-cols-12 lg:px-10">
@@ -114,6 +115,9 @@ export function Contact() {
                     )}
                   </button>
                 </div>
+                <p className="sr-only" aria-live="polite">
+                  {copied ? t.contact.copied : ""}
+                </p>
 
                 <div className="mt-10">
                   <p className="text-eyebrow text-mist-soft">

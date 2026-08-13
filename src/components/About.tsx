@@ -13,7 +13,7 @@ export function About() {
       className="relative bg-ink py-20 md:py-28"
       aria-labelledby="about-heading"
     >
-      <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-5 md:px-8 lg:grid-cols-12 lg:gap-16 lg:px-10">
+      <div className="mx-auto grid max-w-[1440px] items-center gap-12 safe-px md:px-8 lg:grid-cols-12 lg:gap-16 lg:px-10">
         <Reveal className="lg:col-span-6">
           <p className="text-eyebrow text-cyan">{t.about.eyebrow}</p>
           <h2 id="about-heading" className="mt-5 text-display-sm text-mist">

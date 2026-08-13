@@ -15,13 +15,12 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.12]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.1]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 100]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
   return (
     <section
-      id="top"
       ref={ref}
       className="relative flex min-h-[100svh] items-end overflow-hidden"
     >
@@ -29,14 +28,15 @@ export function Hero() {
         <BrandImage
           src="/images/hero/hero-vito.png"
           alt={t.hero.imageAlt}
-          atmosphere="vehicle"
-          label="MERCEDES-BENZ VITO"
+          atmosphere="city"
           priority
           className="h-full w-full"
           sizes="100vw"
+          imageClassName="object-cover object-[center_35%]"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.55)_0%,rgba(7,16,20,0.25)_35%,rgba(7,16,20,0.72)_70%,rgba(7,16,20,0.96)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(7,16,20,0.45)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.58)_0%,rgba(7,16,20,0.22)_32%,rgba(7,16,20,0.68)_68%,rgba(7,16,20,0.96)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_40%,transparent_0%,rgba(7,16,20,0.5)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_85%,rgba(24,187,208,0.12),transparent_45%)]" />
       </motion.div>
 
       <motion.div
@@ -53,18 +53,18 @@ export function Hero() {
         </motion.p>
 
         <motion.h1
-          className="mt-6 max-w-5xl text-display text-mist"
+          className="mt-5 max-w-5xl text-display text-mist"
           initial={reduce ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           {t.hero.titleLine1}
           <br />
-          {t.hero.titleLine2}
+          <span className="text-mist">{t.hero.titleLine2}</span>
         </motion.h1>
 
         <motion.p
-          className="mt-7 max-w-xl text-base leading-relaxed text-mist-muted md:text-lg"
+          className="mt-6 max-w-xl text-base leading-relaxed text-mist-muted md:mt-7 md:text-lg"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35 }}
@@ -73,14 +73,14 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
+          className="mt-9 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-4"
           initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45 }}
         >
           <a
             href="#fleet"
-            className="group inline-flex items-center justify-center gap-2 border border-mist/20 bg-mist px-7 py-3.5 text-sm tracking-[0.08em] text-void transition-colors hover:bg-cyan hover:border-cyan"
+            className="group inline-flex items-center justify-center gap-2 border border-mist/20 bg-mist px-7 py-3.5 text-sm tracking-[0.08em] text-void transition-colors hover:border-cyan hover:bg-cyan"
           >
             {t.hero.ctaFleet}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -95,18 +95,15 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="mt-12 flex flex-wrap items-center gap-x-2 gap-y-2 text-[0.58rem] tracking-[0.14em] text-mist-soft sm:gap-x-3 sm:tracking-[0.22em] md:mt-20 md:text-[0.65rem]"
+          className="mt-10 hidden items-center gap-x-3 text-[0.62rem] tracking-[0.2em] text-mist-soft/80 md:mt-14 md:flex"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
+          aria-hidden
         >
           {t.hero.chips.map((chip, index) => (
             <span key={chip} className="inline-flex items-center gap-3">
-              {index > 0 ? (
-                <span className="text-cyan/60" aria-hidden>
-                  •
-                </span>
-              ) : null}
+              {index > 0 ? <span className="h-px w-4 bg-cyan/40" /> : null}
               <span>{chip}</span>
             </span>
           ))}

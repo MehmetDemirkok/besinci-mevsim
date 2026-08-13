@@ -30,12 +30,14 @@ export const en: Dictionary = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
     home: "Beşinci Mevsim home",
+    language: "Language",
+    skipToContent: "Skip to content",
   },
   hero: {
-    eyebrow: "Beşinci Mevsim",
-    titleLine1: "Travel",
-    titleLine2: "in comfort.",
-    body: "Professional transportation and travel solutions designed around comfort, reliability and a seamless journey.",
+    eyebrow: "Travel & Tourism Transportation",
+    titleLine1: "Beşinci",
+    titleLine2: "Mevsim.",
+    body: "From VIP transfer to corporate travel — professional transportation built around comfort, reliability and a seamless journey.",
     ctaFleet: "Explore Our Fleet",
     ctaServices: "Discover Our Services",
     chips: [
@@ -44,7 +46,7 @@ export const en: Dictionary = {
       "CORPORATE TRAVEL",
       "ACCOMMODATION",
     ],
-    imageAlt: "Mercedes-Benz Vito VIP transportation",
+    imageAlt: "Comfortable travel atmosphere with Beşinci Mevsim",
   },
   manifesto: {
     quote: "A journey is more than getting from one place to another.",
@@ -57,6 +59,7 @@ export const en: Dictionary = {
     eyebrow: "The VIP Experience",
     titleLine1: "The VIP",
     titleLine2: "way to travel.",
+    vehicleName: "Mercedes-Benz Vito",
     body: "Spacious, comfortable and designed for journeys where the experience matters as much as the destination.",
     points: [
       "VIP Comfort",
@@ -71,6 +74,7 @@ export const en: Dictionary = {
     eyebrow: "Fleet",
     title: "Our Fleet",
     subtitle: "The right vehicle for every journey.",
+    swipeHint: "Swipe to explore",
     vehicles: [
       {
         id: "vito",

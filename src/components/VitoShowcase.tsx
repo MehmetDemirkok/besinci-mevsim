@@ -24,7 +24,7 @@ export function VitoShowcase() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,16,20,0.88)_0%,rgba(7,16,20,0.4)_50%,rgba(7,16,20,0.7)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.25)_0%,transparent_35%,rgba(7,16,20,0.88)_100%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[70svh] max-w-[1440px] items-end px-5 py-16 md:min-h-[75svh] md:px-8 md:py-20 lg:px-10">
+        <div className="relative z-10 mx-auto flex min-h-[70svh] max-w-[1440px] items-end safe-px py-16 md:min-h-[75svh] md:px-8 md:py-20 lg:px-10">
           <Reveal className="max-w-3xl">
             <p className="text-eyebrow text-gold">{t.vito.eyebrow}</p>
             <h2 id="vito-heading" className="mt-4 text-display-sm text-mist">
@@ -33,7 +33,7 @@ export function VitoShowcase() {
               {t.vito.titleLine2}
             </h2>
             <h3 className="mt-6 text-xl font-medium tracking-tight text-cyan md:text-2xl">
-              Mercedes-Benz Vito
+              {t.vito.vehicleName}
             </h3>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-mist-muted">
               {t.vito.body}

@@ -17,6 +17,7 @@ export function CityTitle({
 }: CityTitleProps) {
   return (
     <div
+      aria-hidden={!visible}
       className={`absolute inset-x-0 top-[14%] z-30 px-5 text-center transition-all duration-700 sm:top-[18%] sm:px-6 md:top-[22%] ${
         visible
           ? "translate-y-0 opacity-100"

@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import type { JourneyScene } from "@/data/journey";
 import {
   holdOpacity,
@@ -22,29 +22,45 @@ export function JourneyViewport({
   activeIndex,
   isMobile,
 }: JourneyViewportProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(progress);
+  const activeRef = useRef(true);
   progressRef.current = progress;
 
   useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        activeRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.05 },
+    );
+    io.observe(root);
+
     let frame = 0;
     let raf = 0;
     const el = layerRef.current;
-    if (!el) return;
 
     const tick = () => {
-      frame += 1;
-      const p = progressRef.current;
-      // Soft forward zoom through the whole journey + micro driving sway
-      const driveZoom = 1.06 + p * 0.06;
-      const x = Math.sin(frame / 42) * 0.9;
-      const y = Math.cos(frame / 33) * 0.55;
-      el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${driveZoom})`;
+      if (el && activeRef.current && document.visibilityState === "visible") {
+        frame += 1;
+        const p = progressRef.current;
+        const driveZoom = 1.06 + p * 0.06;
+        const x = Math.sin(frame / 42) * 0.9;
+        const y = Math.cos(frame / 33) * 0.55;
+        el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${driveZoom})`;
+      }
       raf = requestAnimationFrame(tick);
     };
 
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      io.disconnect();
+    };
   }, []);
 
   const scene = scenes[activeIndex];
@@ -62,7 +78,7 @@ export function JourneyViewport({
           : `saturate(1.02)`;
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden bg-void">
+    <div ref={rootRef} className="absolute inset-0 z-0 overflow-hidden bg-void">
       <div
         ref={layerRef}
         className="absolute inset-[-8%] will-change-transform"

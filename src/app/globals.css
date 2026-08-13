@@ -25,6 +25,7 @@
     scroll-behavior: smooth;
     /* clip (not hidden) — overflow-x:hidden on html/body breaks sticky + GSAP pin */
     overflow-x: clip;
+    scroll-padding-top: 5.5rem;
   }
 
   html.lenis,
@@ -101,7 +102,36 @@
     font-size: 0.65rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    font-weight: 560;
+    font-weight: 600;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100%;
+    z-index: 100;
+    background: var(--color-mist);
+    color: var(--color-void);
+    padding: 0.75rem 1.1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    transition: top 0.2s ease;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 
   @media (min-width: 768px) {

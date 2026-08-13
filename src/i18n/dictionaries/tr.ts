@@ -34,12 +34,14 @@ export const tr: Dictionary = {
     openMenu: "Menüyü aç",
     closeMenu: "Menüyü kapat",
     home: "Beşinci Mevsim ana sayfa",
+    language: "Dil seçimi",
+    skipToContent: "İçeriğe geç",
   },
   hero: {
-    eyebrow: "Beşinci Mevsim",
-    titleLine1: "Konforlu",
-    titleLine2: "seyahat.",
-    body: "Konfor, güvenilirlik ve sorunsuz bir yolculuk etrafında tasarlanmış profesyonel ulaşım ve seyahat çözümleri.",
+    eyebrow: "Seyahat & Turizm Taşımacılık",
+    titleLine1: "Beşinci",
+    titleLine2: "Mevsim.",
+    body: "VIP transferden kurumsal seyahate — konfor, güvenilirlik ve sorunsuz bir yolculuk için profesyonel ulaşım çözümleri.",
     ctaFleet: "Filomuzu Keşfedin",
     ctaServices: "Hizmetlerimizi İnceleyin",
     chips: [
@@ -48,7 +50,7 @@ export const tr: Dictionary = {
       "KURUMSAL SEYAHAT",
       "KONAKLAMA",
     ],
-    imageAlt: "Mercedes-Benz Vito VIP transfer",
+    imageAlt: "Beşinci Mevsim ile konforlu seyahat atmosferi",
   },
   manifesto: {
     quote: "Bir yolculuk, bir yerden başka bir yere gitmekten ibaret değildir.",
@@ -61,6 +63,7 @@ export const tr: Dictionary = {
     eyebrow: "VIP Deneyim",
     titleLine1: "VIP tarzda",
     titleLine2: "seyahat.",
+    vehicleName: "Mercedes-Benz Vito",
     body: "Geniş, konforlu ve deneyimin destinasyon kadar önemli olduğu yolculuklar için tasarlandı.",
     points: [
       "VIP Konfor",
@@ -75,6 +78,7 @@ export const tr: Dictionary = {
     eyebrow: "Filo",
     title: "Filomuz",
     subtitle: "Her yolculuk için doğru araç.",
+    swipeHint: "Kaydırarak keşfedin",
     vehicles: [
       {
         id: "vito",

@@ -28,16 +28,16 @@ export function Manifesto() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden bg-void px-5 py-16 md:px-8 md:py-24 lg:px-10"
+      className="relative overflow-hidden bg-void safe-px py-16 md:px-8 md:py-24 lg:px-10"
       aria-labelledby="manifesto-heading"
     >
       <div className="mx-auto max-w-[1100px]">
-        <motion.p
+        <motion.blockquote
           style={{ opacity: reduce ? 1 : quoteOpacity }}
           className="max-w-4xl text-display-sm text-mist/90"
         >
           &ldquo;{t.manifesto.quote}&rdquo;
-        </motion.p>
+        </motion.blockquote>
 
         <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
           {t.manifesto.words.map((word, index) => (

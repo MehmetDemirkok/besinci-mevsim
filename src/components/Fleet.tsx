@@ -58,10 +58,14 @@ export function Fleet() {
       </div>
 
       {/* Phone only: swipe track */}
+      <p className="mt-8 safe-px text-[0.65rem] tracking-[0.16em] text-mist-soft sm:hidden">
+        {t.fleet.swipeHint}
+      </p>
       <div
-        className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto safe-px pb-2 sm:hidden"
+        className="mt-3 flex snap-x snap-mandatory gap-4 overflow-x-auto safe-px pb-3 sm:hidden"
         style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
         data-lenis-prevent
+        aria-label={t.fleet.title}
       >
         {vehicles.map((vehicle, index) => (
           <FleetPanel
@@ -139,11 +143,11 @@ function FleetPanel({
         <p className="mt-2 max-w-md text-sm leading-relaxed text-mist-muted sm:mt-3">
           {vehicle.description}
         </p>
-        <ul className="mt-3 hidden flex-wrap gap-x-4 gap-y-2 sm:mt-4 sm:flex">
-          {vehicle.characteristics.map((item) => (
+        <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1.5 sm:mt-4 sm:gap-x-4 sm:gap-y-2">
+          {vehicle.characteristics.slice(0, size === "mobile" ? 3 : undefined).map((item) => (
             <li
               key={item}
-              className="text-[0.65rem] tracking-[0.14em] text-mist-soft uppercase"
+              className="text-[0.6rem] tracking-[0.12em] text-mist-soft uppercase sm:text-[0.65rem] sm:tracking-[0.14em]"
             >
               {item}
             </li>

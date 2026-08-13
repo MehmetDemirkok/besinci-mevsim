@@ -74,7 +74,7 @@ export default function HomePage() {
         }}
       />
       <Navbar />
-      <main id="top">
+      <main id="main">
         <Hero />
         <Manifesto />
         <CinematicJourney />

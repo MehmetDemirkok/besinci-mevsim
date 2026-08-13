@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { BrandWordmark } from "@/components/ui/Logo";
@@ -13,6 +13,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -28,6 +31,39 @@ export function Navbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab" || !panelRef.current) return;
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    const firstLink = panelRef.current?.querySelector<HTMLElement>("a[href]");
+    firstLink?.focus();
+
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   const navItems = siteConfig.nav.map((item) => ({
     href: item.href,
     label: t.nav[item.key],
@@ -35,6 +71,10 @@ export function Navbar() {
 
   return (
     <>
+      <a href="#main" className="skip-link">
+        {t.nav.skipToContent}
+      </a>
+
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
@@ -44,7 +84,7 @@ export function Navbar() {
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between safe-px md:px-8 lg:px-10">
           <a
-            href="#top"
+            href="#main"
             className="relative z-50 transition-opacity hover:opacity-90"
             aria-label={t.nav.home}
           >
@@ -77,10 +117,12 @@ export function Navbar() {
             </a>
 
             <button
+              ref={menuButtonRef}
               type="button"
               className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-mist lg:hidden"
               aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
               aria-expanded={open}
+              aria-controls={titleId}
               onClick={() => setOpen((v) => !v)}
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -92,6 +134,11 @@ export function Navbar() {
       <AnimatePresence>
         {open ? (
           <motion.div
+            ref={panelRef}
+            id={titleId}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t.nav.mobile}
             className="fixed inset-0 z-40 bg-void lg:hidden"
             initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}

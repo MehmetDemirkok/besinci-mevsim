@@ -4,7 +4,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import type { Locale } from "@/i18n/types";
 
 export function LanguageSwitcher({ className = "" }: { className?: string }) {
-  const { locale, setLocale } = useLanguage();
+  const { locale, setLocale, t } = useLanguage();
 
   const options: { id: Locale; label: string }[] = [
     { id: "tr", label: "TR" },
@@ -15,7 +15,7 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
     <div
       className={`inline-flex items-center gap-1 rounded-full border border-line-strong p-1 ${className}`}
       role="group"
-      aria-label="Language"
+      aria-label={t.nav.language}
     >
       {options.map((option) => {
         const active = locale === option.id;

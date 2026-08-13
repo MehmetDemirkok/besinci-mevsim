@@ -74,8 +74,9 @@ function Atmosphere({
     <div
       className={`relative overflow-hidden ${className ?? ""}`}
       style={{ background: atmospheres[atmosphere] }}
-      role="img"
-      aria-label={alt}
+      {...(alt
+        ? { role: "img" as const, "aria-label": alt }
+        : { "aria-hidden": true })}
     >
       <div className="absolute inset-0 opacity-50">
         <div className="absolute -left-1/4 top-1/3 h-[55%] w-[70%] rounded-full bg-cyan/10 blur-3xl" />

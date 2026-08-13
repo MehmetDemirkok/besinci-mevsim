@@ -15,7 +15,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-line bg-void">
-      <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1440px] safe-px py-16 md:px-8 lg:px-10">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <BrandWordmark />

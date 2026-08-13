@@ -42,7 +42,6 @@ export default async function OpenGraphImage() {
             padding: 48,
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element -- OG ImageResponse requires raw img */}
           <img
             src={logoSrc}
             width={220}

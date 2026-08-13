@@ -22,6 +22,8 @@ export type Dictionary = {
     openMenu: string;
     closeMenu: string;
     home: string;
+    language: string;
+    skipToContent: string;
   };
   hero: {
     eyebrow: string;
@@ -44,6 +46,7 @@ export type Dictionary = {
     eyebrow: string;
     titleLine1: string;
     titleLine2: string;
+    vehicleName: string;
     body: string;
     points: string[];
     imageAlt: string;
@@ -52,6 +55,7 @@ export type Dictionary = {
     eyebrow: string;
     title: string;
     subtitle: string;
+    swipeHint: string;
     vehicles: {
       id: string;
       category: string;

@@ -153,8 +153,11 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
       ref={sectionRef}
       className="relative z-10 bg-void"
       style={{ height: `${trackVh}vh` }}
-      aria-label={t.journey.aria}
+      aria-labelledby="journey-heading"
     >
+      <h2 id="journey-heading" className="sr-only">
+        {t.journey.reducedTitle}
+      </h2>
       <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         <JourneyViewport
           scenes={journeyScenes}
