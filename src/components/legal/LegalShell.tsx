@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { InstagramLink } from "@/components/ui/InstagramLink";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 export function LegalShell({
@@ -25,7 +26,10 @@ export function LegalShell({
           <Link href="/" aria-label={t.nav.home}>
             <BrandWordmark compact />
           </Link>
-          <LanguageSwitcher />
+          <div className="flex items-center gap-3">
+            <InstagramLink />
+            <LanguageSwitcher />
+          </div>
         </div>
       </header>
 

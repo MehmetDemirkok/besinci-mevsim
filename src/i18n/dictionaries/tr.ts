@@ -702,4 +702,5 @@ export const tr: Dictionary = {
     ],
   },
   whatsapp: "WhatsApp ile iletişime geçin",
+  instagram: "Instagram",
 };

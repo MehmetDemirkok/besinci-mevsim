@@ -6,6 +6,7 @@ import { BrandImage } from "@/components/ui/BrandImage";
 import { Reveal } from "@/components/motion/Reveal";
 import { siteConfig } from "@/lib/site";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { InstagramLink } from "@/components/ui/InstagramLink";
 
 export function Contact() {
   const { t } = useLanguage();
@@ -118,6 +119,10 @@ export function Contact() {
                 <p className="sr-only" aria-live="polite">
                   {copied ? t.contact.copied : ""}
                 </p>
+
+                <div className="mt-4">
+                  <InstagramLink variant="row" />
+                </div>
 
                 <div className="mt-10">
                   <p className="text-eyebrow text-mist-soft">

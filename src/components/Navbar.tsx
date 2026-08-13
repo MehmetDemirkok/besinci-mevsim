@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { InstagramLink } from "@/components/ui/InstagramLink";
 import { siteConfig } from "@/lib/site";
 import { homeHref, resolveNavHref } from "@/lib/nav";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -126,7 +127,8 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <InstagramLink />
             <LanguageSwitcher className="hidden sm:inline-flex" />
             <a
               href={resolveNavHref("#contact", pathname)}
@@ -191,7 +193,10 @@ export function Navbar() {
                   {t.nav.contactCta}
                   <ArrowUpRight className="h-5 w-5" />
                 </a>
-                <LanguageSwitcher />
+                <div className="flex items-center gap-3">
+                  <InstagramLink onClick={() => setOpen(false)} />
+                  <LanguageSwitcher />
+                </div>
               </div>
             </div>
           </motion.div>

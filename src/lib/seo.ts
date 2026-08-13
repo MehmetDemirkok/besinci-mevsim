@@ -98,6 +98,7 @@ export function organizationJsonLd() {
       url: absoluteUrl(siteConfig.logo),
     },
     image: absoluteUrl(siteConfig.ogImage),
+    sameAs: [siteConfig.social.instagram],
     email: siteConfig.contact.email ?? undefined,
     telephone: siteConfig.contact.phone ?? undefined,
     foundingLocation: {

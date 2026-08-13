@@ -25,4 +25,8 @@ export const siteConfig = {
     whatsapp: null as string | null,
     address: null as string | null,
   },
+  social: {
+    instagram: "https://www.instagram.com/besincimevsimturizm",
+    instagramHandle: "besincimevsimturizm",
+  },
 } as const;

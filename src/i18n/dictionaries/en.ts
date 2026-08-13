@@ -695,4 +695,5 @@ export const en: Dictionary = {
     ],
   },
   whatsapp: "Contact via WhatsApp",
+  instagram: "Instagram",
 };

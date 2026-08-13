@@ -193,4 +193,5 @@ export type Dictionary = {
     kvkkSections: { title: string; paragraphs: string[] }[];
   };
   whatsapp: string;
+  instagram: string;
 };

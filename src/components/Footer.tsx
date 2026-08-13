@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { BrandWordmark } from "@/components/ui/Logo";
+import { InstagramLink } from "@/components/ui/InstagramLink";
 import { siteConfig } from "@/lib/site";
 import { resolveNavHref, homeHref } from "@/lib/nav";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -30,6 +31,7 @@ export function Footer() {
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-mist-soft">
               {t.footer.blurb}
             </p>
+            <InstagramLink className="mt-6" />
           </div>
 
           <nav aria-label={t.footer.navLabel}>
