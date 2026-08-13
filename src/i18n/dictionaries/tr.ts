@@ -18,6 +18,9 @@ export const tr: Dictionary = {
       "kurumsal transfer",
       "konaklama hizmetleri",
       "Mercedes Vito transfer",
+      "Mercedes Sprinter",
+      "Audi A6 transfer",
+      "Renault Megane",
       "özel transfer",
       "seyahat acentesi",
     ],
@@ -215,6 +218,9 @@ export const tr: Dictionary = {
     fleetLabel: "Bu hizmette kullanılan araçlar",
     ctaLabel: "Bu hizmet için yazın",
     ctaHint: "Rezervasyon formu yok — talebinizi e-posta ile iletin, size dönüş yapalım.",
+    indexTitle: "VIP Transfer ve Turizm Taşımacılık Hizmetleri",
+    indexDescription:
+      "Beşinci Mevsim hizmetleri: VIP transfer, havaalanı transferi, kurumsal taşımacılık, turizm taşımacılığı, özel araç ve konaklama.",
     pages: [
       {
         id: "vip",
@@ -561,6 +567,13 @@ export const tr: Dictionary = {
     privacy: "Gizlilik Politikası",
     kvkk: "KVKK",
     navLabel: "Alt menü",
+  },
+  notFound: {
+    title: "Sayfa bulunamadı",
+    description:
+      "Aradığınız sayfa taşınmış veya hiç yayınlanmamış olabilir. Ana sayfadan veya hizmetlerimizden devam edebilirsiniz.",
+    home: "Ana sayfaya dön",
+    services: "Hizmetleri incele",
   },
   legal: {
     back: "Ana Sayfa",

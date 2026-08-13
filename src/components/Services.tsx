@@ -7,8 +7,13 @@ import { BrandImage } from "@/components/ui/BrandImage";
 import { Reveal } from "@/components/motion/Reveal";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
-export function Services() {
+export function Services({
+  heading = "section",
+}: {
+  heading?: "page" | "section";
+}) {
   const { t } = useLanguage();
+  const HeadingTag = heading === "page" ? "h1" : "h2";
 
   const items = services.map((service) => {
     const copy = t.services.items.find((item) => item.id === service.id);
@@ -29,11 +34,11 @@ export function Services() {
       <div className="mx-auto max-w-[1440px] safe-px md:px-8 lg:px-10">
         <Reveal>
           <p className="text-eyebrow text-cyan">{t.services.eyebrow}</p>
-          <h2 id="services-heading" className="mt-4 text-display-sm text-mist">
+          <HeadingTag id="services-heading" className="mt-4 text-display-sm text-mist">
             {t.services.titleLine1}
             <br />
             {t.services.titleLine2}
-          </h2>
+          </HeadingTag>
         </Reveal>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-6">
@@ -47,7 +52,7 @@ export function Services() {
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <BrandImage
                     src={service.image}
-                    alt=""
+                    alt={service.title}
                     atmosphere={service.atmosphere}
                     className="h-full w-full transition-transform duration-700 group-hover:scale-[1.04]"
                     sizes="(max-width:1024px) 50vw, 33vw"

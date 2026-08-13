@@ -69,7 +69,12 @@ export function Navbar() {
   }, [open]);
 
   const navItems = siteConfig.nav.map((item) => {
-    const href = resolveNavHref(item.href, pathname);
+    const href =
+      item.key === "services"
+        ? pathname === "/"
+          ? "#services"
+          : "/hizmetler"
+        : resolveNavHref(item.href, pathname);
     const active =
       item.key === "services"
         ? pathname.startsWith("/hizmetler")

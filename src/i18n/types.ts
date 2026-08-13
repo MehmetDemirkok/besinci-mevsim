@@ -85,6 +85,8 @@ export type Dictionary = {
     fleetLabel: string;
     ctaLabel: string;
     ctaHint: string;
+    indexTitle: string;
+    indexDescription: string;
     pages: {
       id: string;
       metaTitle: string;
@@ -173,6 +175,12 @@ export type Dictionary = {
     privacy: string;
     kvkk: string;
     navLabel: string;
+  };
+  notFound: {
+    title: string;
+    description: string;
+    home: string;
+    services: string;
   };
   legal: {
     back: string;

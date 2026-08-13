@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { BrandImage } from "@/components/ui/BrandImage";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -54,13 +54,27 @@ export function ServicePage({ service }: { service: ServiceItemBase }) {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(24,187,208,0.12),transparent_42%)]" />
 
           <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-[1440px] flex-col justify-end safe-px pb-14 pt-28 md:px-8 md:pb-20 lg:px-10">
-            <Link
-              href="/#services"
-              className="inline-flex w-fit items-center gap-2 text-sm tracking-[0.08em] text-mist-muted transition-colors hover:text-mist"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              {t.servicePage.allServices}
-            </Link>
+            <nav aria-label="Breadcrumb" className="text-sm tracking-[0.06em] text-mist-soft">
+              <ol className="flex flex-wrap items-center gap-2">
+                <li>
+                  <Link href="/" className="transition-colors hover:text-mist">
+                    {t.servicePage.back}
+                  </Link>
+                </li>
+                <li aria-hidden className="text-mist-soft/50">
+                  /
+                </li>
+                <li>
+                  <Link href="/hizmetler" className="transition-colors hover:text-mist">
+                    {t.nav.services}
+                  </Link>
+                </li>
+                <li aria-hidden className="text-mist-soft/50">
+                  /
+                </li>
+                <li className="text-mist-muted">{copy.title}</li>
+              </ol>
+            </nav>
 
             <p className="mt-8 text-eyebrow text-gold">{copy.number}</p>
             <h1 className="mt-4 max-w-4xl text-display-sm text-mist md:text-display">

@@ -14,6 +14,8 @@ export const en: Dictionary = {
       "corporate travel",
       "private transfer",
       "Mercedes Vito transfer",
+      "Mercedes Sprinter",
+      "Audi A6",
       "accommodation services",
       "travel agency Turkey",
     ],
@@ -211,6 +213,9 @@ export const en: Dictionary = {
     fleetLabel: "Vehicles used for this service",
     ctaLabel: "Write about this service",
     ctaHint: "No booking form — send your request by email and we will reply.",
+    indexTitle: "VIP Transfer and Tourism Transportation Services",
+    indexDescription:
+      "Beşinci Mevsim services: VIP transfer, airport transfer, corporate transportation, tourism transportation, private vehicles and accommodation.",
     pages: [
       {
         id: "vip",
@@ -556,6 +561,13 @@ export const en: Dictionary = {
     privacy: "Privacy Policy",
     kvkk: "KVKK",
     navLabel: "Footer",
+  },
+  notFound: {
+    title: "Page not found",
+    description:
+      "The page you requested may have moved or was never published. Continue from the homepage or our services.",
+    home: "Back to homepage",
+    services: "Browse services",
   },
   legal: {
     back: "Home",

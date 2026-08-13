@@ -76,7 +76,7 @@ function JourneyReduced() {
             <li key={scene.id} className="relative min-h-[70svh] overflow-hidden">
               <Image
                 src={scene.media.image}
-                alt=""
+                alt={copy.title}
                 fill
                 sizes="100vw"
                 className="object-cover"
@@ -183,6 +183,9 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
           scenes={journeyScenes}
           progress={progress}
           activeIndex={activeIndex}
+          alts={Object.fromEntries(
+            t.journey.scenes.map((scene) => [scene.id, scene.title]),
+          )}
         />
 
         <WindshieldFrame compact={isMobile} pullOut={pullOut} />

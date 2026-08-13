@@ -29,7 +29,7 @@ export function LegalShell({
         </div>
       </header>
 
-      <main className="mx-auto max-w-3xl safe-px py-14 md:px-8 md:py-20">
+      <main id="main" className="mx-auto max-w-3xl safe-px py-14 md:px-8 md:py-20">
         <Link
           href="/"
           className="text-sm tracking-[0.06em] text-cyan transition-colors hover:text-mist"

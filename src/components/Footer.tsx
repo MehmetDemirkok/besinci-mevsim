@@ -12,7 +12,10 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   const navItems = siteConfig.nav.map((item) => ({
-    href: resolveNavHref(item.href, pathname),
+    href:
+      item.key === "services"
+        ? "/hizmetler"
+        : resolveNavHref(item.href, pathname),
     label: t.nav[item.key],
   }));
 

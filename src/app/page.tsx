@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Manifesto } from "@/components/Manifesto";
@@ -11,67 +12,42 @@ import { TrustSection } from "@/components/TrustSection";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
-import { siteConfig } from "@/lib/site";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getDictionary } from "@/i18n";
+import {
+  breadcrumbJsonLd,
+  jsonLdGraph,
+  organizationJsonLd,
+  pageMetadata,
+  serviceListJsonLd,
+  webPageJsonLd,
+  websiteJsonLd,
+} from "@/lib/seo";
 
 const tr = getDictionary("tr");
 
-const organizationLd = {
-  "@context": "https://schema.org",
-  "@type": "TravelAgency",
-  "@id": `${siteConfig.url}/#organization`,
-  name: siteConfig.name,
-  alternateName: ["Besinci Mevsim", "5. Mevsim"],
+export const metadata: Metadata = pageMetadata({
+  title: tr.meta.title,
   description: tr.meta.description,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}${siteConfig.logo}`,
-  image: `${siteConfig.url}${siteConfig.ogImage}`,
-  email: siteConfig.contact.email ?? undefined,
-  telephone: siteConfig.contact.phone ?? undefined,
-  inLanguage: ["tr", "en"],
-  areaServed: {
-    "@type": "Country",
-    name: "Turkey",
-  },
-  knowsAbout: [
-    "VIP transfer",
-    "Havaalanı transferi",
-    "Kurumsal taşımacılık",
-    "Turizm taşımacılığı",
-    "Konaklama hizmetleri",
-    "Mercedes Vito",
-  ],
-  contactPoint: siteConfig.contact.email
-    ? [
-        {
-          "@type": "ContactPoint",
-          contactType: "customer service",
-          email: siteConfig.contact.email,
-          availableLanguage: ["Turkish", "English"],
-        },
-      ]
-    : undefined,
-};
-
-const websiteLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": `${siteConfig.url}/#website`,
-  url: siteConfig.url,
-  name: siteConfig.name,
-  description: tr.meta.description,
-  inLanguage: ["tr-TR", "en-US"],
-  publisher: { "@id": `${siteConfig.url}/#organization` },
-};
+  path: "/",
+  keywords: tr.meta.keywords,
+});
 
 export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([organizationLd, websiteLd]),
-        }}
+      <JsonLd
+        data={jsonLdGraph([
+          organizationJsonLd(),
+          websiteJsonLd(),
+          webPageJsonLd({
+            path: "/",
+            title: tr.meta.title,
+            description: tr.meta.description,
+          }),
+          serviceListJsonLd(),
+          breadcrumbJsonLd([{ name: tr.servicePage.back, path: "/" }]),
+        ])}
       />
       <Navbar />
       <main id="main">

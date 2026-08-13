@@ -39,7 +39,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "tr_TR",
     alternateLocale: ["en_US"],
-    url: siteConfig.url,
     siteName: siteConfig.name,
     title: tr.meta.title,
     description: tr.meta.description,
@@ -56,7 +55,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: tr.meta.title,
     description: tr.meta.description,
-    images: [siteConfig.ogImage],
+    images: [
+      {
+        url: siteConfig.ogImage,
+        alt: `${siteConfig.name} — ${siteConfig.tagline}`,
+      },
+    ],
   },
   robots: {
     index: true,
@@ -69,16 +73,11 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  alternates: {
-    canonical: "/",
-    languages: {
-      "tr-TR": "/",
-      "en-US": "/",
-      "x-default": "/",
-    },
-  },
   icons: {
-    icon: [{ url: "/images/brand/logo.png", type: "image/png" }],
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/images/brand/logo.png", type: "image/png" },
+    ],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
   ...(googleVerification

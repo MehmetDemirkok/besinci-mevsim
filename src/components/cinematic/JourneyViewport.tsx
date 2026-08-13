@@ -14,12 +14,14 @@ type JourneyViewportProps = {
   scenes: JourneyScene[];
   progress: number;
   activeIndex: number;
+  alts?: Record<string, string>;
 };
 
 export function JourneyViewport({
   scenes,
   progress,
   activeIndex,
+  alts,
 }: JourneyViewportProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const swayRef = useRef<HTMLDivElement>(null);
@@ -98,7 +100,7 @@ export function JourneyViewport({
             >
               <Image
                 src={item.media.image}
-                alt=""
+                alt={alts?.[item.id] ?? ""}
                 fill
                 priority={item.id === "istanbul"}
                 sizes="100vw"

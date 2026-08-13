@@ -12,24 +12,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
+      images: [`${base}/images/hero/hero-vito.png`, `${base}${siteConfig.ogImage}`],
     },
     {
-      url: `${base}/privacy`,
+      url: `${base}/hizmetler`,
       lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${base}/kvkk`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
+      changeFrequency: "weekly",
+      priority: 0.9,
+      images: services.map((service) => `${base}${service.image}`),
     },
     ...services.map((service) => ({
       url: `${base}${servicePath(service.slug)}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
-      priority: 0.8,
+      priority: 0.85,
+      images: [`${base}${service.image}`],
     })),
+    {
+      url: `${base}/privacy`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
+      url: `${base}/kvkk`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
   ];
 }
