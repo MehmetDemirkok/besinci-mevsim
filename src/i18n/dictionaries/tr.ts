@@ -117,12 +117,49 @@ export const tr: Dictionary = {
           "Profesyonel Şoför",
         ],
       },
+      {
+        id: "sprinter",
+        category: "Grup / VIP Minibüs",
+        description:
+          "Daha geniş kafileler, havaalanı grupları ve konforlu şehirler arası geçişler için Sprinter.",
+        characteristics: [
+          "Grup Transferi",
+          "Geniş Bagaj",
+          "VIP Minibüs",
+          "Havaalanı",
+        ],
+      },
+      {
+        id: "audi",
+        category: "Executive / Kurumsal",
+        description:
+          "Toplantı, misafir karşılama ve temsilî kurumsal seyahat için sakin bir executive sedan.",
+        characteristics: [
+          "Executive Konfor",
+          "Kurumsal Seyahat",
+          "Misafir Transferi",
+          "Özel Transfer",
+        ],
+      },
+      {
+        id: "megane",
+        category: "Şehir / Havaalanı Transferi",
+        description:
+          "Günlük şehir içi ve havaalanı transferlerinde pratik, bakımlı ve konforlu bir sedan.",
+        characteristics: [
+          "Şehir Transferi",
+          "Havaalanı",
+          "Günlük Kullanım",
+          "Profesyonel Şoför",
+        ],
+      },
     ],
   },
   services: {
     eyebrow: "Hizmetler",
     titleLine1: "Sizinle hareket",
     titleLine2: "eden yetkinlikler.",
+    readMore: "İncele",
     items: [
       {
         id: "vip",
@@ -165,6 +202,217 @@ export const tr: Dictionary = {
         title: "Konaklama Hizmetleri",
         description:
           "Tam bir turizm deneyiminin parçası olarak otel konaklaması ve seyahat desteği.",
+      },
+    ],
+  },
+  servicePage: {
+    back: "Ana sayfa",
+    allServices: "Tüm hizmetler",
+    explore: "Hizmeti incele",
+    suitableLabel: "Ne için",
+    highlightsLabel: "Nasıl çalışır",
+    relatedLabel: "Diğer hizmetler",
+    fleetLabel: "Bu hizmette kullanılan araçlar",
+    ctaLabel: "Bu hizmet için yazın",
+    ctaHint: "Rezervasyon formu yok — talebinizi e-posta ile iletin, size dönüş yapalım.",
+    pages: [
+      {
+        id: "vip",
+        metaTitle: "VIP Transfer",
+        metaDescription:
+          "Beşinci Mevsim VIP transfer: özel yolculuklar, gruplar ve özel günler için konforlu Mercedes Vito taşımacılığı.",
+        imageAlt: "Mercedes-Benz Vito ile VIP transfer",
+        lead: "Kapıdan kapıya, sessiz ve düzenli bir VIP yolculuk — deneyimin destinasyon kadar önemli olduğu anlar için.",
+        body: [
+          "VIP transfer, yalnızca bir araç tahsisi değildir. Karşılama, zamanlama ve yolculuk boyunca hissedilen sakinlik aynı özenle ele alınır.",
+          "Özel günler, küçük gruplar ve yüksek konfor beklenen transferlerde Mercedes-Benz Vito’nun geniş iç mekânı ve profesyonel şoför yaklaşımı öne çıkar.",
+          "Talep ettiğinizde güzergâh, karşılama noktası ve yolcu sayısı üzerinden planlanır. Online rezervasyon veya anlık müsaitlik gösterimi yoktur; her talep birebir yanıtlanır.",
+        ],
+        highlights: [
+          {
+            title: "Karşılama",
+            text: "Belirlenen noktada, isimle ve zamanında karşılama.",
+          },
+          {
+            title: "Kabinde konfor",
+            text: "Geniş iç mekân, sakin sürüş ve özel yolculuk ritmi.",
+          },
+          {
+            title: "Tek muhatap",
+            text: "Talepten varışa kadar net iletişim, sürpriz yok.",
+          },
+        ],
+        suitable: [
+          "Özel gün ve davet transferleri",
+          "Küçük grup ve aile yolculukları",
+          "Havaalanı VIP karşılama",
+          "Şehirler arası konforlu geçiş",
+        ],
+      },
+      {
+        id: "airport",
+        metaTitle: "Havaalanı Transferleri",
+        metaDescription:
+          "Havaalanı, otel ve destinasyon arasında Beşinci Mevsim ile güvenilir karşılama ve transfer.",
+        imageAlt: "Havaalanı ve şehir varış atmosferi",
+        lead: "Uçuştan sonraki ilk temas sakin olsun: bagaj, zaman ve güzergâh tek elde toplanır.",
+        body: [
+          "Havaalanı transferi, gecikme ve kalabalıkla başlayan bir günü düzene sokar. Karşılama noktası, uçuş bilgisi ve varış adresi önceden netleştirilir.",
+          "Otel, toplantı veya ev adresi fark etmeksizin güzergâh sade tutulur. Amaç, varışta yorgunluğu azaltmak ve zamanı korumaktır.",
+          "Uçuş saati değişirse bize yazmanız yeterlidir; planı birlikte güncelleriz. Anlık takip paneli veya otomatik rezervasyon yoktur.",
+        ],
+        highlights: [
+          {
+            title: "Uçuşa göre plan",
+            text: "Karşılama, verdiğiniz uçuş ve varış bilgisine göre ayarlanır.",
+          },
+          {
+            title: "Bagaj rahatlığı",
+            text: "Araç seçimi yolcu ve bagaj ihtiyacına göre önerilir.",
+          },
+          {
+            title: "Otel ve destinasyon",
+            text: "Havaalanından otel, ofis veya belirtilen adrese kesintisiz geçiş.",
+          },
+        ],
+        suitable: [
+          "İç ve dış hat varışları",
+          "Otel check-in öncesi transfer",
+          "Toplantı veya etkinlik çıkışı",
+          "Gece veya erken saat uçuşları",
+        ],
+      },
+      {
+        id: "corporate",
+        metaTitle: "Kurumsal Taşımacılık",
+        metaDescription:
+          "Toplantı, etkinlik ve kurumsal seyahat için Beşinci Mevsim profesyonel mobilite çözümleri.",
+        imageAlt: "Kurumsal seyahat için executive araç",
+        lead: "İş gününün temposuna uyan, sakin ve temsilî bir mobilite — toplantıdan etkinliğe kadar.",
+        body: [
+          "Kurumsal taşımacılıkta dakiklik ve görünüm kadar iletişim de önemlidir. Misafir, yönetici veya ekip fark etmeksizin araç ve şoför aynı çizgide tutulur.",
+          "Executive transferlerde Skoda Superb; grup ve heyet hareketlerinde Vito tercih edilir. Fatura ve sözleşme süreçleri talep üzerine netleştirilir.",
+          "Çok duraklı bir gün programı varsa güzergâhı önceden birlikte kurgularız. Platform üzerinden self-servis rezervasyon sunulmaz.",
+        ],
+        highlights: [
+          {
+            title: "Temsilî duruş",
+            text: "Sakin iç mekân, bakımlı filo ve profesyonel karşılama.",
+          },
+          {
+            title: "Program uyumu",
+            text: "Toplantı, otel ve etkinlik durakları tek güzergâhta toplanabilir.",
+          },
+          {
+            title: "Kurumsal süreç",
+            text: "İletişim ve faturalama, şirketinizin işleyişine göre konuşulur.",
+          },
+        ],
+        suitable: [
+          "Yönetici ve misafir transferi",
+          "Etkinlik ve fuar günleri",
+          "Heyet ve ekip hareketi",
+          "Şehir içi kurumsal program",
+        ],
+      },
+      {
+        id: "tourism",
+        metaTitle: "Turizm Taşımacılığı",
+        metaDescription:
+          "Tur, grup ve seyahat organizasyonları için Beşinci Mevsim turizm taşımacılığı.",
+        imageAlt: "Turizm destinasyonu ve grup yolculuğu atmosferi",
+        lead: "Grup ritmini bozmayan, konforlu ve düzenli bir turizm taşıması — destinasyon kadar yol da önemli.",
+        body: [
+          "Turizm taşımacılığı; rehber, grup büyüklüğü ve gün programıyla birlikte düşünülür. Araç seçimi, yolcuların rahat etmesi ve durakların akması için yapılır.",
+          "Daha geniş gruplarda Mercedes-Benz Travego; daha küçük kafilelerde Vito öne çıkar. Amaç, uzun yolda yorgunluğu azaltmak ve varışta enerjinin kalmasıdır.",
+          "Tur operatörleri ve seyahat planlayan ekiplerle e-posta üzerinden çalışırız. Anlık koltuk satışı veya paket tur checkout’u yoktur.",
+        ],
+        highlights: [
+          {
+            title: "Grup ölçeği",
+            text: "Kafile büyüklüğüne göre doğru araç önerilir.",
+          },
+          {
+            title: "Gün programı",
+            text: "Duraklar ve bekleme süreleri önceden konuşulur.",
+          },
+          {
+            title: "Uzun yol konforu",
+            text: "Tur temposuna uygun, sakin ve düzenli bir taşıma.",
+          },
+        ],
+        suitable: [
+          "Günlük ve çok günlük turlar",
+          "Grup ve kafile transferi",
+          "Destinasyonlar arası geçiş",
+          "Organizasyon lojistiği",
+        ],
+      },
+      {
+        id: "private",
+        metaTitle: "Özel Araç Hizmetleri",
+        metaDescription:
+          "Farklı seyahat ihtiyaçlarına göre şekillenen Beşinci Mevsim özel araç ve şoförlü taşımacılık.",
+        imageAlt: "Gece yolunda özel araç yolculuğu",
+        lead: "Tek bir kalıba sığmayan yolculuklar için: güzergâh, süre ve araç sizin ritminize göre kurulur.",
+        body: [
+          "Özel araç hizmeti, standart bir A’dan B’ye transferden daha esnektir. Gün içinde birden fazla durak, beklemeli program veya özel bir güzergâh olabilir.",
+          "İhtiyaca göre executive sedan veya VIP van önerilir. Şoförlü kullanım, yolculuğu planlamanın bir parçasıdır; kiralama pazaryeri değildir.",
+          "Detayları e-posta ile paylaşmanız yeterli: tarih aralığı, yolcu sayısı ve beklenen tempo. Uygunluk ve araç, yanıtımızda netleşir.",
+        ],
+        highlights: [
+          {
+            title: "Esnek güzergâh",
+            text: "Birden fazla durak ve beklemeli program konuşulabilir.",
+          },
+          {
+            title: "Doğru araç",
+            text: "Sedan veya van, yolculuğun karakterine göre seçilir.",
+          },
+          {
+            title: "Şoförlü konfor",
+            text: "Sürüş sizin işiniz olmasın; yolculuk sakin kalsın.",
+          },
+        ],
+        suitable: [
+          "Çok duraklı özel günler",
+          "Beklemeli şehir içi program",
+          "Aile ve küçük grup seyahati",
+          "Kişiye özel güzergâh",
+        ],
+      },
+      {
+        id: "accommodation",
+        metaTitle: "Konaklama Hizmetleri",
+        metaDescription:
+          "Beşinci Mevsim konaklama desteği: transferle bütünleşen otel ve seyahat deneyimi.",
+        imageAlt: "Konaklama ve otel atmosferi",
+        lead: "Yolculuk kapıda bitmez. Konaklama, transferle aynı dilde konuşan bir devamdır.",
+        body: [
+          "Konaklama hizmeti, Beşinci Mevsim’in turizm yaklaşımının parçasıdır: ulaşım ve geceleme ayrı dünyalar gibi durmasın diye kurgulanır.",
+          "Otel tercihi, seyahatin karakterine göre konuşulur. Amacımız sahte müsaitlik listesi sunmak değil; ihtiyacı anlayıp uygun seçenekleri birlikte netleştirmektir.",
+          "Transfer + konaklama birlikte planlandığında varış, check-in ve ertesi günün hareketi daha sakin akar. Rezervasyon motoru veya ödeme sayfası yoktur.",
+        ],
+        highlights: [
+          {
+            title: "Bütüncül plan",
+            text: "Yol ve geceleme aynı konuşmanın içinde ele alınır.",
+          },
+          {
+            title: "Uygun otel dili",
+            text: "Seyahatin temposuna uyan konaklama seçenekleri konuşulur.",
+          },
+          {
+            title: "Varıştan sonra",
+            text: "Check-in ve ertesi gün transferi kopuk kalmaz.",
+          },
+        ],
+        suitable: [
+          "Transferle birlikte konaklama",
+          "Turizm ve kültür seyahatleri",
+          "Kurumsal geceleme ihtiyacı",
+          "Grup programının gece ayağı",
+        ],
       },
     ],
   },

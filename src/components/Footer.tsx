@@ -1,15 +1,18 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { siteConfig } from "@/lib/site";
+import { resolveNavHref, homeHref } from "@/lib/nav";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 export function Footer() {
   const { t } = useLanguage();
+  const pathname = usePathname();
   const year = new Date().getFullYear();
 
   const navItems = siteConfig.nav.map((item) => ({
-    href: item.href,
+    href: resolveNavHref(item.href, pathname),
     label: t.nav[item.key],
   }));
 
@@ -18,7 +21,9 @@ export function Footer() {
       <div className="mx-auto max-w-[1440px] safe-px py-16 md:px-8 lg:px-10">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <BrandWordmark />
+            <a href={homeHref(pathname)} aria-label={t.nav.home}>
+              <BrandWordmark />
+            </a>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-mist-soft">
               {t.footer.blurb}
             </p>

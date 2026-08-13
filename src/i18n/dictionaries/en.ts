@@ -113,12 +113,49 @@ export const en: Dictionary = {
           "Professional Driver",
         ],
       },
+      {
+        id: "sprinter",
+        category: "Group / VIP Minibus",
+        description:
+          "Sprinter for larger parties, airport groups and comfortable intercity journeys.",
+        characteristics: [
+          "Group Transfer",
+          "Generous Luggage",
+          "VIP Minibus",
+          "Airport",
+        ],
+      },
+      {
+        id: "audi",
+        category: "Executive / Corporate",
+        description:
+          "A quiet executive sedan for meetings, guest greeting and representative corporate travel.",
+        characteristics: [
+          "Executive Comfort",
+          "Corporate Travel",
+          "Guest Transfer",
+          "Private Transportation",
+        ],
+      },
+      {
+        id: "megane",
+        category: "City / Airport Transfer",
+        description:
+          "A practical, well-kept sedan for daily city and airport transfers.",
+        characteristics: [
+          "City Transfer",
+          "Airport",
+          "Daily Use",
+          "Professional Driver",
+        ],
+      },
     ],
   },
   services: {
     eyebrow: "Services",
     titleLine1: "Capabilities",
     titleLine2: "that move with you.",
+    readMore: "Explore",
     items: [
       {
         id: "vip",
@@ -161,6 +198,217 @@ export const en: Dictionary = {
         title: "Accommodation Services",
         description:
           "Hotel accommodation and travel support as part of a complete tourism experience.",
+      },
+    ],
+  },
+  servicePage: {
+    back: "Home",
+    allServices: "All services",
+    explore: "Explore service",
+    suitableLabel: "Best for",
+    highlightsLabel: "How it feels",
+    relatedLabel: "Other services",
+    fleetLabel: "Vehicles used for this service",
+    ctaLabel: "Write about this service",
+    ctaHint: "No booking form — send your request by email and we will reply.",
+    pages: [
+      {
+        id: "vip",
+        metaTitle: "VIP Transfer",
+        metaDescription:
+          "Beşinci Mevsim VIP transfer: comfortable Mercedes Vito transportation for private journeys, groups and special occasions.",
+        imageAlt: "VIP transfer with Mercedes-Benz Vito",
+        lead: "Door to door, quiet and composed — for journeys where the experience matters as much as the destination.",
+        body: [
+          "VIP transfer is more than assigning a vehicle. Greeting, timing and the calm inside the cabin are treated with the same care.",
+          "For special occasions, small groups and high-comfort transfers, the Mercedes-Benz Vito’s space and a professional driver set the tone.",
+          "When you reach out, we plan around the route, meeting point and passenger count. There is no online booking or live availability calendar; every request is answered directly.",
+        ],
+        highlights: [
+          {
+            title: "Greeting",
+            text: "On time, by name, at the point you specify.",
+          },
+          {
+            title: "Cabin calm",
+            text: "Spacious interior and a quiet driving rhythm.",
+          },
+          {
+            title: "One contact",
+            text: "Clear communication from request to arrival.",
+          },
+        ],
+        suitable: [
+          "Special occasions and events",
+          "Family and small-group travel",
+          "VIP airport greeting",
+          "Comfortable intercity journeys",
+        ],
+      },
+      {
+        id: "airport",
+        metaTitle: "Airport Transfers",
+        metaDescription:
+          "Reliable airport, hotel and destination transfers with Beşinci Mevsim.",
+        imageAlt: "Airport arrival and city atmosphere",
+        lead: "Let the first moment after landing feel orderly: luggage, timing and route held in one place.",
+        body: [
+          "Airport transfer turns a delayed, crowded arrival into a composed start. Meeting point, flight details and drop-off are confirmed in advance.",
+          "Whether the destination is a hotel, a meeting or a home address, the route stays simple. The aim is to protect time and reduce fatigue.",
+          "If the flight changes, write to us and we adjust together. There is no live tracking dashboard or automated booking.",
+        ],
+        highlights: [
+          {
+            title: "Flight-aware",
+            text: "Greeting is planned around the details you share.",
+          },
+          {
+            title: "Luggage ease",
+            text: "Vehicle suggestion follows passenger and baggage needs.",
+          },
+          {
+            title: "Hotel & destination",
+            text: "A continuous ride from the terminal to where the day begins.",
+          },
+        ],
+        suitable: [
+          "Domestic and international arrivals",
+          "Hotel check-in transfers",
+          "Meeting or event departures",
+          "Early or late flights",
+        ],
+      },
+      {
+        id: "corporate",
+        metaTitle: "Corporate Transportation",
+        metaDescription:
+          "Professional mobility for meetings, events and corporate travel with Beşinci Mevsim.",
+        imageAlt: "Executive vehicle for corporate travel",
+        lead: "Mobility that matches the pace of a working day — from meetings to events, composed and representative.",
+        body: [
+          "In corporate transportation, punctuality and presence matter as much as the conversation. Guest, executive or team — vehicle and driver stay on the same line.",
+          "Executive transfers often use the Skoda Superb; groups and delegations may travel in the Vito. Invoicing and agreements are clarified on request.",
+          "If the day has several stops, we shape the route together in advance. There is no self-serve booking platform.",
+        ],
+        highlights: [
+          {
+            title: "Presence",
+            text: "A calm cabin, a well-kept fleet and a professional greeting.",
+          },
+          {
+            title: "Day program",
+            text: "Hotel, meeting and event stops can sit on one route.",
+          },
+          {
+            title: "Company process",
+            text: "Communication and invoicing follow how you already work.",
+          },
+        ],
+        suitable: [
+          "Executive and guest transfers",
+          "Event and fair days",
+          "Delegation and team movement",
+          "Inner-city corporate programs",
+        ],
+      },
+      {
+        id: "tourism",
+        metaTitle: "Tourism Transportation",
+        metaDescription:
+          "Tourism transportation for tours, groups and travel organizations with Beşinci Mevsim.",
+        imageAlt: "Tourism destination and group journey atmosphere",
+        lead: "Group travel that keeps its rhythm — the road is part of the destination, not an interruption.",
+        body: [
+          "Tourism transportation is planned with the guide, group size and daily program in mind. The vehicle is chosen so passengers stay comfortable and stops stay fluid.",
+          "Larger groups often travel with the Mercedes-Benz Travego; smaller parties with the Vito. The aim is to arrive with energy still intact.",
+          "We work with tour operators and travel planners by email. There is no live seat inventory or packaged-tour checkout.",
+        ],
+        highlights: [
+          {
+            title: "Group scale",
+            text: "The vehicle follows the size of the party.",
+          },
+          {
+            title: "Day program",
+            text: "Stops and waiting times are discussed beforehand.",
+          },
+          {
+            title: "Long-road comfort",
+            text: "A composed ride that matches the tempo of the tour.",
+          },
+        ],
+        suitable: [
+          "Day trips and multi-day tours",
+          "Group and party transfers",
+          "Journeys between destinations",
+          "Organization logistics",
+        ],
+      },
+      {
+        id: "private",
+        metaTitle: "Private Vehicle Services",
+        metaDescription:
+          "Chauffeured private vehicle services shaped around different travel needs with Beşinci Mevsim.",
+        imageAlt: "Night road private vehicle journey",
+        lead: "For journeys that do not fit a template: route, duration and vehicle follow your rhythm.",
+        body: [
+          "Private vehicle service is more flexible than a simple A-to-B transfer. A day may include several stops, waiting time or a route written only for you.",
+          "Depending on the need we suggest an executive sedan or a VIP van. Chauffeured use is part of the plan — this is not a rental marketplace.",
+          "Share the date range, passenger count and expected pace by email. Availability and vehicle are confirmed in our reply.",
+        ],
+        highlights: [
+          {
+            title: "Flexible route",
+            text: "Multiple stops and waiting time can be part of the day.",
+          },
+          {
+            title: "The right car",
+            text: "Sedan or van, chosen for the character of the journey.",
+          },
+          {
+            title: "Chauffeured calm",
+            text: "Driving is not your task; the journey stays quiet.",
+          },
+        ],
+        suitable: [
+          "Multi-stop private days",
+          "City programs with waiting time",
+          "Family and small-group travel",
+          "Tailored itineraries",
+        ],
+      },
+      {
+        id: "accommodation",
+        metaTitle: "Accommodation Services",
+        metaDescription:
+          "Accommodation support with Beşinci Mevsim — hotels and overnight stays planned with the transfer.",
+        imageAlt: "Hotel and accommodation atmosphere",
+        lead: "The journey does not end at the door. Accommodation continues in the same language as the transfer.",
+        body: [
+          "Accommodation is part of how Beşinci Mevsim thinks about travel: transport and overnight stay should not feel like separate worlds.",
+          "Hotel preference is discussed according to the character of the trip. We do not publish a fake availability list; we listen and then clarify suitable options together.",
+          "When transfer and stay are planned together, arrival, check-in and the next morning move more calmly. There is no booking engine or payment page.",
+        ],
+        highlights: [
+          {
+            title: "One plan",
+            text: "Road and overnight stay belong to the same conversation.",
+          },
+          {
+            title: "The right stay",
+            text: "Options that match the tempo of the journey.",
+          },
+          {
+            title: "After arrival",
+            text: "Check-in and the next transfer stay connected.",
+          },
+        ],
+        suitable: [
+          "Stay planned with the transfer",
+          "Culture and tourism trips",
+          "Corporate overnight needs",
+          "The night leg of a group program",
+        ],
       },
     ],
   },

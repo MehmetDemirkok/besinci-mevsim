@@ -20,4 +20,19 @@ export const fleet: FleetVehicleBase[] = [
     name: "Mercedes-Benz Travego",
     image: "/images/fleet/travego.png",
   },
+  {
+    id: "sprinter",
+    name: "Mercedes-Benz Sprinter",
+    image: "/images/fleet/sprinter.png",
+  },
+  {
+    id: "audi",
+    name: "Audi A6",
+    image: "/images/fleet/audi.png",
+  },
+  {
+    id: "megane",
+    name: "Renault Megane",
+    image: "/images/fleet/megane.png",
+  },
 ];

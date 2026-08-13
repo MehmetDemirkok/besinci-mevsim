@@ -115,19 +115,19 @@ function FleetPanel({
       ref={ref}
       className={
         size === "desktop"
-          ? "relative overflow-hidden"
-          : "relative w-[min(86vw,360px)] shrink-0 snap-center overflow-hidden"
+          ? "relative overflow-hidden rounded-2xl"
+          : "relative w-[min(86vw,360px)] shrink-0 snap-center overflow-hidden rounded-2xl"
       }
     >
-      <div className="relative aspect-[16/11] overflow-hidden md:aspect-[5/3]">
+      <div className="relative aspect-[16/11] overflow-hidden rounded-2xl md:aspect-[5/3]">
         <motion.div style={{ y: imageY }} className="absolute inset-[-8%]">
           <BrandImage
             src={vehicle.image}
             alt={vehicle.name}
             atmosphere="vehicle"
-            label={vehicle.name.toUpperCase()}
             className="h-full w-full"
             sizes={size === "desktop" ? "(max-width:1280px) 50vw, 33vw" : "86vw"}
+            imageClassName="object-cover object-center"
           />
         </motion.div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.1)_0%,rgba(7,16,20,0.35)_45%,rgba(7,16,20,0.92)_100%)]" />

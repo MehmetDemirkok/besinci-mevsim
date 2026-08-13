@@ -1,15 +1,19 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { siteConfig } from "@/lib/site";
+import { homeHref, resolveNavHref } from "@/lib/nav";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 export function Navbar() {
   const { t } = useLanguage();
+  const pathname = usePathname();
+  const onSubpage = pathname !== "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
@@ -64,10 +68,18 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
-  const navItems = siteConfig.nav.map((item) => ({
-    href: item.href,
-    label: t.nav[item.key],
-  }));
+  const navItems = siteConfig.nav.map((item) => {
+    const href = resolveNavHref(item.href, pathname);
+    const active =
+      item.key === "services"
+        ? pathname.startsWith("/hizmetler")
+        : false;
+    return {
+      href,
+      label: t.nav[item.key],
+      active,
+    };
+  });
 
   return (
     <>
@@ -77,18 +89,18 @@ export function Navbar() {
 
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled
+          scrolled || onSubpage
             ? "border-b border-line bg-void/75 py-3 backdrop-blur-xl"
             : "border-b border-transparent bg-transparent py-5"
         }`}
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between safe-px md:px-8 lg:px-10">
           <a
-            href="#main"
+            href={homeHref(pathname)}
             className="relative z-50 transition-opacity hover:opacity-90"
             aria-label={t.nav.home}
           >
-            <BrandWordmark compact={scrolled} />
+            <BrandWordmark compact={scrolled || onSubpage} />
           </a>
 
           <nav
@@ -99,7 +111,10 @@ export function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-[0.8rem] tracking-[0.14em] text-mist-muted transition-colors hover:text-mist"
+                className={`text-[0.8rem] tracking-[0.14em] transition-colors hover:text-mist ${
+                  item.active ? "text-mist" : "text-mist-muted"
+                }`}
+                aria-current={item.active ? "page" : undefined}
               >
                 {item.label}
               </a>
@@ -109,7 +124,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <LanguageSwitcher className="hidden sm:inline-flex" />
             <a
-              href="#contact"
+              href={resolveNavHref("#contact", pathname)}
               className="group hidden items-center gap-2 text-[0.8rem] tracking-[0.12em] text-mist transition-colors hover:text-cyan md:inline-flex"
             >
               {t.nav.contactCta}
@@ -164,7 +179,7 @@ export function Navbar() {
 
               <div className="flex items-center justify-between gap-4">
                 <a
-                  href="#contact"
+                  href={resolveNavHref("#contact", pathname)}
                   onClick={() => setOpen(false)}
                   className="inline-flex items-center gap-2 text-lg text-cyan"
                 >

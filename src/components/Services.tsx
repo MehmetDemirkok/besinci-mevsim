@@ -1,18 +1,11 @@
 "use client";
 
-import { services } from "@/data/services";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { services, servicePath } from "@/data/services";
 import { BrandImage } from "@/components/ui/BrandImage";
 import { Reveal } from "@/components/motion/Reveal";
 import { useLanguage } from "@/i18n/LanguageProvider";
-
-const atmospheres = {
-  vip: "vehicle",
-  airport: "city",
-  corporate: "vehicle",
-  tourism: "travel",
-  private: "road",
-  accommodation: "hotel",
-} as const;
 
 export function Services() {
   const { t } = useLanguage();
@@ -24,8 +17,6 @@ export function Services() {
       number: copy?.number ?? "",
       title: copy?.title ?? "",
       description: copy?.description ?? "",
-      atmosphere:
-        atmospheres[service.id as keyof typeof atmospheres] ?? "abstract",
     };
   });
 
@@ -48,7 +39,11 @@ export function Services() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-6">
           {items.map((service, index) => (
             <Reveal key={service.id} delay={0.04 * index}>
-              <article className="group relative overflow-hidden border border-line transition-colors hover:border-cyan/30">
+              <Link
+                href={servicePath(service.slug)}
+                className="group relative block overflow-hidden border border-line transition-colors hover:border-cyan/30"
+                aria-label={`${service.title} — ${t.services.readMore}`}
+              >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <BrandImage
                     src={service.image}
@@ -70,8 +65,12 @@ export function Services() {
                   <p className="mt-2.5 max-w-sm text-sm leading-relaxed text-mist-muted">
                     {service.description}
                   </p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-[0.7rem] tracking-[0.14em] text-cyan">
+                    {t.services.readMore}
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))}
         </div>

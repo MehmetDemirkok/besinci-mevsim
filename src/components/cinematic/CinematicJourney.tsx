@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -55,33 +56,52 @@ function JourneyReduced() {
   return (
     <section
       id="journey"
-      className="bg-ink px-5 py-24 md:px-8 md:py-32 lg:px-10"
-      aria-label={t.journey.aria}
+      className="bg-ink"
+      aria-labelledby="journey-heading"
     >
-      <div className="mx-auto max-w-[1100px]">
+      <h2 id="journey-heading" className="sr-only">
+        {t.journey.reducedTitle}
+      </h2>
+      <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8 md:py-24 lg:px-10">
         <p className="text-eyebrow text-cyan">{t.journey.reducedTitle}</p>
         <p className="mt-5 max-w-2xl text-lg text-mist-muted">
           {t.journey.reducedBody}
         </p>
-        <ol className="mt-14 grid gap-8 sm:grid-cols-2">
-          {t.journey.scenes.map((scene, index) => (
-            <li key={scene.id} className="border-t border-line pt-6">
-              <p className="text-eyebrow text-gold">
-                {t.journey.chapterLabel} {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-3 text-3xl font-medium tracking-tight text-mist">
-                {scene.title}
-              </h3>
-              <p className="mt-3 text-mist-muted">{scene.subtitle}</p>
+      </div>
+      <ol>
+        {journeyScenes.map((scene, index) => {
+          const copy =
+            t.journey.scenes.find((s) => s.id === scene.id) ?? t.journey.scenes[0];
+          return (
+            <li key={scene.id} className="relative min-h-[70svh] overflow-hidden">
+              <Image
+                src={scene.media.image}
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.35)_0%,rgba(7,16,20,0.72)_100%)]" />
+              <div className="relative z-10 mx-auto flex min-h-[70svh] max-w-[1100px] items-end px-5 py-16 md:px-8">
+                <div>
+                  <p className="text-eyebrow text-gold">
+                    {t.journey.chapterLabel} {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-3 text-4xl font-medium tracking-tight text-mist md:text-6xl">
+                    {copy.title}
+                  </h3>
+                  <p className="mt-3 text-mist-muted">{copy.subtitle}</p>
+                </div>
+              </div>
             </li>
-          ))}
-        </ol>
-        <div className="mt-16 border-t border-line pt-10 text-center">
-          <p className="text-2xl font-medium tracking-[0.06em] text-mist md:text-3xl">
-            {t.journey.revealLine}
-          </p>
-          <p className="mt-6 text-eyebrow text-cyan">{t.journey.revealBrand}</p>
-        </div>
+          );
+        })}
+      </ol>
+      <div className="border-t border-line py-16 text-center">
+        <p className="text-2xl font-medium tracking-[0.06em] text-mist md:text-3xl">
+          {t.journey.revealLine}
+        </p>
+        <p className="mt-6 text-eyebrow text-cyan">{t.journey.revealBrand}</p>
       </div>
     </section>
   );
@@ -163,7 +183,6 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
           scenes={journeyScenes}
           progress={progress}
           activeIndex={activeIndex}
-          isMobile={isMobile}
         />
 
         <WindshieldFrame compact={isMobile} pullOut={pullOut} />

@@ -67,11 +67,33 @@ export type Dictionary = {
     eyebrow: string;
     titleLine1: string;
     titleLine2: string;
+    readMore: string;
     items: {
       id: string;
       number: string;
       title: string;
       description: string;
+    }[];
+  };
+  servicePage: {
+    back: string;
+    allServices: string;
+    explore: string;
+    suitableLabel: string;
+    highlightsLabel: string;
+    relatedLabel: string;
+    fleetLabel: string;
+    ctaLabel: string;
+    ctaHint: string;
+    pages: {
+      id: string;
+      metaTitle: string;
+      metaDescription: string;
+      imageAlt: string;
+      lead: string;
+      body: string[];
+      highlights: { title: string; text: string }[];
+      suitable: string[];
     }[];
   };
   transition: {

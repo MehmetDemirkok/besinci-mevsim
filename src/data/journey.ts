@@ -26,8 +26,8 @@ export const journeyScenes: JourneyScene[] = [
     id: "istanbul",
     hold: [0, 0.16],
     media: {
-      image: "/travel/istanbul/view.png",
-      poster: "/travel/istanbul/poster.png",
+      image: "/travel/istanbul/cabin.jpg",
+      poster: "/travel/istanbul/cabin.jpg",
     },
     warmth: 0.2,
     atmosphere: "cool",
@@ -36,8 +36,8 @@ export const journeyScenes: JourneyScene[] = [
     id: "ankara",
     hold: [0.22, 0.38],
     media: {
-      image: "/travel/ankara/view.png",
-      poster: "/travel/ankara/poster.png",
+      image: "/travel/ankara/cabin.jpg",
+      poster: "/travel/ankara/cabin.jpg",
     },
     warmth: 0.15,
     atmosphere: "neutral",
@@ -46,8 +46,8 @@ export const journeyScenes: JourneyScene[] = [
     id: "cappadocia",
     hold: [0.44, 0.6],
     media: {
-      image: "/travel/cappadocia/view.png",
-      poster: "/travel/cappadocia/poster.png",
+      image: "/travel/cappadocia/cabin.jpg",
+      poster: "/travel/cappadocia/cabin.jpg",
     },
     warmth: 0.55,
     atmosphere: "warm",
@@ -56,8 +56,8 @@ export const journeyScenes: JourneyScene[] = [
     id: "izmir",
     hold: [0.66, 0.82],
     media: {
-      image: "/travel/izmir/view.png",
-      poster: "/travel/izmir/poster.png",
+      image: "/travel/izmir/cabin.jpg",
+      poster: "/travel/izmir/cabin.jpg",
     },
     warmth: 0.4,
     atmosphere: "coastal",
@@ -65,7 +65,7 @@ export const journeyScenes: JourneyScene[] = [
 ];
 
 export const journeyAssets = {
-  highway: "/travel/transitions/highway.png",
+  highway: "/travel/transitions/highway-cabin.jpg",
   car: {
     windshield: "/travel/car/windshield-overlay.svg",
     dashboard: "/travel/car/dashboard.svg",
@@ -78,7 +78,7 @@ export const journeyAssets = {
  */
 export const journeyScrollVh = 480;
 
-const FADE = 0.03;
+const FADE = 0.045;
 
 export function holdOpacity(
   progress: number,
@@ -90,6 +90,14 @@ export function holdOpacity(
   if (progress < a) return (progress - (a - fade)) / fade;
   if (progress > b) return 1 - (progress - b) / fade;
   return 1;
+}
+
+/** 0–1 progress inside a city's hold — used for forward-drive zoom */
+export function sceneDrive(progress: number, hold: [number, number]): number {
+  const [a, b] = hold;
+  if (progress <= a) return 0;
+  if (progress >= b) return 1;
+  return (progress - a) / (b - a);
 }
 
 export function highwayOpacity(progress: number): number {

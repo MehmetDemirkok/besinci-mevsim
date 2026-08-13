@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { BrandImage } from "@/components/ui/BrandImage";
 import { Reveal } from "@/components/motion/Reveal";
@@ -39,13 +40,13 @@ export function Accommodation() {
             <p className="mt-5 max-w-xl text-base leading-relaxed text-mist-muted">
               {t.accommodation.body}
             </p>
-            <a
-              href="#contact"
+            <Link
+              href="/hizmetler/konaklama"
               className="group mt-8 inline-flex items-center gap-2 text-sm tracking-[0.1em] text-mist transition-colors hover:text-cyan"
             >
               {t.accommodation.cta}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
+            </Link>
           </Reveal>
         </div>
       </div>
