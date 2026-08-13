@@ -29,4 +29,8 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/besincimevsimturizm",
     instagramHandle: "besincimevsimturizm",
   },
+  agency: {
+    name: "İlkRüzgar Seyahat Acentası",
+    tursabNo: "18563",
+  },
 } as const;

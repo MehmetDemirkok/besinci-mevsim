@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { InstagramLink } from "@/components/ui/InstagramLink";
+import { AgencyCredential } from "@/components/ui/AgencyCredential";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 export function LegalShell({
@@ -71,16 +72,19 @@ export function LegalShell({
       </main>
 
       <footer className="border-t border-line">
-        <div className="mx-auto flex max-w-3xl flex-wrap gap-6 safe-px py-8 text-sm text-mist-soft md:px-8">
-          <Link href="/privacy" className="hover:text-mist">
-            {t.footer.privacy}
-          </Link>
-          <Link href="/kvkk" className="hover:text-mist">
-            {t.footer.kvkk}
-          </Link>
-          <Link href="/#contact" className="hover:text-mist">
-            {t.nav.contact}
-          </Link>
+        <div className="mx-auto flex max-w-3xl flex-col gap-4 safe-px py-8 text-sm text-mist-soft md:px-8">
+          <AgencyCredential />
+          <div className="flex flex-wrap gap-6">
+            <Link href="/privacy" className="hover:text-mist">
+              {t.footer.privacy}
+            </Link>
+            <Link href="/kvkk" className="hover:text-mist">
+              {t.footer.kvkk}
+            </Link>
+            <Link href="/#contact" className="hover:text-mist">
+              {t.nav.contact}
+            </Link>
+          </div>
         </div>
       </footer>
     </div>

@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { InstagramLink } from "@/components/ui/InstagramLink";
+import { AgencyCredential } from "@/components/ui/AgencyCredential";
 import { siteConfig } from "@/lib/site";
 import { resolveNavHref, homeHref } from "@/lib/nav";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -31,6 +32,7 @@ export function Footer() {
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-mist-soft">
               {t.footer.blurb}
             </p>
+            <AgencyCredential className="mt-5 max-w-sm text-sm" />
             <InstagramLink className="mt-6" />
           </div>
 
@@ -52,7 +54,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-line pt-8 text-sm text-mist-soft sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {siteConfig.name}. {t.footer.rights}
+            © {year} {siteConfig.name} · {siteConfig.agency.name}. {t.footer.rights}
           </p>
           <div className="flex gap-6">
             <a href="/privacy" className="transition-colors hover:text-mist">

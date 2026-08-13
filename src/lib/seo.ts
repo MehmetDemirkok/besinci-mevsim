@@ -89,8 +89,14 @@ export function organizationJsonLd() {
     "@type": "TravelAgency",
     "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.name,
-    legalName: siteConfig.name,
-    alternateName: ["Besinci Mevsim", "5. Mevsim", "Besinci Mevsim Seyahat"],
+    legalName: siteConfig.agency.name,
+    alternateName: [
+      "Besinci Mevsim",
+      "5. Mevsim",
+      "Besinci Mevsim Seyahat",
+      siteConfig.agency.name,
+      "IlkRuzgar Seyahat Acentasi",
+    ],
     description: tr.meta.description,
     url: siteConfig.url,
     logo: {
@@ -99,6 +105,11 @@ export function organizationJsonLd() {
     },
     image: absoluteUrl(siteConfig.ogImage),
     sameAs: [siteConfig.social.instagram],
+    identifier: {
+      "@type": "PropertyValue",
+      name: "TURSAB",
+      value: siteConfig.agency.tursabNo,
+    },
     email: siteConfig.contact.email ?? undefined,
     telephone: siteConfig.contact.phone ?? undefined,
     foundingLocation: {

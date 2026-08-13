@@ -2,6 +2,7 @@
 
 import { BrandImage } from "@/components/ui/BrandImage";
 import { Reveal } from "@/components/motion/Reveal";
+import { AgencyCredential } from "@/components/ui/AgencyCredential";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 export function About() {
@@ -26,7 +27,9 @@ export function About() {
           </p>
 
           <div className="mt-12 border-t border-line pt-8">
-            <p className="max-w-md text-sm leading-relaxed text-mist-soft">
+            <p className="text-eyebrow text-gold">{t.about.agency}</p>
+            <AgencyCredential className="mt-3 max-w-md text-sm md:text-base" />
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-mist-soft">
               {t.about.note}
             </p>
           </div>

@@ -8,6 +8,8 @@ export const en: Dictionary = {
     keywords: [
       "Beşinci Mevsim",
       "Besinci Mevsim",
+      "İlkRüzgar Seyahat Acentası",
+      "TURSAB 18563",
       "VIP transfer Turkey",
       "airport transfer",
       "tourism transportation",
@@ -484,6 +486,7 @@ export const en: Dictionary = {
     body: "Beşinci Mevsim combines transportation, tourism and accommodation services to create comfortable and professional travel experiences.",
     note: "A mobility and travel company built around comfort, reliability and a seamless journey — from the first mile to the final stay.",
     imageAlt: "Beşinci Mevsim brand atmosphere",
+    agency: "Licensed travel agency",
   },
   trust: {
     eyebrow: "Principles",
@@ -561,6 +564,7 @@ export const en: Dictionary = {
     privacy: "Privacy Policy",
     kvkk: "KVKK",
     navLabel: "Footer",
+    tursab: "TURSAB Licence No",
   },
   notFound: {
     title: "Page not found",
@@ -574,7 +578,7 @@ export const en: Dictionary = {
     updatedAt: "Last updated: 12 August 2026",
     privacyTitle: "Privacy Policy",
     privacyIntro:
-      "This Privacy Policy explains how Beşinci Mevsim Seyahat & Turizm Taşımacılık (“Beşinci Mevsim”, “we”) respects the privacy of visitors to our website. This website is a corporate showcase — it is not a booking or payment platform.",
+      "This Privacy Policy explains how Beşinci Mevsim and İlkRüzgar Seyahat Acentası (TURSAB Licence No: 18563) (“we”) respect the privacy of visitors to our website. This website is a corporate showcase — it is not a booking or payment platform.",
     privacySections: [
       {
         title: "1. Scope",
@@ -633,12 +637,12 @@ export const en: Dictionary = {
     ],
     kvkkTitle: "KVKK Disclosure Notice",
     kvkkIntro:
-      "Pursuant to Turkish Personal Data Protection Law No. 6698 (“KVKK”), Beşinci Mevsim Seyahat & Turizm Taşımacılık, as data controller, informs you about the processing of your personal data.",
+      "Pursuant to Turkish Personal Data Protection Law No. 6698 (“KVKK”), İlkRüzgar Seyahat Acentası (TURSAB Licence No: 18563) / Beşinci Mevsim, as data controller, informs you about the processing of your personal data.",
     kvkkSections: [
       {
         title: "1. Data Controller",
         paragraphs: [
-          "Data controller: Beşinci Mevsim Seyahat & Turizm Taşımacılık.",
+          "Data controller: İlkRüzgar Seyahat Acentası (TURSAB Licence No: 18563). Beşinci Mevsim is the service brand of this agency.",
           "Contact: through the channels on our website. Official address, phone and email will be published here or on the contact page when available.",
         ],
       },

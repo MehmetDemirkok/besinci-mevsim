@@ -143,6 +143,7 @@ export type Dictionary = {
     body: string;
     note: string;
     imageAlt: string;
+    agency: string;
   };
   trust: {
     eyebrow: string;
@@ -175,6 +176,7 @@ export type Dictionary = {
     privacy: string;
     kvkk: string;
     navLabel: string;
+    tursab: string;
   };
   notFound: {
     title: string;

@@ -8,6 +8,8 @@ export const tr: Dictionary = {
     keywords: [
       "Beşinci Mevsim",
       "Besinci Mevsim",
+      "İlkRüzgar Seyahat Acentası",
+      "TURSAB 18563",
       "VIP transfer",
       "VIP transfer Türkiye",
       "havaalanı transfer",
@@ -489,6 +491,7 @@ export const tr: Dictionary = {
     body: "Beşinci Mevsim; taşımacılık, turizm ve konaklama hizmetlerini bir araya getirerek konforlu ve profesyonel seyahat deneyimleri sunar.",
     note: "Konfor, güvenilirlik ve sorunsuz bir yolculuk etrafında şekillenen bir mobilite ve seyahat markası — ilk kilometreden son konaklamaya.",
     imageAlt: "Beşinci Mevsim marka atmosferi",
+    agency: "Yetkili seyahat acentesi",
   },
   trust: {
     eyebrow: "İlkeler",
@@ -567,6 +570,7 @@ export const tr: Dictionary = {
     privacy: "Gizlilik Politikası",
     kvkk: "KVKK",
     navLabel: "Alt menü",
+    tursab: "TURSAB Belge No",
   },
   notFound: {
     title: "Sayfa bulunamadı",
@@ -580,7 +584,7 @@ export const tr: Dictionary = {
     updatedAt: "Son güncelleme: 12 Ağustos 2026",
     privacyTitle: "Gizlilik Politikası",
     privacyIntro:
-      "Bu Gizlilik Politikası, Beşinci Mevsim Seyahat & Turizm Taşımacılık (“Beşinci Mevsim”, “biz”) olarak web sitemizi ziyaret eden kullanıcıların gizliliğine verdiğimiz önemi açıklar. Sitemiz bir rezervasyon veya ödeme platformu değildir; kurumsal tanıtım ve iletişim amaçlıdır.",
+      "Bu Gizlilik Politikası, Beşinci Mevsim markası ve İlkRüzgar Seyahat Acentası (TURSAB Belge No: 18563) (“biz”) olarak web sitemizi ziyaret eden kullanıcıların gizliliğine verdiğimiz önemi açıklar. Sitemiz bir rezervasyon veya ödeme platformu değildir; kurumsal tanıtım ve iletişim amaçlıdır.",
     privacySections: [
       {
         title: "1. Kapsam",
@@ -640,12 +644,12 @@ export const tr: Dictionary = {
     ],
     kvkkTitle: "KVKK Aydınlatma Metni",
     kvkkIntro:
-      "6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, veri sorumlusu sıfatıyla Beşinci Mevsim Seyahat & Turizm Taşımacılık olarak kişisel verilerinizin işlenmesine ilişkin olarak sizi bilgilendirmek isteriz.",
+      "6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, veri sorumlusu sıfatıyla İlkRüzgar Seyahat Acentası (TURSAB Belge No: 18563) / Beşinci Mevsim olarak kişisel verilerinizin işlenmesine ilişkin olarak sizi bilgilendirmek isteriz.",
     kvkkSections: [
       {
         title: "1. Veri Sorumlusu",
         paragraphs: [
-          "Veri sorumlusu: Beşinci Mevsim Seyahat & Turizm Taşımacılık.",
+          "Veri sorumlusu: İlkRüzgar Seyahat Acentası (TURSAB Belge No: 18563). Beşinci Mevsim, bu acentenin hizmet markasıdır.",
           "İletişim: Web sitemizdeki iletişim kanalları üzerinden. Resmi adres, telefon ve e-posta bilgileri güncellendiğinde bu metinde veya iletişim sayfasında paylaşılır.",
         ],
       },
