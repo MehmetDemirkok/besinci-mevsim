@@ -4,7 +4,6 @@ import Link from "next/link";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { InstagramLink } from "@/components/ui/InstagramLink";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { AgencyCredential } from "@/components/ui/AgencyCredential";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -23,15 +22,14 @@ export function LegalShell({
 
   return (
     <div className="min-h-screen bg-void text-mist">
-      <header className="border-b border-line">
-        <div className="mx-auto flex max-w-3xl items-center justify-between safe-px py-5 md:px-8">
-          <Link href="/" aria-label={t.nav.home}>
+      <header className="border-b border-line safe-pt">
+        <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 safe-px py-4 md:px-8">
+          <Link href="/" aria-label={t.nav.home} className="min-w-0">
             <BrandWordmark compact />
           </Link>
-          <div className="flex items-center gap-3">
-            <ThemeToggle className="border border-glass-border" />
-            <InstagramLink />
-            <LanguageSwitcher />
+          <div className="flex shrink-0 items-center gap-2">
+            <InstagramLink className="hidden sm:inline-flex" />
+            <LanguageSwitcher variant="inline" />
           </div>
         </div>
       </header>
@@ -39,7 +37,7 @@ export function LegalShell({
       <main id="main" className="mx-auto max-w-3xl safe-px py-14 md:px-8 md:py-20">
         <Link
           href="/"
-          className="text-sm tracking-[0.06em] text-cyan transition-colors hover:text-mist"
+          className="inline-flex min-h-11 items-center text-sm tracking-[0.06em] text-cyan transition-colors hover:text-mist"
         >
           ← {t.legal.back}
         </Link>
@@ -74,16 +72,16 @@ export function LegalShell({
       </main>
 
       <footer className="border-t border-line">
-        <div className="mx-auto flex max-w-3xl flex-col gap-4 safe-px py-8 text-sm text-mist-soft md:px-8">
+        <div className="mx-auto flex max-w-3xl flex-col gap-4 safe-px pt-8 pb-fab text-sm text-mist-soft md:px-8">
           <AgencyCredential />
           <div className="flex flex-wrap gap-6">
-            <Link href="/privacy" className="hover:text-mist">
+            <Link href="/privacy" className="inline-flex min-h-11 items-center hover:text-mist">
               {t.footer.privacy}
             </Link>
-            <Link href="/kvkk" className="hover:text-mist">
+            <Link href="/kvkk" className="inline-flex min-h-11 items-center hover:text-mist">
               {t.footer.kvkk}
             </Link>
-            <Link href="/#contact" className="hover:text-mist">
+            <Link href="/#contact" className="inline-flex min-h-11 items-center hover:text-mist">
               {t.nav.contact}
             </Link>
           </div>

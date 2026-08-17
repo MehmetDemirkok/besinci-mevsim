@@ -7,7 +7,7 @@ export const siteConfig = {
   url: "https://besincimevsim.com",
   /** Production / preview host used in sitemap & canonicals */
   locale: "tr_TR",
-  logo: "/images/brand/logo.png",
+  logo: "/images/brand/logo-mark.png",
   ogImage: "/images/brand/og.png",
   nav: [
     { key: "services" as const, href: "#services" },

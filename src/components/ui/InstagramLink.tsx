@@ -56,7 +56,7 @@ export function InstagramLink({
         rel="noopener noreferrer me"
         onClick={onClick}
         aria-label={`${t.instagram} (${handle})`}
-        className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-mist-muted transition-colors hover:bg-glass hover:text-cyan ${className}`}
+        className={`inline-flex h-11 w-11 items-center justify-center rounded-full text-mist-muted transition-colors hover:bg-glass hover:text-cyan ${className}`}
       >
         <InstagramGlyph className="h-4 w-4" />
       </a>

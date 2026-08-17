@@ -26,7 +26,7 @@ export function VisionPage() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.58)_0%,rgba(7,16,20,0.32)_38%,rgba(7,16,20,0.88)_78%,rgba(7,16,20,0.98)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(24,187,208,0.14),transparent_42%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-[1440px] flex-col justify-end safe-px pb-14 pt-28 md:px-8 md:pb-20 lg:px-10">
+        <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-[1440px] flex-col justify-end safe-px pb-[max(3.5rem,calc(1.25rem+env(safe-area-inset-bottom)))] pt-[calc(8.5rem+env(safe-area-inset-top))] md:px-8 md:pb-20 lg:px-10">
           <nav
             aria-label={page.breadcrumb}
             className="text-sm tracking-[0.06em] text-mist-muted"
@@ -143,17 +143,17 @@ export function VisionPage() {
               {page.ctaHint}
             </p>
           </Reveal>
-          <Reveal delay={0.08} className="flex flex-col gap-3 sm:flex-row">
+          <Reveal delay={0.08} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <Link
               href="/#contact"
-              className="group inline-flex items-center justify-center gap-2 bg-mist px-7 py-4 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan"
+              className="group inline-flex min-h-12 w-full items-center justify-center gap-2 bg-mist px-7 py-4 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan sm:w-auto"
             >
               {t.nav.contactCta}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <Link
               href="/hizmetler"
-              className="inline-flex items-center justify-center border border-line px-7 py-4 text-sm tracking-[0.1em] text-mist transition-colors hover:border-cyan/40"
+              className="inline-flex min-h-12 w-full items-center justify-center border border-line px-7 py-4 text-sm tracking-[0.1em] text-mist transition-colors hover:border-cyan/40 sm:w-auto"
             >
               {t.nav.services}
             </Link>

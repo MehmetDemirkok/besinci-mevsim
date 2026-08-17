@@ -28,7 +28,7 @@ export function Services({
   return (
     <section
       id="services"
-      className="relative scroll-mt-24 bg-ink py-20 md:py-28"
+      className="relative bg-ink py-20 md:py-28"
       aria-labelledby="services-heading"
     >
       <div className="mx-auto max-w-[1440px] safe-px md:px-8 lg:px-10">
@@ -55,7 +55,7 @@ export function Services({
                     alt={service.title}
                     atmosphere={service.atmosphere}
                     className="h-full w-full transition-transform duration-700 group-hover:scale-[1.04]"
-                    sizes="(max-width:1024px) 50vw, 33vw"
+                    sizes="(max-width: 639px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     imageClassName="object-cover"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.05)_0%,rgba(7,16,20,0.55)_70%,rgba(7,16,20,0.92)_100%)]" />

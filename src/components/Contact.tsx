@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { ArrowUpRight, Check, Copy, Mail } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Mail, MapPin } from "lucide-react";
 import { BrandImage } from "@/components/ui/BrandImage";
 import { Reveal } from "@/components/motion/Reveal";
 import { siteConfig, telHref, whatsappHref, mapsHref } from "@/lib/site";
@@ -74,7 +74,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden scroll-mt-24 on-media"
+      className="relative overflow-hidden on-media"
       aria-labelledby="contact-heading"
     >
       <div className="absolute inset-0">
@@ -91,7 +91,7 @@ export function Contact() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(24,187,208,0.16),transparent_45%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto grid max-w-[1440px] gap-12 safe-px py-20 md:gap-16 md:px-8 md:py-28 lg:grid-cols-12 lg:px-10">
+      <div className="relative z-10 mx-auto grid max-w-[1440px] gap-12 safe-px pt-20 pb-fab md:gap-16 md:px-8 md:pt-28 md:pb-28 lg:grid-cols-12 lg:px-10">
         <Reveal className="lg:col-span-6">
           <p className="text-eyebrow text-cyan">{t.contact.eyebrow}</p>
           <h2
@@ -134,7 +134,7 @@ export function Contact() {
                           key={item.id}
                           type="button"
                           onClick={() => setActiveTopic(item.id)}
-                          className={`border px-4 py-2.5 text-sm tracking-[0.04em] transition-colors ${
+                          className={`min-h-11 border px-4 py-2.5 text-sm tracking-[0.04em] transition-colors ${
                             active
                               ? "border-cyan/60 bg-cyan/10 text-mist"
                               : "border-line-strong text-mist-muted hover:border-mist/25 hover:text-mist"
@@ -158,7 +158,7 @@ export function Contact() {
                       value={name}
                       onChange={(event) => setName(event.target.value)}
                       placeholder={t.contact.namePlaceholder}
-                      className="mt-2 w-full border border-line-strong bg-void/40 px-4 py-3 text-mist placeholder:text-mist-muted/70"
+                      className="mt-2 w-full border border-line-strong bg-void/40 px-4 py-3 text-base text-mist placeholder:text-mist-muted/70"
                     />
                   </label>
                   <label className="block text-sm text-mist-muted">
@@ -172,7 +172,7 @@ export function Contact() {
                       value={phoneValue}
                       onChange={(event) => setPhoneValue(event.target.value)}
                       placeholder={t.contact.phonePlaceholder}
-                      className="mt-2 w-full border border-line-strong bg-void/40 px-4 py-3 text-mist placeholder:text-mist-muted/70"
+                      className="mt-2 w-full border border-line-strong bg-void/40 px-4 py-3 text-base text-mist placeholder:text-mist-muted/70"
                     />
                   </label>
                 </div>
@@ -185,7 +185,8 @@ export function Contact() {
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     placeholder={t.contact.messagePlaceholder}
-                    className="mt-2 w-full resize-y border border-line-strong bg-void/40 px-4 py-3 text-mist placeholder:text-mist-muted/70"
+                    className="mt-2 w-full resize-y border border-line-strong bg-void/40 px-4 py-3 text-base text-mist placeholder:text-mist-muted/70"
+                    autoComplete="off"
                   />
                 </label>
 
@@ -193,7 +194,7 @@ export function Contact() {
 
                 <button
                   type="submit"
-                  className="group mt-6 inline-flex w-full items-center justify-center gap-2 bg-mist px-7 py-4 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan sm:w-auto"
+                  className="group mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-mist px-7 py-4 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan sm:w-auto"
                 >
                   {t.contact.submit}
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -221,7 +222,7 @@ export function Contact() {
                     <button
                       type="button"
                       onClick={copyEmail}
-                      className="inline-flex items-center justify-center gap-2 border border-line-strong px-5 py-5 text-sm tracking-[0.08em] text-mist-muted transition-colors hover:border-mist/30 hover:text-mist sm:min-w-[9rem]"
+                      className="inline-flex min-h-12 items-center justify-center gap-2 border border-line-strong px-5 py-5 text-sm tracking-[0.08em] text-mist-muted transition-colors hover:border-mist/30 hover:text-mist sm:min-w-[9rem]"
                       aria-label={copied ? t.contact.copied : t.contact.copy}
                     >
                       {copied ? (
@@ -256,7 +257,7 @@ export function Contact() {
                     <p className="text-eyebrow text-mist-muted">{t.contact.phone}</p>
                     <a
                       href={telHref(phone)}
-                      className="mt-3 inline-block text-lg font-medium tracking-tight text-mist transition-colors hover:text-cyan"
+                      className="mt-3 inline-flex min-h-11 items-center text-lg font-medium tracking-tight text-mist transition-colors hover:text-cyan"
                     >
                       {phone}
                     </a>
@@ -269,7 +270,7 @@ export function Contact() {
                       href={whatsappHref(whatsapp)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group mt-3 inline-flex items-center gap-2 border border-cyan/40 bg-cyan/10 px-5 py-3 text-sm tracking-[0.1em] text-mist transition-colors hover:border-cyan hover:bg-cyan hover:text-void"
+                      className="group mt-3 inline-flex min-h-11 items-center gap-2 border border-cyan/40 bg-cyan/10 px-5 py-3 text-sm tracking-[0.1em] text-mist transition-colors hover:border-cyan hover:bg-cyan hover:text-void"
                     >
                       <WhatsAppIcon className="h-4 w-4" />
                       {t.contact.whatsappCta}
@@ -282,15 +283,17 @@ export function Contact() {
                     <p className="text-eyebrow text-mist-muted">
                       {t.contact.address}
                     </p>
+                    <p className="mt-3 max-w-md text-mist">{address}</p>
                     <a
                       href={mapsHref(address)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 inline-block max-w-md text-mist transition-colors hover:text-cyan"
+                      className="group mt-4 inline-flex min-h-11 items-center gap-2 border border-mist/20 px-5 py-3 text-sm tracking-[0.1em] text-mist transition-colors hover:border-cyan hover:bg-cyan hover:text-void"
                     >
-                      {address}
+                      <MapPin className="h-4 w-4" aria-hidden />
+                      {t.contact.openMap}
+                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </a>
-                    <p className="mt-2 text-sm text-mist-muted">{t.contact.openMap}</p>
                   </div>
                 ) : null}
               </div>

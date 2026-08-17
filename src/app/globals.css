@@ -20,21 +20,21 @@
 }
 
 html[data-theme="light"] {
-  --void: #eef3f4;
-  --ink: #e4ecee;
-  --panel: #f7fafb;
+  --void: #f4f6f3;
+  --ink: #eaeeea;
+  --panel: #fbfcfb;
   --panel-elevated: #ffffff;
-  --line: rgba(11, 21, 26, 0.09);
-  --line-strong: rgba(11, 21, 26, 0.16);
-  --mist: #0b151a;
-  --mist-muted: rgba(11, 21, 26, 0.64);
-  --mist-soft: rgba(11, 21, 26, 0.52);
-  --cyan: #0e8fa3;
-  --cyan-soft: rgba(14, 143, 163, 0.16);
-  --gold: #b8860a;
-  --gold-soft: rgba(184, 134, 10, 0.18);
-  --glass: rgba(11, 21, 26, 0.04);
-  --glass-border: rgba(11, 21, 26, 0.12);
+  --line: rgba(16, 24, 26, 0.1);
+  --line-strong: rgba(16, 24, 26, 0.18);
+  --mist: #10181a;
+  --mist-muted: rgba(16, 24, 26, 0.62);
+  --mist-soft: rgba(16, 24, 26, 0.5);
+  --cyan: #0e8f9e;
+  --cyan-soft: rgba(24, 187, 208, 0.14);
+  --gold: #c49212;
+  --gold-soft: rgba(244, 181, 27, 0.2);
+  --glass: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(16, 24, 26, 0.12);
   color-scheme: light;
 }
 
@@ -85,8 +85,10 @@ html[data-theme="light"] .on-media,
     scroll-behavior: smooth;
     /* clip (not hidden) — overflow-x:hidden on html/body breaks sticky + GSAP pin */
     overflow-x: clip;
-    scroll-padding-top: 5.5rem;
+    overscroll-behavior-x: none;
+    scroll-padding-top: calc(6rem + env(safe-area-inset-top));
     touch-action: manipulation;
+    -webkit-tap-highlight-color: color-mix(in srgb, var(--cyan) 22%, transparent);
   }
 
   html.lenis,
@@ -126,6 +128,34 @@ html[data-theme="light"] .on-media,
     text-rendering: optimizeLegibility;
   }
 
+  html[data-theme="light"] body {
+    background:
+      radial-gradient(ellipse 90% 55% at 50% -18%, rgba(24, 187, 208, 0.1), transparent 52%),
+      radial-gradient(ellipse 50% 40% at 100% 0%, rgba(244, 181, 27, 0.07), transparent 48%),
+      var(--color-void);
+  }
+
+  html[data-theme="light"] .header-solid {
+    background: color-mix(in srgb, #ffffff 82%, transparent);
+    box-shadow: 0 12px 40px rgba(16, 24, 26, 0.05);
+  }
+
+  html[data-theme="light"] .whatsapp-float {
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgba(16, 24, 26, 0.12);
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 1rem;
+  }
+
+  body[data-nav="open"] .whatsapp-float {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   img,
   video,
   svg {
@@ -146,17 +176,17 @@ html[data-theme="light"] .on-media,
 
 @layer utilities {
   .text-display {
-    font-size: clamp(2.6rem, 11vw, 9rem);
-    line-height: 0.94;
-    letter-spacing: -0.045em;
+    font-size: clamp(2.15rem, 10.5vw, 9rem);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
     font-weight: 500;
     text-wrap: balance;
   }
 
   .text-display-sm {
-    font-size: clamp(2rem, 7vw, 5.5rem);
-    line-height: 0.96;
-    letter-spacing: -0.04em;
+    font-size: clamp(1.7rem, 7.2vw, 5.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
     font-weight: 500;
     text-wrap: balance;
   }
@@ -215,6 +245,14 @@ html[data-theme="light"] .on-media,
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 
+  .safe-pt {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .pb-fab {
+    padding-bottom: max(5.75rem, calc(4.25rem + env(safe-area-inset-bottom)));
+  }
+
   .grain {
     position: relative;
   }
@@ -230,7 +268,8 @@ html[data-theme="light"] .on-media,
   }
 
   html[data-theme="light"] .grain::after {
-    opacity: 0.03;
+    opacity: 0.025;
+    mix-blend-mode: multiply;
   }
 
   .mask-fade-b {

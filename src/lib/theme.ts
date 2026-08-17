@@ -1,4 +1,4 @@
-export const themeStorageKey = "besinci-mevsim-theme";
+/** Light / auto theme is paused — the site is dark-only for now. */
 
 export type ThemeMode = "light" | "dark" | "auto";
 export type ResolvedTheme = "light" | "dark";
@@ -7,7 +7,7 @@ export const DAY_START_HOUR = 7;
 export const DAY_END_HOUR = 19;
 
 export const themeColors = {
-  light: "#eef3f4",
+  light: "#f4f6f3",
   dark: "#071014",
 } as const;
 

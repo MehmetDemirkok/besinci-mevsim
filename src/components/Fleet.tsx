@@ -22,6 +22,8 @@ export function Fleet() {
   const contactHref = resolveNavHref("#contact", pathname);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const trackRef = useRef<HTMLDivElement>(null);
+
   const vehicles = fleet.map((vehicle) => {
     const copy = t.fleet.vehicles.find((item) => item.id === vehicle.id);
     return {
@@ -42,10 +44,21 @@ export function Fleet() {
     setActiveIndex(Math.max(0, Math.min(vehicles.length - 1, index)));
   };
 
+  const scrollToCard = (index: number) => {
+    const track = trackRef.current;
+    const card = track?.querySelectorAll<HTMLElement>("[data-fleet-card]")[index];
+    if (!track || !card) return;
+    const pad = Number.parseFloat(getComputedStyle(track).paddingLeft) || 0;
+    track.scrollTo({
+      left: Math.max(0, card.offsetLeft - pad),
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section
       id="fleet"
-      className="relative scroll-mt-24 bg-void py-20 md:py-28"
+      className="relative bg-void py-20 md:py-28"
       aria-labelledby="fleet-heading"
     >
       <div className="mx-auto max-w-[1440px] safe-px md:px-8 lg:px-10">
@@ -83,8 +96,9 @@ export function Fleet() {
         </p>
       </div>
       <div
-        className="mt-3 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 safe-px sm:hidden"
-        style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
+        ref={trackRef}
+        className="relative mt-3 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-3 safe-px sm:hidden"
+        style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch", touchAction: "pan-x" }}
         data-lenis-prevent
         aria-label={t.fleet.title}
         onScroll={onTrackScroll}
@@ -101,14 +115,24 @@ export function Fleet() {
           />
         ))}
       </div>
-      <div className="mt-3 flex justify-center gap-1.5 sm:hidden" aria-hidden>
+      <div className="mt-3 flex justify-center gap-1.5 sm:hidden">
         {vehicles.map((vehicle, index) => (
-          <span
+          <button
             key={vehicle.id}
-            className={`h-1.5 w-1.5 rounded-full ${
-              index === activeIndex ? "bg-cyan" : "bg-mist/25"
+            type="button"
+            className={`inline-flex h-11 w-11 items-center justify-center rounded-full ${
+              index === activeIndex ? "text-cyan" : "text-mist/25"
             }`}
-          />
+            aria-label={`${index + 1} / ${vehicles.length}`}
+            aria-current={index === activeIndex ? "true" : undefined}
+            onClick={() => scrollToCard(index)}
+          >
+            <span
+              className={`mx-auto block h-1.5 w-1.5 rounded-full ${
+                index === activeIndex ? "bg-cyan" : "bg-current"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </section>
@@ -157,7 +181,7 @@ function FleetPanel({
       className={
         size === "desktop"
           ? "group relative block overflow-hidden rounded-2xl on-media"
-          : "group relative w-[min(78vw,340px)] shrink-0 snap-center overflow-hidden rounded-2xl on-media"
+          : "group relative w-[min(85vw,340px)] shrink-0 snap-center overflow-hidden rounded-2xl border border-line bg-panel on-media"
       }
       aria-label={`${vehicle.name} — ${requestLabel}`}
     >
@@ -168,13 +192,24 @@ function FleetPanel({
             alt={vehicle.name}
             atmosphere="vehicle"
             className="h-full w-full"
-            sizes={size === "desktop" ? "(max-width:1280px) 50vw, 33vw" : "78vw"}
+            sizes={size === "desktop" ? "(max-width:1280px) 50vw, 33vw" : "85vw"}
             imageClassName="object-cover object-center"
           />
         </motion.div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.1)_0%,rgba(7,16,20,0.35)_45%,rgba(7,16,20,0.92)_100%)]" />
+        {size === "desktop" ? null : (
+          <div className="absolute inset-x-0 bottom-0 p-4">
+            <p className="text-eyebrow text-gold">
+              {String(index + 1).padStart(2, "0")} — {vehicle.category}
+            </p>
+            <h3 className="mt-1.5 text-xl font-medium tracking-tight text-mist">
+              {vehicle.name}
+            </h3>
+          </div>
+        )}
       </div>
 
+      {size === "desktop" ? (
       <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 md:p-7">
         <p className="text-eyebrow text-gold">
           {String(index + 1).padStart(2, "0")} — {vehicle.category}
@@ -186,7 +221,7 @@ function FleetPanel({
           {vehicle.description}
         </p>
         <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1.5 sm:mt-4 sm:gap-x-4 sm:gap-y-2">
-          {vehicle.characteristics.slice(0, size === "mobile" ? 3 : undefined).map((item) => (
+          {vehicle.characteristics.map((item) => (
             <li
               key={item}
               className="text-[0.6rem] uppercase tracking-[0.12em] text-mist-muted sm:text-[0.65rem] sm:tracking-[0.14em]"
@@ -199,6 +234,26 @@ function FleetPanel({
           {requestLabel}
         </span>
       </div>
+      ) : (
+      <div className="bg-void/40 px-4 py-4">
+        <p className="line-clamp-3 text-sm leading-relaxed text-mist-muted">
+          {vehicle.description}
+        </p>
+        <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1.5">
+          {vehicle.characteristics.slice(0, 3).map((item) => (
+            <li
+              key={item}
+              className="text-[0.6rem] uppercase tracking-[0.12em] text-mist-muted"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+        <span className="mt-3 inline-flex min-h-11 items-center text-[0.7rem] tracking-[0.14em] text-cyan">
+          {requestLabel}
+        </span>
+      </div>
+      )}
     </a>
   );
 }

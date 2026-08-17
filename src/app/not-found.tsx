@@ -22,7 +22,7 @@ export default function NotFound() {
       <Navbar />
       <main
         id="main"
-        className="flex min-h-[100svh] items-end bg-void pb-20 pt-32 md:pb-28 md:pt-40"
+        className="flex min-h-[100svh] items-end bg-void pb-[max(5rem,calc(3rem+env(safe-area-inset-bottom)))] pt-[calc(8rem+env(safe-area-inset-top))] md:pb-28 md:pt-40"
       >
         <div className="mx-auto w-full max-w-[1440px] safe-px md:px-8 lg:px-10">
           <p className="text-eyebrow text-cyan">404</p>
@@ -35,13 +35,13 @@ export default function NotFound() {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href="/"
-              className="inline-flex items-center justify-center bg-mist px-7 py-4 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan"
+              className="inline-flex min-h-12 w-full items-center justify-center bg-mist px-7 py-4 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan sm:w-auto"
             >
               {tr.notFound.home}
             </Link>
             <Link
               href="/hizmetler"
-              className="inline-flex items-center justify-center border border-line px-7 py-4 text-sm tracking-[0.1em] text-mist transition-colors hover:border-cyan/40"
+              className="inline-flex min-h-12 w-full items-center justify-center border border-line px-7 py-4 text-sm tracking-[0.1em] text-mist transition-colors hover:border-cyan/40 sm:w-auto"
             >
               {tr.notFound.services}
             </Link>

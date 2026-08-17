@@ -15,7 +15,11 @@ export function WhatsAppFloat() {
       href={whatsappHref(number)}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full border border-cyan/30 bg-panel text-cyan shadow-[0_10px_40px_rgba(0,0,0,0.35)] transition-transform hover:scale-105 md:bottom-8 md:right-8"
+      className="whatsapp-float fixed z-30 inline-flex h-14 w-14 items-center justify-center rounded-full border border-cyan/30 bg-panel text-cyan shadow-[0_10px_40px_rgba(0,0,0,0.35)] transition-transform hover:scale-105"
+      style={{
+        bottom: "max(1.25rem, env(safe-area-inset-bottom))",
+        right: "max(1.25rem, env(safe-area-inset-right))",
+      }}
       aria-label={t.whatsapp}
     >
       <WhatsAppIcon className="h-6 w-6" />

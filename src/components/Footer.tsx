@@ -23,40 +23,42 @@ export function Footer() {
 
   return (
     <footer className="border-t border-line bg-void">
-      <div className="mx-auto max-w-[1440px] safe-px py-16 md:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1440px] safe-px pt-16 pb-fab md:px-8 lg:px-10">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <a href={homeHref(pathname)} aria-label={t.nav.home}>
-              <BrandWordmark />
+              <BrandWordmark size="footer" />
             </a>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-mist-muted">
               {t.footer.blurb}
             </p>
             <AgencyCredential className="mt-5 max-w-sm text-sm" />
-            {siteConfig.contact.phone ? (
-              <a
-                href={telHref(siteConfig.contact.phone)}
-                className="mt-5 block text-sm tracking-[0.04em] text-mist-muted transition-colors hover:text-mist"
-              >
-                {siteConfig.contact.phone}
-              </a>
-            ) : null}
-            {siteConfig.contact.whatsapp ? (
-              <a
-                href={whatsappHref(siteConfig.contact.whatsapp)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-flex items-center gap-2 text-sm tracking-[0.04em] text-mist-muted transition-colors hover:text-mist"
-              >
-                {t.contact.whatsappCta}
-              </a>
-            ) : null}
+            <div className="mt-5 flex flex-col items-start gap-1">
+              {siteConfig.contact.phone ? (
+                <a
+                  href={telHref(siteConfig.contact.phone)}
+                  className="inline-flex min-h-11 items-center text-sm tracking-[0.04em] text-mist-muted transition-colors hover:text-mist"
+                >
+                  {siteConfig.contact.phone}
+                </a>
+              ) : null}
+              {siteConfig.contact.whatsapp ? (
+                <a
+                  href={whatsappHref(siteConfig.contact.whatsapp)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2 text-sm tracking-[0.04em] text-mist-muted transition-colors hover:text-mist"
+                >
+                  {t.contact.whatsappCta}
+                </a>
+              ) : null}
+            </div>
             {siteConfig.contact.address ? (
               <a
                 href={mapsHref(siteConfig.contact.address)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 block max-w-sm text-sm leading-relaxed tracking-[0.02em] text-mist-muted transition-colors hover:text-mist"
+                className="mt-3 block min-h-11 max-w-sm py-2 text-sm leading-relaxed tracking-[0.02em] text-mist-muted transition-colors hover:text-mist"
               >
                 {siteConfig.contact.address}
               </a>
@@ -80,10 +82,10 @@ export function Footer() {
             © {year} {siteConfig.name} · {siteConfig.agency.name}. {t.footer.rights}
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="transition-colors hover:text-mist">
+            <Link href="/privacy" className="inline-flex min-h-11 items-center transition-colors hover:text-mist">
               {t.footer.privacy}
             </Link>
-            <Link href="/kvkk" className="transition-colors hover:text-mist">
+            <Link href="/kvkk" className="inline-flex min-h-11 items-center transition-colors hover:text-mist">
               {t.footer.kvkk}
             </Link>
           </div>
@@ -95,7 +97,7 @@ export function Footer() {
 
 function FooterLink({ href, children }: { href: string; children: ReactNode }) {
   const className =
-    "text-sm tracking-[0.08em] text-mist-muted transition-colors hover:text-mist";
+    "inline-flex min-h-11 items-center text-sm tracking-[0.08em] text-mist-muted transition-colors hover:text-mist";
 
   if (href.startsWith("#") || href.startsWith("/#")) {
     return (

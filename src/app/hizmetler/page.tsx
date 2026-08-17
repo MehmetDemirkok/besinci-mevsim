@@ -50,7 +50,7 @@ export default function ServicesIndexPage() {
         ])}
       />
       <Navbar />
-      <main id="main" className="bg-ink pt-24 md:pt-28">
+      <main id="main" className="bg-ink pt-[calc(8rem+env(safe-area-inset-top))] md:pt-36">
         <Services heading="page" />
       </main>
       <Footer />

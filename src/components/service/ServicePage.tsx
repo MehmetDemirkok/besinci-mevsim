@@ -50,7 +50,7 @@ export function ServicePage({ service }: { service: ServiceItemBase }) {
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.55)_0%,rgba(7,16,20,0.28)_38%,rgba(7,16,20,0.82)_72%,rgba(7,16,20,0.98)_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(24,187,208,0.12),transparent_42%)]" />
 
-          <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-[1440px] flex-col justify-end safe-px pb-14 pt-28 md:px-8 md:pb-20 lg:px-10">
+          <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-[1440px] flex-col justify-end safe-px pb-[max(3.5rem,calc(1.25rem+env(safe-area-inset-bottom)))] pt-[calc(8.5rem+env(safe-area-inset-top))] md:px-8 md:pb-20 lg:px-10">
             <nav aria-label={t.servicePage.breadcrumb} className="text-sm tracking-[0.06em] text-mist-muted">
               <ol className="flex flex-wrap items-center gap-2">
                 <li>
@@ -172,7 +172,7 @@ export function ServicePage({ service }: { service: ServiceItemBase }) {
                           alt={vehicle.name}
                           atmosphere="vehicle"
                           className="h-full w-full transition-transform duration-700 group-hover:scale-[1.04]"
-                          sizes="(max-width:1024px) 50vw, 33vw"
+                          sizes="(max-width: 639px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                         <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_30%,rgba(7,16,20,0.88)_100%)]" />
                         <p className="absolute bottom-4 left-4 text-lg font-medium tracking-tight text-mist">
@@ -207,7 +207,7 @@ export function ServicePage({ service }: { service: ServiceItemBase }) {
             <Reveal delay={0.08}>
               <a
                 href={mailto}
-                className="group inline-flex items-center gap-2 bg-mist px-7 py-4 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan"
+                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 bg-mist px-7 py-4 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan sm:w-auto"
               >
                 {t.servicePage.ctaLabel}
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -232,7 +232,7 @@ export function ServicePage({ service }: { service: ServiceItemBase }) {
                   <Reveal key={item.id} delay={0.04 * index}>
                     <Link
                       href={servicePath(item.slug)}
-                      className="group flex items-end justify-between gap-4 border border-line px-5 py-6 transition-colors hover:border-cyan/40 hover:bg-mist/[0.03]"
+                      className="group flex min-h-14 items-end justify-between gap-4 border border-line px-5 py-6 transition-colors hover:border-cyan/40 hover:bg-mist/[0.03]"
                     >
                       <span>
                         <span className="text-eyebrow text-gold">{relatedCopy.number}</span>

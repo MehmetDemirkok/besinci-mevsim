@@ -34,7 +34,7 @@ export function TravelSection() {
       className="relative overflow-hidden bg-void py-28 md:py-36"
       aria-labelledby="travel-heading"
     >
-      <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1440px] safe-px md:px-8 lg:px-10">
         <Reveal>
           <p className="text-eyebrow text-cyan">{t.travel.eyebrow}</p>
           <h2 id="travel-heading" className="mt-5 max-w-4xl text-display-sm text-mist">

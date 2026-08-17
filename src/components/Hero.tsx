@@ -30,7 +30,7 @@ export function Hero() {
 
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 mx-auto w-full max-w-[1440px] safe-px pb-14 pt-32 md:px-8 md:pb-20 md:pt-36 lg:px-10"
+        className="relative z-10 mx-auto w-full max-w-[1440px] safe-px pt-[calc(8.5rem+env(safe-area-inset-top))] pb-[max(3.5rem,calc(1.25rem+env(safe-area-inset-bottom)))] md:px-8 md:pb-20 md:pt-40 lg:px-10"
       >
         <motion.p
           className="text-eyebrow text-cyan"
@@ -78,14 +78,14 @@ export function Hero() {
         >
           <a
             href="#contact"
-            className="group inline-flex items-center justify-center gap-2 border border-mist/20 bg-mist px-7 py-3.5 text-sm tracking-[0.08em] text-void transition-colors hover:border-cyan hover:bg-cyan"
+            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 border border-mist/20 bg-mist px-7 py-3.5 text-sm tracking-[0.08em] text-void transition-colors hover:border-cyan hover:bg-cyan sm:w-auto"
           >
             {t.hero.ctaContact}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
             href="#fleet"
-            className="group inline-flex items-center justify-center gap-2 px-2 py-3.5 text-sm tracking-[0.08em] text-mist-muted transition-colors hover:text-mist"
+            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 px-2 py-3.5 text-sm tracking-[0.08em] text-mist-muted transition-colors hover:text-mist sm:w-auto sm:justify-start"
           >
             {t.hero.ctaFleet}
             <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
@@ -93,7 +93,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="mt-10 hidden items-center gap-x-3 text-[0.62rem] tracking-[0.2em] text-mist-muted md:mt-14 md:flex"
+          className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.62rem] tracking-[0.16em] text-mist-muted md:mt-14 md:gap-x-3 md:tracking-[0.2em]"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7 }}

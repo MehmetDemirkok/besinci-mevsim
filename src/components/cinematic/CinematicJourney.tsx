@@ -63,7 +63,7 @@ function JourneyReduced() {
       <h2 id="journey-heading" className="sr-only">
         {t.journey.reducedTitle}
       </h2>
-      <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-8 md:py-24 lg:px-10">
+      <div className="mx-auto max-w-[1100px] safe-px py-16 md:px-8 md:py-24 lg:px-10">
         <p className="text-eyebrow text-cyan">{t.journey.reducedTitle}</p>
         <p className="mt-5 max-w-2xl text-lg text-mist-muted">
           {t.journey.reducedBody}
@@ -170,7 +170,7 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
     <section
       id="journey"
       ref={sectionRef}
-      className="relative z-10 scroll-mt-24 bg-void"
+      className="relative z-10 bg-void"
       style={{ height: `${trackVh}vh` }}
       aria-labelledby="journey-heading"
     >
@@ -214,12 +214,12 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
 
         <a
           href="#fleet"
-          className="absolute right-4 top-[max(5.5rem,env(safe-area-inset-top))] z-40 rounded-full border border-glass-border bg-void/55 px-3 py-2 text-[0.65rem] tracking-[0.14em] text-mist backdrop-blur-sm transition-colors hover:border-cyan/40 hover:text-cyan sm:right-6 sm:top-28"
+          className="absolute right-4 z-40 inline-flex min-h-11 items-center rounded-full border border-glass-border bg-void/55 px-4 py-2 text-[0.65rem] tracking-[0.14em] text-mist backdrop-blur-sm transition-colors hover:border-cyan/40 hover:text-cyan top-[calc(5.75rem+env(safe-area-inset-top))] sm:right-6 sm:top-28"
         >
           {t.journey.skip}
         </a>
 
-        <div className="absolute bottom-[9%] left-1/2 z-30 w-[min(480px,88vw)] -translate-x-1/2">
+        <div className="absolute bottom-[max(1.75rem,calc(env(safe-area-inset-bottom)+1rem))] left-1/2 z-30 w-[min(480px,88vw)] -translate-x-1/2 md:bottom-[9%]">
           <div className="h-px w-full bg-mist/15">
             <div
               className="h-px bg-cyan"
@@ -254,7 +254,7 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
         </div>
 
         <p
-          className={`absolute bottom-5 left-1/2 z-30 w-[90%] -translate-x-1/2 text-center text-[0.65rem] tracking-[0.16em] text-mist-muted transition-opacity duration-500 safe-pb sm:bottom-6 sm:text-[0.7rem] sm:tracking-[0.22em] ${
+          className={`absolute left-1/2 z-30 w-[90%] -translate-x-1/2 text-center text-[0.65rem] tracking-[0.16em] text-mist-muted transition-opacity duration-500 bottom-[max(5.25rem,calc(env(safe-area-inset-bottom)+4.25rem))] sm:text-[0.7rem] sm:tracking-[0.22em] md:bottom-[calc(9%+2.5rem)] ${
             progress < 0.03 ? "opacity-80" : "opacity-0"
           }`}
         >

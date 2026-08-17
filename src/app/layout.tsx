@@ -4,10 +4,8 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import { SmoothScrollProvider } from "@/components/cinematic/SmoothScrollProvider";
 import { getDictionary, isLocale, localeStorageKey, defaultLocale } from "@/i18n";
-import { isThemeMode, themeInitScript, themeStorageKey } from "@/lib/theme";
 
 const manrope = Manrope({
   subsets: ["latin", "latin-ext"],
@@ -76,24 +74,14 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/images/brand/logo.png", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
-  },
   ...(googleVerification
     ? { verification: { google: googleVerification } }
     : {}),
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#eef3f4" },
-    { media: "(prefers-color-scheme: dark)", color: "#071014" },
-  ],
-  colorScheme: "dark light",
+  themeColor: "#071014",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -108,23 +96,17 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const raw = cookieStore.get(localeStorageKey)?.value;
   const initialLocale = raw && isLocale(raw) ? raw : defaultLocale;
-  const themeRaw = cookieStore.get(themeStorageKey)?.value;
-  const initialThemeMode = themeRaw && isThemeMode(themeRaw) ? themeRaw : "auto";
 
   return (
     <html
       lang={initialLocale}
       className={`${manrope.variable} antialiased`}
+      data-theme="dark"
       suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
       <body className="min-h-screen bg-void text-mist">
         <LanguageProvider initialLocale={initialLocale}>
-          <ThemeProvider initialMode={initialThemeMode}>
-            <SmoothScrollProvider>{children}</SmoothScrollProvider>
-          </ThemeProvider>
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
         </LanguageProvider>
       </body>
     </html>

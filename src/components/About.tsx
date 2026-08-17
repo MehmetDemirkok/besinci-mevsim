@@ -13,7 +13,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative scroll-mt-24 bg-ink py-20 md:py-28"
+      className="relative bg-ink py-20 md:py-28"
       aria-labelledby="about-heading"
     >
       <div className="mx-auto grid max-w-[1440px] items-center gap-12 safe-px md:px-8 lg:grid-cols-12 lg:gap-16 lg:px-10">
@@ -36,7 +36,7 @@ export function About() {
             </p>
             <Link
               href={visionPath}
-              className="mt-6 inline-flex text-sm tracking-[0.1em] text-cyan transition-colors hover:text-mist"
+              className="mt-6 inline-flex min-h-11 items-center text-sm tracking-[0.1em] text-cyan transition-colors hover:text-mist"
             >
               {t.about.visionCta}
             </Link>

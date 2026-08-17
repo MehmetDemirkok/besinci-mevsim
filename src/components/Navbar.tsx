@@ -15,7 +15,6 @@ import { ArrowUpRight, ChevronDown, Mail, Menu, X } from "lucide-react";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { InstagramLink } from "@/components/ui/InstagramLink";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { services, servicePath } from "@/data/services";
 import { siteConfig } from "@/lib/site";
 import { homeHref, menuHref, resolveNavHref, visionPath } from "@/lib/nav";
@@ -78,8 +77,12 @@ export function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    document.body.dataset.nav = open ? "open" : "";
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      delete document.body.dataset.nav;
     };
   }, [open]);
 
@@ -177,10 +180,10 @@ export function Navbar() {
       </a>
 
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,padding,backdrop-filter] duration-500 ${
+        className={`fixed inset-x-0 top-0 z-50 safe-pt transition-[background-color,border-color,padding,backdrop-filter,box-shadow] duration-500 ${
           condensed
-            ? "border-b border-line bg-void/80 py-2.5 backdrop-blur-xl"
-            : "on-media border-b border-transparent bg-transparent py-4"
+            ? "header-solid border-b border-line bg-void/80 py-2.5 backdrop-blur-xl"
+            : "on-media border-b border-transparent bg-transparent py-3 sm:py-4"
         }`}
       >
         {!condensed ? (
@@ -193,7 +196,7 @@ export function Navbar() {
         <div className="relative mx-auto flex max-w-[1440px] items-center justify-between safe-px md:px-8 lg:px-12">
           <a
             href={homeHref(pathname)}
-            className="relative z-50 min-w-0 transition-opacity hover:opacity-90"
+            className="relative z-50 min-w-0 shrink-0 transition-opacity hover:opacity-90"
             aria-label={t.nav.home}
           >
             <BrandWordmark compact={condensed} />
@@ -249,7 +252,7 @@ export function Navbar() {
                     href={item.href}
                     label={item.label}
                     active={item.active}
-                    align="end"
+                    align="center"
                     onNavigate={closeDrawer}
                   >
                     <div className="flex flex-col gap-0.5">
@@ -292,17 +295,12 @@ export function Navbar() {
               <LanguageSwitcher variant="inline" className="px-2" />
             </div>
 
-            <ThemeToggle className="border border-glass-border bg-glass backdrop-blur-sm" />
-
             <a
               href={resolveNavHref("#contact", pathname)}
-              className="group inline-flex h-11 items-center gap-2 rounded-full bg-mist px-3 text-[0.68rem] tracking-[0.1em] text-void transition-colors hover:bg-cyan sm:px-4 sm:text-[0.72rem] sm:tracking-[0.12em]"
+              className="group inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-full bg-mist px-3 text-[0.68rem] tracking-[0.1em] text-void transition-colors hover:bg-cyan sm:px-4 sm:text-[0.72rem] sm:tracking-[0.12em]"
               aria-label={t.nav.contactCta}
             >
-              <Mail className="h-4 w-4 min-[400px]:hidden" aria-hidden />
-              <span className="hidden min-[400px]:inline sm:hidden">
-                {t.nav.contact}
-              </span>
+              <Mail className="h-4 w-4 sm:hidden" aria-hidden />
               <span className="hidden sm:inline">{t.nav.contactCta}</span>
               <ArrowUpRight className="hidden h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:block" />
             </a>
@@ -344,7 +342,7 @@ export function Navbar() {
             transition={{ duration: 0.35 }}
           >
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(24,187,208,0.12),transparent_42%)]" />
-            <div className="relative flex h-full flex-col justify-between overflow-y-auto overscroll-contain safe-px pb-10 pt-28 safe-pb">
+            <div className="relative flex h-full flex-col justify-between overflow-y-auto overscroll-contain safe-px pt-[calc(6.75rem+env(safe-area-inset-top))] pb-[max(2.5rem,env(safe-area-inset-bottom))]">
               <nav className="flex flex-col" aria-label={t.nav.mobile}>
                 {navItems.map((item, index) => {
                   if (item.key === "services" || item.key === "about") {
@@ -365,7 +363,7 @@ export function Navbar() {
                             <a
                               href={item.href}
                               onClick={closeDrawer}
-                              className="min-w-0 flex-1 py-4 text-3xl font-medium tracking-tight text-mist sm:py-5 sm:text-4xl"
+                              className="min-w-0 flex-1 py-4 text-[1.65rem] font-medium leading-tight tracking-tight text-mist sm:py-5 sm:text-4xl"
                             >
                               {item.label}
                             </a>
@@ -373,7 +371,7 @@ export function Navbar() {
                             <Link
                               href={item.href}
                               onClick={closeDrawer}
-                              className="min-w-0 flex-1 py-4 text-3xl font-medium tracking-tight text-mist sm:py-5 sm:text-4xl"
+                              className="min-w-0 flex-1 py-4 text-[1.65rem] font-medium leading-tight tracking-tight text-mist sm:py-5 sm:text-4xl"
                             >
                               {item.label}
                             </Link>
@@ -427,7 +425,7 @@ export function Navbar() {
                                 <Link
                                   href="/hizmetler"
                                   onClick={closeDrawer}
-                                  className="mt-1 inline-flex items-center gap-2 py-2 text-lg text-mist-muted transition-colors hover:text-mist"
+                                  className="mt-1 inline-flex min-h-11 items-center gap-2 py-2 text-lg text-mist-muted transition-colors hover:text-mist"
                                 >
                                   {t.servicePage.allServices}
                                   <ArrowUpRight className="h-4 w-4" />
@@ -445,7 +443,7 @@ export function Navbar() {
                       key={item.key}
                       href={item.href}
                       onClick={closeDrawer}
-                      className="group flex items-center justify-between border-b border-line py-4 text-3xl font-medium tracking-tight text-mist sm:py-5 sm:text-4xl"
+                      className="group flex items-center justify-between border-b border-line py-4 text-[1.65rem] font-medium leading-tight tracking-tight text-mist sm:py-5 sm:text-4xl"
                       initial={reduce ? false : { opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.05 * index, duration: 0.45 }}
@@ -460,17 +458,16 @@ export function Navbar() {
                 })}
               </nav>
 
-              <div className="flex items-center justify-between gap-4 pt-8">
+              <div className="flex flex-col gap-4 pt-8 sm:flex-row sm:items-center sm:justify-between">
                 <a
                   href={resolveNavHref("#contact", pathname)}
                   onClick={closeDrawer}
-                  className="inline-flex h-12 items-center gap-2 rounded-full bg-mist px-5 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan"
+                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-mist px-5 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan sm:w-auto"
                 >
                   {t.nav.contactCta}
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
-                <div className="flex items-center gap-2">
-                  <ThemeToggle className="border border-glass-border" />
+                <div className="flex items-center justify-between gap-2 sm:justify-end">
                   <InstagramLink
                     variant="ghost"
                     className="border border-glass-border"
@@ -502,7 +499,7 @@ function DrawerSubLink({
   onClick: () => void;
   children: ReactNode;
 }) {
-  const className = `flex items-center gap-3 py-2 text-lg text-mist-muted transition-colors hover:text-mist ${
+  const className = `flex min-h-11 items-center gap-3 py-2 text-lg text-mist-muted transition-colors hover:text-mist ${
     active ? "text-mist" : ""
   }`;
 
@@ -610,7 +607,7 @@ function FlyoutNavItem({
   href: string;
   label: string;
   active: boolean;
-  align: "start" | "end";
+  align: "start" | "center" | "end";
   onNavigate: () => void;
   children: ReactNode;
 }) {
@@ -668,7 +665,11 @@ function FlyoutNavItem({
           id={panelId}
           data-flyout
           className={`absolute top-full z-50 pt-2 ${
-            align === "end" ? "right-0" : "left-0"
+            align === "end"
+              ? "right-0"
+              : align === "center"
+                ? "left-1/2 -translate-x-1/2"
+                : "left-0"
           }`}
           onClick={() => setOpen(false)}
         >

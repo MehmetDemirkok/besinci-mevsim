@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HEADER_OFFSET = -88;
+const HEADER_OFFSET = -96;
 const SCROLL_DURATION = 1.45;
 const ease = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
 
@@ -29,6 +29,9 @@ export function SmoothScrollProvider({
     document.documentElement.classList.add("lenis", "lenis-smooth");
     document.documentElement.style.scrollBehavior = "auto";
 
+    const headerOffset = () =>
+      window.matchMedia("(max-width: 768px)").matches ? -112 : HEADER_OFFSET;
+
     const lenis = new Lenis({
       duration: 1.15,
       easing: ease,
@@ -45,7 +48,7 @@ export function SmoothScrollProvider({
       const target = document.getElementById(id);
       if (!target) return;
       lenis.scrollTo(target, {
-        offset: HEADER_OFFSET,
+        offset: headerOffset(),
         duration: immediate ? 0 : SCROLL_DURATION,
         easing: ease,
       });

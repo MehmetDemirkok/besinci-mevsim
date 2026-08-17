@@ -38,7 +38,7 @@ export function LanguageSwitcher({
               <button
                 type="button"
                 onClick={() => setLocale(option.id)}
-                className={`rounded-sm px-1 py-1 text-[0.68rem] tracking-[0.16em] transition-colors ${
+                className={`min-h-11 rounded-sm px-2 text-[0.68rem] tracking-[0.16em] transition-colors ${
                   active
                     ? "text-cyan"
                     : "text-mist-muted hover:text-mist"
@@ -67,7 +67,7 @@ export function LanguageSwitcher({
             key={option.id}
             type="button"
             onClick={() => setLocale(option.id)}
-            className={`min-w-9 rounded-full px-2.5 py-1 text-[0.7rem] tracking-[0.14em] transition-colors ${
+            className={`min-h-11 min-w-11 rounded-full px-3 text-[0.7rem] tracking-[0.14em] transition-colors ${
               active
                 ? "bg-mist text-void"
                 : "text-mist-muted hover:text-mist"
