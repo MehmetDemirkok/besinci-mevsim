@@ -46,7 +46,9 @@ export const tr: Dictionary = {
     eyebrow: "Seyahat & Turizm Taşımacılık",
     titleLine1: "Beşinci",
     titleLine2: "Mevsim.",
+    offer: "VIP transfer ve turizm taşımacılığı",
     body: "VIP transferden kurumsal seyahate — konfor, güvenilirlik ve sorunsuz bir yolculuk için profesyonel ulaşım çözümleri.",
+    ctaContact: "Bize Ulaşın",
     ctaFleet: "Filomuzu Keşfedin",
     ctaServices: "Hizmetlerimizi İnceleyin",
     chips: [
@@ -84,6 +86,7 @@ export const tr: Dictionary = {
     title: "Filomuz",
     subtitle: "Her yolculuk için doğru araç.",
     swipeHint: "Kaydırarak keşfedin",
+    requestCta: "Bu araçla talep",
     vehicles: [
       {
         id: "vito",
@@ -212,6 +215,7 @@ export const tr: Dictionary = {
   },
   servicePage: {
     back: "Ana sayfa",
+    breadcrumb: "Sayfa yolu",
     allServices: "Tüm hizmetler",
     explore: "Hizmeti incele",
     suitableLabel: "Ne için",
@@ -445,6 +449,7 @@ export const tr: Dictionary = {
     aria: "Türkiye yolculuğu — ön camdan sinematik deneyim",
     chapterLabel: "Bölüm",
     scrollHint: "Kaydırarak yolculuğa devam edin",
+    skip: "Filoya geç",
     audioEnable: "Ortam sesini aç",
     audioDisable: "Ortam sesini kapat",
     reducedTitle: "Türkiye yolculuğu",
@@ -531,6 +536,7 @@ export const tr: Dictionary = {
     writeUs: "Bize yazın",
     emailHint: "Tek tıkla kurumsal e-postamıza ulaşın.",
     topicsLabel: "Ne hakkında yazmak istersiniz?",
+    topicHint: "Seçim e-posta konusuna yazılır. Formu doldurunca e-posta uygulamanız açılır.",
     topics: [
       {
         id: "vip",
@@ -562,6 +568,14 @@ export const tr: Dictionary = {
       "Mesajlarınıza mümkün olan en kısa sürede dönüş yapıyoruz.",
     copy: "Kopyala",
     copied: "Kopyalandı",
+    name: "Adınız",
+    namePlaceholder: "Ad Soyad…",
+    phonePlaceholder: "05xx xxx xx xx",
+    message: "Mesaj",
+    messagePlaceholder: "Güzergâh, tarih, yolcu sayısı…",
+    submit: "Talebi e-postaya aktar",
+    formHint: "Gönderince e-posta uygulamanız açılır. Açılmazsa adresi kopyalayın.",
+    mailtoFallback: "Doğrudan e-posta aç",
   },
   footer: {
     blurb:

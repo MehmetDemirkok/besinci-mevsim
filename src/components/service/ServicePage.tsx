@@ -10,11 +10,8 @@ import { Reveal } from "@/components/motion/Reveal";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { siteConfig } from "@/lib/site";
 import { fleet } from "@/data/fleet";
-import {
-  services,
-  servicePath,
-  type ServiceItemBase,
-} from "@/data/services";
+import { services, servicePath, type ServiceItemBase } from "@/data/services";
+import { setContactIntent } from "@/lib/contact-intent";
 
 export function ServicePage({ service }: { service: ServiceItemBase }) {
   const { t } = useLanguage();
@@ -54,7 +51,7 @@ export function ServicePage({ service }: { service: ServiceItemBase }) {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(24,187,208,0.12),transparent_42%)]" />
 
           <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-[1440px] flex-col justify-end safe-px pb-14 pt-28 md:px-8 md:pb-20 lg:px-10">
-            <nav aria-label="Breadcrumb" className="text-sm tracking-[0.06em] text-mist-soft">
+            <nav aria-label={t.servicePage.breadcrumb} className="text-sm tracking-[0.06em] text-mist-muted">
               <ol className="flex flex-wrap items-center gap-2">
                 <li>
                   <Link href="/" className="transition-colors hover:text-mist">
@@ -165,7 +162,8 @@ export function ServicePage({ service }: { service: ServiceItemBase }) {
                 {relatedFleet.map((vehicle, index) => (
                   <Reveal key={vehicle.id} delay={0.05 * index}>
                     <Link
-                      href="/#fleet"
+                      href="/#contact"
+                      onClick={() => setContactIntent("fleet", vehicle.name)}
                       className="group relative block overflow-hidden border border-line transition-colors hover:border-cyan/35"
                     >
                       <div className="relative aspect-[16/10]">

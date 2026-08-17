@@ -27,19 +27,34 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
+function persistLocale(locale: Locale) {
+  try {
+    window.localStorage.setItem(localeStorageKey, locale);
+  } catch {
+    // ignore quota / private mode
+  }
+  document.cookie = `${localeStorageKey}=${locale}; Path=/; Max-Age=31536000; SameSite=Lax`;
+}
+
+export function LanguageProvider({
+  children,
+  initialLocale = defaultLocale,
+}: {
+  children: ReactNode;
+  initialLocale?: Locale;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(localeStorageKey);
-    if (stored && isLocale(stored)) {
+    if (stored && isLocale(stored) && stored !== initialLocale) {
       setLocaleState(stored);
     }
-  }, []);
+  }, [initialLocale]);
 
   useEffect(() => {
     document.documentElement.lang = locale;
-    window.localStorage.setItem(localeStorageKey, locale);
+    persistLocale(locale);
   }, [locale]);
 
   const setLocale = useCallback((next: Locale) => {
@@ -61,7 +76,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 export function useLanguage() {
   const ctx = useContext(LanguageContext);
   if (!ctx) {
-    throw new Error("useLanguage must be used within LanguageProvider");
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return ctx;
 }

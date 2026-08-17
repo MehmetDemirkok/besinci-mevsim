@@ -8,6 +8,7 @@ export function TrustSection() {
 
   return (
     <section
+      id="trust"
       className="relative overflow-hidden bg-void py-20 md:py-28"
       aria-labelledby="trust-heading"
     >

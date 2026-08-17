@@ -28,7 +28,7 @@ export function Services({
   return (
     <section
       id="services"
-      className="relative bg-ink py-20 md:py-28"
+      className="relative scroll-mt-24 bg-ink py-20 md:py-28"
       aria-labelledby="services-heading"
     >
       <div className="mx-auto max-w-[1440px] safe-px md:px-8 lg:px-10">

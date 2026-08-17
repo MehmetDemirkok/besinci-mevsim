@@ -15,7 +15,7 @@ export function Accommodation() {
       className="relative overflow-hidden"
       aria-labelledby="accommodation-heading"
     >
-      <div className="relative min-h-[55svh] md:min-h-[60svh]">
+      <div className="relative min-h-[42svh] md:min-h-[48svh]">
         <BrandImage
           src="/images/services/accommodation.png"
           alt={t.accommodation.imageAlt}
@@ -26,7 +26,7 @@ export function Accommodation() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.5)_0%,rgba(7,16,20,0.72)_50%,rgba(7,16,20,0.94)_100%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[55svh] max-w-[1440px] items-end safe-px py-16 md:min-h-[60svh] md:px-8 md:py-20 lg:px-10">
+        <div className="relative z-10 mx-auto flex min-h-[42svh] max-w-[1440px] items-end safe-px py-16 md:min-h-[48svh] md:px-8 md:py-20 lg:px-10">
           <Reveal className="max-w-3xl">
             <p className="text-eyebrow text-gold">{t.accommodation.eyebrow}</p>
             <h2

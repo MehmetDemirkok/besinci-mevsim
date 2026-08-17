@@ -70,10 +70,14 @@ export function SmoothScrollProvider({
       if (!href) return;
 
       let hash = "";
-      if (href.startsWith("#")) {
-        hash = href;
-      } else if (href.startsWith("/#") && window.location.pathname === "/") {
-        hash = href.slice(1);
+      try {
+        const url = new URL(href, window.location.href);
+        if (url.origin !== window.location.origin) return;
+        if (url.pathname === window.location.pathname && url.hash) {
+          hash = url.hash;
+        }
+      } catch {
+        if (href.startsWith("#")) hash = href;
       }
 
       if (!hash) return;

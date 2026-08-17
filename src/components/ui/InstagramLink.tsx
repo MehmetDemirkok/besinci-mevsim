@@ -34,7 +34,7 @@ export function InstagramGlyph({ className = "h-5 w-5" }: { className?: string }
 }
 
 type InstagramLinkProps = {
-  variant?: "mark" | "row";
+  variant?: "mark" | "row" | "ghost";
   className?: string;
   onClick?: () => void;
 };
@@ -47,6 +47,21 @@ export function InstagramLink({
   const { t } = useLanguage();
   const href = siteConfig.social.instagram;
   const handle = `@${siteConfig.social.instagramHandle}`;
+
+  if (variant === "ghost") {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer me"
+        onClick={onClick}
+        aria-label={`${t.instagram} (${handle})`}
+        className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-mist-muted transition-colors hover:bg-white/[0.08] hover:text-cyan ${className}`}
+      >
+        <InstagramGlyph className="h-4 w-4" />
+      </a>
+    );
+  }
 
   if (variant === "row") {
     return (

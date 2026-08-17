@@ -3,7 +3,6 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Manifesto } from "@/components/Manifesto";
 import { CinematicJourney } from "@/components/cinematic/CinematicJourney";
-import { VitoShowcase } from "@/components/VitoShowcase";
 import { Fleet } from "@/components/Fleet";
 import { Services } from "@/components/Services";
 import { Accommodation } from "@/components/Accommodation";
@@ -53,10 +52,9 @@ export default function HomePage() {
       <main id="main">
         <Hero />
         <Manifesto />
-        <CinematicJourney />
-        <VitoShowcase />
-        <Fleet />
         <Services />
+        <CinematicJourney />
+        <Fleet />
         <Accommodation />
         <About />
         <TrustSection />

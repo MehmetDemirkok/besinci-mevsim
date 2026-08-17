@@ -73,10 +73,15 @@ export const journeyAssets = {
 } as const;
 
 /**
- * Journey track height in viewport heights.
- * Sticky viewport + scrub — medium pace (~4.5–5 screens).
+ * Journey track height in viewport heights (desktop).
+ * Sticky viewport + scrub — about four screens, not a short film.
  */
-export const journeyScrollVh = 480;
+export const journeyScrollVh = 400;
+
+/**
+ * Journey track height on small screens — keep it under ~2.2 viewports.
+ */
+export const journeyScrollVhMobile = 210;
 
 const FADE = 0.045;
 

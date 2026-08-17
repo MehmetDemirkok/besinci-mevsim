@@ -1,18 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { ArrowUpRight, Check, Copy, Mail } from "lucide-react";
 import { BrandImage } from "@/components/ui/BrandImage";
 import { Reveal } from "@/components/motion/Reveal";
 import { siteConfig } from "@/lib/site";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { InstagramLink } from "@/components/ui/InstagramLink";
+import { readContactIntent } from "@/lib/contact-intent";
 
 export function Contact() {
   const { t } = useLanguage();
   const { email, phone, address } = siteConfig.contact;
   const [activeTopic, setActiveTopic] = useState(t.contact.topics[0]?.id ?? "general");
   const [copied, setCopied] = useState(false);
+  const [name, setName] = useState("");
+  const [phoneValue, setPhoneValue] = useState("");
+  const [message, setMessage] = useState("");
+  const [vehicle, setVehicle] = useState<string | null>(null);
+
+  useEffect(() => {
+    const intent = readContactIntent();
+    if (intent.topic && t.contact.topics.some((item) => item.id === intent.topic)) {
+      setActiveTopic(intent.topic);
+    }
+    if (intent.vehicle) {
+      setVehicle(intent.vehicle);
+      setMessage((current) =>
+        current.includes(intent.vehicle!)
+          ? current
+          : current
+            ? current
+            : intent.vehicle!,
+      );
+    }
+  }, [t.contact.topics]);
 
   const topic =
     t.contact.topics.find((item) => item.id === activeTopic) ??
@@ -33,10 +55,25 @@ export function Contact() {
     }
   };
 
+  const submitRequest = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!email || !topic) return;
+
+    const lines = [
+      `${t.contact.name}: ${name}`,
+      `${t.contact.phone}: ${phoneValue}`,
+      vehicle ? `${t.fleet.requestCta}: ${vehicle}` : "",
+      "",
+      message,
+    ].filter((line) => line !== "");
+
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(topic.subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+  };
+
   return (
     <section
       id="contact"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden scroll-mt-24"
       aria-labelledby="contact-heading"
     >
       <div className="absolute inset-0">
@@ -67,7 +104,7 @@ export function Contact() {
           <p className="mt-6 max-w-lg text-base leading-relaxed text-mist-muted md:text-lg">
             {t.contact.body}
           </p>
-          <p className="mt-8 text-sm tracking-[0.06em] text-mist-soft">
+          <p className="mt-8 text-sm tracking-[0.06em] text-mist-muted">
             {t.contact.responseNote}
           </p>
         </Reveal>
@@ -77,58 +114,18 @@ export function Contact() {
             <p className="text-eyebrow text-gold">{t.contact.writeUs}</p>
 
             {email ? (
-              <div className="mt-6">
-                <p className="text-sm text-mist-soft">{t.contact.emailHint}</p>
+              <form className="mt-6" onSubmit={submitRequest}>
+                <p className="text-sm text-mist-muted">{t.contact.topicHint}</p>
 
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-stretch">
-                  <a
-                    href={mailto}
-                    className="group flex min-w-0 flex-1 items-center justify-between gap-4 border border-mist/15 bg-mist/[0.04] px-5 py-5 transition-colors hover:border-cyan/50 hover:bg-cyan/[0.06]"
-                  >
-                    <span className="min-w-0">
-                      <span className="flex items-center gap-2 text-eyebrow text-mist-soft">
-                        <Mail className="h-3.5 w-3.5 text-cyan" aria-hidden />
-                        {t.contact.email}
-                      </span>
-                      <span className="mt-2 block truncate text-lg font-medium tracking-tight text-mist md:text-xl">
-                        {email}
-                      </span>
-                    </span>
-                    <ArrowUpRight className="h-5 w-5 shrink-0 text-cyan transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
-
-                  <button
-                    type="button"
-                    onClick={copyEmail}
-                    className="inline-flex items-center justify-center gap-2 border border-line-strong px-5 py-5 text-sm tracking-[0.08em] text-mist-muted transition-colors hover:border-mist/30 hover:text-mist sm:min-w-[9rem]"
-                    aria-label={copied ? t.contact.copied : t.contact.copy}
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="h-4 w-4 text-cyan" />
-                        {t.contact.copied}
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="h-4 w-4" />
-                        {t.contact.copy}
-                      </>
-                    )}
-                  </button>
-                </div>
-                <p className="sr-only" aria-live="polite">
-                  {copied ? t.contact.copied : ""}
-                </p>
-
-                <div className="mt-4">
-                  <InstagramLink variant="row" />
-                </div>
-
-                <div className="mt-10">
-                  <p className="text-eyebrow text-mist-soft">
+                <div className="mt-5">
+                  <p className="text-eyebrow text-mist-muted" id="contact-topics-label">
                     {t.contact.topicsLabel}
                   </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div
+                    className="mt-4 flex flex-wrap gap-2"
+                    role="group"
+                    aria-labelledby="contact-topics-label"
+                  >
                     {t.contact.topics.map((item) => {
                       const active = item.id === activeTopic;
                       return (
@@ -150,14 +147,103 @@ export function Contact() {
                   </div>
                 </div>
 
-                <a
-                  href={mailto}
-                  className="group mt-8 inline-flex w-full items-center justify-center gap-2 bg-mist px-7 py-4 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan sm:w-auto"
+                <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                  <label className="block text-sm text-mist-muted">
+                    {t.contact.name}
+                    <input
+                      required
+                      name="name"
+                      autoComplete="name"
+                      value={name}
+                      onChange={(event) => setName(event.target.value)}
+                      placeholder={t.contact.namePlaceholder}
+                      className="mt-2 w-full border border-line-strong bg-void/40 px-4 py-3 text-mist placeholder:text-mist-muted/70"
+                    />
+                  </label>
+                  <label className="block text-sm text-mist-muted">
+                    {t.contact.phone}
+                    <input
+                      required
+                      type="tel"
+                      name="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      value={phoneValue}
+                      onChange={(event) => setPhoneValue(event.target.value)}
+                      placeholder={t.contact.phonePlaceholder}
+                      className="mt-2 w-full border border-line-strong bg-void/40 px-4 py-3 text-mist placeholder:text-mist-muted/70"
+                    />
+                  </label>
+                </div>
+
+                <label className="mt-4 block text-sm text-mist-muted">
+                  {t.contact.message}
+                  <textarea
+                    name="message"
+                    rows={4}
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
+                    placeholder={t.contact.messagePlaceholder}
+                    className="mt-2 w-full resize-y border border-line-strong bg-void/40 px-4 py-3 text-mist placeholder:text-mist-muted/70"
+                  />
+                </label>
+
+                <p className="mt-4 text-sm text-mist-muted">{t.contact.formHint}</p>
+
+                <button
+                  type="submit"
+                  className="group mt-6 inline-flex w-full items-center justify-center gap-2 bg-mist px-7 py-4 text-sm tracking-[0.1em] text-void transition-colors hover:bg-cyan sm:w-auto"
                 >
-                  {t.contact.cta}
+                  {t.contact.submit}
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
-              </div>
+                </button>
+
+                <div className="mt-10">
+                  <p className="text-sm text-mist-muted">{t.contact.emailHint}</p>
+                  <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-stretch">
+                    <a
+                      href={mailto}
+                      className="group flex min-w-0 flex-1 items-center justify-between gap-4 border border-mist/15 bg-mist/[0.04] px-5 py-5 transition-colors hover:border-cyan/50 hover:bg-cyan/[0.06]"
+                    >
+                      <span className="min-w-0">
+                        <span className="flex items-center gap-2 text-eyebrow text-mist-muted">
+                          <Mail className="h-3.5 w-3.5 text-cyan" aria-hidden />
+                          {t.contact.mailtoFallback}
+                        </span>
+                        <span className="mt-2 block truncate text-lg font-medium tracking-tight text-mist md:text-xl">
+                          {email}
+                        </span>
+                      </span>
+                      <ArrowUpRight className="h-5 w-5 shrink-0 text-cyan transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={copyEmail}
+                      className="inline-flex items-center justify-center gap-2 border border-line-strong px-5 py-5 text-sm tracking-[0.08em] text-mist-muted transition-colors hover:border-mist/30 hover:text-mist sm:min-w-[9rem]"
+                      aria-label={copied ? t.contact.copied : t.contact.copy}
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="h-4 w-4 text-cyan" />
+                          {t.contact.copied}
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-4 w-4" />
+                          {t.contact.copy}
+                        </>
+                      )}
+                    </button>
+                  </div>
+                  <p className="sr-only" aria-live="polite">
+                    {copied ? t.contact.copied : ""}
+                  </p>
+                  <div className="mt-4">
+                    <InstagramLink variant="row" />
+                  </div>
+                </div>
+              </form>
             ) : (
               <p className="mt-6 text-mist-muted">{t.contact.comingSoon}</p>
             )}
@@ -166,7 +252,7 @@ export function Contact() {
               <div className="mt-12 grid gap-6 border-t border-line pt-8 sm:grid-cols-2">
                 {phone ? (
                   <div>
-                    <p className="text-eyebrow text-mist-soft">{t.contact.phone}</p>
+                    <p className="text-eyebrow text-mist-muted">{t.contact.phone}</p>
                     <a
                       href={`tel:${phone}`}
                       className="mt-3 inline-block text-mist transition-colors hover:text-cyan"
@@ -177,7 +263,7 @@ export function Contact() {
                 ) : null}
                 {address ? (
                   <div>
-                    <p className="text-eyebrow text-mist-soft">
+                    <p className="text-eyebrow text-mist-muted">
                       {t.contact.address}
                     </p>
                     <p className="mt-3 text-mist">{address}</p>

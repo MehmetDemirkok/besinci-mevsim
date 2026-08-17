@@ -64,6 +64,15 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
+          className="mt-3 text-sm tracking-[0.14em] text-mist-muted md:text-[0.8rem] md:tracking-[0.18em]"
+          initial={reduce ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.28 }}
+        >
+          {t.hero.offer}
+        </motion.p>
+
+        <motion.p
           className="mt-6 max-w-xl text-base leading-relaxed text-mist-muted md:mt-7 md:text-lg"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,17 +88,17 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.45 }}
         >
           <a
-            href="#fleet"
+            href="#contact"
             className="group inline-flex items-center justify-center gap-2 border border-mist/20 bg-mist px-7 py-3.5 text-sm tracking-[0.08em] text-void transition-colors hover:border-cyan hover:bg-cyan"
           >
-            {t.hero.ctaFleet}
+            {t.hero.ctaContact}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href="#services"
+            href="#fleet"
             className="group inline-flex items-center justify-center gap-2 px-2 py-3.5 text-sm tracking-[0.08em] text-mist-muted transition-colors hover:text-mist"
           >
-            {t.hero.ctaServices}
+            {t.hero.ctaFleet}
             <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
           </a>
         </motion.div>

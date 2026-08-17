@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
   useReducedMotion,
@@ -11,10 +11,16 @@ import { fleet } from "@/data/fleet";
 import { BrandImage } from "@/components/ui/BrandImage";
 import { Reveal } from "@/components/motion/Reveal";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { setContactIntent } from "@/lib/contact-intent";
+import { resolveNavHref } from "@/lib/nav";
+import { usePathname } from "next/navigation";
 
 export function Fleet() {
   const { t } = useLanguage();
   const reduce = useReducedMotion();
+  const pathname = usePathname();
+  const contactHref = resolveNavHref("#contact", pathname);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const vehicles = fleet.map((vehicle) => {
     const copy = t.fleet.vehicles.find((item) => item.id === vehicle.id);
@@ -26,10 +32,20 @@ export function Fleet() {
     };
   });
 
+  const onTrackScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const track = event.currentTarget;
+    const card = track.querySelector<HTMLElement>("[data-fleet-card]");
+    if (!card) return;
+    const styles = window.getComputedStyle(track);
+    const gap = Number.parseFloat(styles.columnGap || styles.gap || "16") || 16;
+    const index = Math.round(track.scrollLeft / (card.offsetWidth + gap));
+    setActiveIndex(Math.max(0, Math.min(vehicles.length - 1, index)));
+  };
+
   return (
     <section
       id="fleet"
-      className="relative bg-void py-20 md:py-28"
+      className="relative scroll-mt-24 bg-void py-20 md:py-28"
       aria-labelledby="fleet-heading"
     >
       <div className="mx-auto max-w-[1440px] safe-px md:px-8 lg:px-10">
@@ -43,7 +59,6 @@ export function Fleet() {
           </p>
         </Reveal>
 
-        {/* Tablet + desktop grid */}
         <div className="mt-12 hidden gap-5 sm:grid sm:grid-cols-2 lg:mt-14 lg:gap-6 xl:grid-cols-3">
           {vehicles.map((vehicle, index) => (
             <FleetPanel
@@ -52,20 +67,27 @@ export function Fleet() {
               index={index}
               reduce={!!reduce}
               size="desktop"
+              href={contactHref}
+              requestLabel={t.fleet.requestCta}
             />
           ))}
         </div>
       </div>
 
-      {/* Phone only: swipe track */}
-      <p className="mt-8 safe-px text-[0.65rem] tracking-[0.16em] text-mist-soft sm:hidden">
-        {t.fleet.swipeHint}
-      </p>
+      <div className="mt-8 flex items-center justify-between gap-4 safe-px sm:hidden">
+        <p className="text-[0.7rem] tracking-[0.14em] text-mist-muted">
+          {t.fleet.swipeHint}
+        </p>
+        <p className="text-[0.7rem] tabular-nums tracking-[0.12em] text-mist-muted">
+          {activeIndex + 1} / {vehicles.length}
+        </p>
+      </div>
       <div
-        className="mt-3 flex snap-x snap-mandatory gap-4 overflow-x-auto safe-px pb-3 sm:hidden"
+        className="mt-3 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 safe-px sm:hidden"
         style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
         data-lenis-prevent
         aria-label={t.fleet.title}
+        onScroll={onTrackScroll}
       >
         {vehicles.map((vehicle, index) => (
           <FleetPanel
@@ -74,6 +96,18 @@ export function Fleet() {
             index={index}
             reduce={!!reduce}
             size="mobile"
+            href={contactHref}
+            requestLabel={t.fleet.requestCta}
+          />
+        ))}
+      </div>
+      <div className="mt-3 flex justify-center gap-1.5 sm:hidden" aria-hidden>
+        {vehicles.map((vehicle, index) => (
+          <span
+            key={vehicle.id}
+            className={`h-1.5 w-1.5 rounded-full ${
+              index === activeIndex ? "bg-cyan" : "bg-mist/25"
+            }`}
           />
         ))}
       </div>
@@ -86,6 +120,8 @@ function FleetPanel({
   index,
   reduce,
   size,
+  href,
+  requestLabel,
 }: {
   vehicle: {
     id: string;
@@ -98,8 +134,10 @@ function FleetPanel({
   index: number;
   reduce: boolean;
   size: "desktop" | "mobile";
+  href: string;
+  requestLabel: string;
 }) {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -111,13 +149,17 @@ function FleetPanel({
   );
 
   return (
-    <article
+    <a
       ref={ref}
+      data-fleet-card=""
+      href={href}
+      onClick={() => setContactIntent("fleet", vehicle.name)}
       className={
         size === "desktop"
-          ? "relative overflow-hidden rounded-2xl"
-          : "relative w-[min(86vw,360px)] shrink-0 snap-center overflow-hidden rounded-2xl"
+          ? "group relative block overflow-hidden rounded-2xl"
+          : "group relative w-[min(78vw,340px)] shrink-0 snap-center overflow-hidden rounded-2xl"
       }
+      aria-label={`${vehicle.name} — ${requestLabel}`}
     >
       <div className="relative aspect-[16/11] overflow-hidden rounded-2xl md:aspect-[5/3]">
         <motion.div style={{ y: imageY }} className="absolute inset-[-8%]">
@@ -126,7 +168,7 @@ function FleetPanel({
             alt={vehicle.name}
             atmosphere="vehicle"
             className="h-full w-full"
-            sizes={size === "desktop" ? "(max-width:1280px) 50vw, 33vw" : "86vw"}
+            sizes={size === "desktop" ? "(max-width:1280px) 50vw, 33vw" : "78vw"}
             imageClassName="object-cover object-center"
           />
         </motion.div>
@@ -147,13 +189,16 @@ function FleetPanel({
           {vehicle.characteristics.slice(0, size === "mobile" ? 3 : undefined).map((item) => (
             <li
               key={item}
-              className="text-[0.6rem] tracking-[0.12em] text-mist-soft uppercase sm:text-[0.65rem] sm:tracking-[0.14em]"
+              className="text-[0.6rem] uppercase tracking-[0.12em] text-mist-muted sm:text-[0.65rem] sm:tracking-[0.14em]"
             >
               {item}
             </li>
           ))}
         </ul>
+        <span className="mt-4 inline-flex text-[0.7rem] tracking-[0.14em] text-cyan">
+          {requestLabel}
+        </span>
       </div>
-    </article>
+    </a>
   );
 }

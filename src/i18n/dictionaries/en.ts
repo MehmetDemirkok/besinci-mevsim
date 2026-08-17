@@ -41,7 +41,9 @@ export const en: Dictionary = {
     eyebrow: "Travel & Tourism Transportation",
     titleLine1: "Beşinci",
     titleLine2: "Mevsim.",
+    offer: "VIP transfer and tourism transportation",
     body: "From VIP transfer to corporate travel — professional transportation built around comfort, reliability and a seamless journey.",
+    ctaContact: "Contact Us",
     ctaFleet: "Explore Our Fleet",
     ctaServices: "Discover Our Services",
     chips: [
@@ -79,6 +81,7 @@ export const en: Dictionary = {
     title: "Our Fleet",
     subtitle: "The right vehicle for every journey.",
     swipeHint: "Swipe to explore",
+    requestCta: "Request this vehicle",
     vehicles: [
       {
         id: "vito",
@@ -207,6 +210,7 @@ export const en: Dictionary = {
   },
   servicePage: {
     back: "Home",
+    breadcrumb: "Breadcrumb",
     allServices: "All services",
     explore: "Explore service",
     suitableLabel: "Best for",
@@ -440,6 +444,7 @@ export const en: Dictionary = {
     aria: "Turkey road trip — cinematic windshield experience",
     chapterLabel: "Chapter",
     scrollHint: "Scroll to continue the journey",
+    skip: "Skip to fleet",
     audioEnable: "Enable ambient audio",
     audioDisable: "Disable ambient audio",
     reducedTitle: "A journey across Turkey",
@@ -526,6 +531,7 @@ export const en: Dictionary = {
     writeUs: "Write to us",
     emailHint: "Reach our corporate inbox in one click.",
     topicsLabel: "What would you like to write about?",
+    topicHint: "Your selection becomes the email subject. Submit opens your email app — it does not send the request by itself.",
     topics: [
       {
         id: "vip",
@@ -556,6 +562,14 @@ export const en: Dictionary = {
     responseNote: "We aim to respond as promptly as possible.",
     copy: "Copy",
     copied: "Copied",
+    name: "Your name",
+    namePlaceholder: "Full name…",
+    phonePlaceholder: "+90 …",
+    message: "Message",
+    messagePlaceholder: "Route, date, passenger count…",
+    submit: "Open in email",
+    formHint: "Submit opens your email app with the details filled in. If it doesn’t, copy the address.",
+    mailtoFallback: "Open email directly",
   },
   footer: {
     blurb:

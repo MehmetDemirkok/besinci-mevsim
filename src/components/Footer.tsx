@@ -1,5 +1,7 @@
 "use client";
 
+import type { ReactNode } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { InstagramLink } from "@/components/ui/InstagramLink";
@@ -29,7 +31,7 @@ export function Footer() {
             <a href={homeHref(pathname)} aria-label={t.nav.home}>
               <BrandWordmark />
             </a>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-mist-soft">
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-mist-muted">
               {t.footer.blurb}
             </p>
             <AgencyCredential className="mt-5 max-w-sm text-sm" />
@@ -40,32 +42,46 @@ export function Footer() {
             <ul className="flex flex-wrap gap-x-8 gap-y-4">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="text-sm tracking-[0.08em] text-mist-muted transition-colors hover:text-mist"
-                  >
-                    {item.label}
-                  </a>
+                  <FooterLink href={item.href}>{item.label}</FooterLink>
                 </li>
               ))}
             </ul>
           </nav>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-line pt-8 text-sm text-mist-soft sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 flex flex-col gap-4 border-t border-line pt-8 text-sm text-mist-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {siteConfig.name} · {siteConfig.agency.name}. {t.footer.rights}
           </p>
           <div className="flex gap-6">
-            <a href="/privacy" className="transition-colors hover:text-mist">
+            <Link href="/privacy" className="transition-colors hover:text-mist">
               {t.footer.privacy}
-            </a>
-            <a href="/kvkk" className="transition-colors hover:text-mist">
+            </Link>
+            <Link href="/kvkk" className="transition-colors hover:text-mist">
               {t.footer.kvkk}
-            </a>
+            </Link>
           </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterLink({ href, children }: { href: string; children: ReactNode }) {
+  const className =
+    "text-sm tracking-[0.08em] text-mist-muted transition-colors hover:text-mist";
+
+  if (href.startsWith("#") || href.startsWith("/#")) {
+    return (
+      <a href={href} className={className}>
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
   );
 }

@@ -29,7 +29,9 @@ export type Dictionary = {
     eyebrow: string;
     titleLine1: string;
     titleLine2: string;
+    offer: string;
     body: string;
+    ctaContact: string;
     ctaFleet: string;
     ctaServices: string;
     chips: string[];
@@ -56,6 +58,7 @@ export type Dictionary = {
     title: string;
     subtitle: string;
     swipeHint: string;
+    requestCta: string;
     vehicles: {
       id: string;
       category: string;
@@ -77,6 +80,7 @@ export type Dictionary = {
   };
   servicePage: {
     back: string;
+    breadcrumb: string;
     allServices: string;
     explore: string;
     suitableLabel: string;
@@ -115,6 +119,7 @@ export type Dictionary = {
     aria: string;
     chapterLabel: string;
     scrollHint: string;
+    skip: string;
     audioEnable: string;
     audioDisable: string;
     reducedTitle: string;
@@ -165,10 +170,19 @@ export type Dictionary = {
     writeUs: string;
     emailHint: string;
     topicsLabel: string;
+    topicHint: string;
     topics: { id: string; label: string; subject: string }[];
     responseNote: string;
     copy: string;
     copied: string;
+    name: string;
+    namePlaceholder: string;
+    phonePlaceholder: string;
+    message: string;
+    messagePlaceholder: string;
+    submit: string;
+    formHint: string;
+    mailtoFallback: string;
   };
   footer: {
     blurb: string;

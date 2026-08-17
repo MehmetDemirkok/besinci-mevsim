@@ -46,25 +46,33 @@ export function BrandWordmark({
       />
 
       <div className="min-w-0 leading-none">
-        <p
-          className={`font-medium tracking-tight text-mist ${
-            compact ? "text-[0.95rem]" : "text-base md:text-lg"
+        <span
+          className={`block font-medium tracking-[0.01em] text-mist ${
+            compact ? "text-[0.95rem]" : "text-base md:text-[1.05rem]"
           }`}
+          translate="no"
         >
           {siteConfig.name}
-        </p>
-        {!compact ? (
-          <div className="mt-1.5 hidden items-center gap-2 sm:flex">
-            <span className="h-px w-4 bg-cyan/70" aria-hidden />
-            <p className="text-[0.58rem] tracking-[0.18em] text-mist-soft sm:tracking-[0.2em]">
-              {siteConfig.tagline}
-            </p>
-          </div>
-        ) : (
-          <p className="mt-1 hidden text-[0.52rem] tracking-[0.16em] text-mist-soft/90 sm:block">
+        </span>
+        <div
+          className={`mt-1.5 hidden items-center gap-2 sm:flex ${
+            compact ? "opacity-80" : ""
+          }`}
+        >
+          <span
+            className={`h-px bg-gradient-to-r from-cyan to-gold/80 ${
+              compact ? "w-3" : "w-4"
+            }`}
+            aria-hidden
+          />
+          <span
+            className={`tracking-[0.2em] text-mist-muted ${
+              compact ? "text-[0.5rem]" : "text-[0.58rem]"
+            }`}
+          >
             {siteConfig.tagline}
-          </p>
-        )}
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import {
   holdOpacity,
   journeyScenes,
   journeyScrollVh,
+  journeyScrollVhMobile,
 } from "@/data/journey";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { WindshieldFrame } from "@/components/cinematic/WindshieldFrame";
@@ -118,9 +119,7 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
   const pullOut = Math.max(0, (progress - 0.8) / 0.2);
 
   // Tall track + sticky viewport (no GSAP pin — reliable with Lenis)
-  const trackVh = isMobile
-    ? Math.round(journeyScrollVh * 0.85)
-    : journeyScrollVh;
+  const trackVh = isMobile ? journeyScrollVhMobile : journeyScrollVh;
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -171,7 +170,7 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
     <section
       id="journey"
       ref={sectionRef}
-      className="relative z-10 bg-void"
+      className="relative z-10 scroll-mt-24 bg-void"
       style={{ height: `${trackVh}vh` }}
       aria-labelledby="journey-heading"
     >
@@ -213,14 +212,21 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
           progress={revealProgress}
         />
 
-        <div className="absolute bottom-[9%] left-1/2 z-30 hidden w-[min(480px,72vw)] -translate-x-1/2 md:block">
+        <a
+          href="#fleet"
+          className="absolute right-4 top-[max(5.5rem,env(safe-area-inset-top))] z-40 rounded-full border border-white/15 bg-void/55 px-3 py-2 text-[0.65rem] tracking-[0.14em] text-mist backdrop-blur-sm transition-colors hover:border-cyan/40 hover:text-cyan sm:right-6 sm:top-28"
+        >
+          {t.journey.skip}
+        </a>
+
+        <div className="absolute bottom-[9%] left-1/2 z-30 w-[min(480px,88vw)] -translate-x-1/2">
           <div className="h-px w-full bg-mist/15">
             <div
               className="h-px bg-cyan"
               style={{ width: `${Math.min(100, progress * 100)}%` }}
             />
           </div>
-          <div className="mt-3 flex justify-between text-[0.58rem] tracking-[0.18em] text-mist-soft">
+          <div className="mt-3 hidden justify-between text-[0.65rem] tracking-[0.18em] text-mist-muted md:flex">
             {t.journey.scenes.map((s, i) => {
               const active = activeIndex === i && revealProgress < 0.2;
               return (
@@ -233,10 +239,22 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
               );
             })}
           </div>
+          <div className="mt-3 flex justify-center gap-1.5 md:hidden" aria-hidden>
+            {t.journey.scenes.map((s, i) => (
+              <span
+                key={s.id}
+                className={`h-1.5 w-1.5 rounded-full ${
+                  activeIndex === i && revealProgress < 0.2
+                    ? "bg-cyan"
+                    : "bg-mist/25"
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         <p
-          className={`absolute bottom-5 left-1/2 z-30 w-[90%] -translate-x-1/2 text-center text-[0.6rem] tracking-[0.16em] text-mist-soft transition-opacity duration-500 safe-pb sm:bottom-6 sm:text-[0.65rem] sm:tracking-[0.22em] ${
+          className={`absolute bottom-5 left-1/2 z-30 w-[90%] -translate-x-1/2 text-center text-[0.65rem] tracking-[0.16em] text-mist-muted transition-opacity duration-500 safe-pb sm:bottom-6 sm:text-[0.7rem] sm:tracking-[0.22em] ${
             progress < 0.03 ? "opacity-80" : "opacity-0"
           }`}
         >
