@@ -91,6 +91,12 @@ html[data-theme="light"] .on-media,
     -webkit-tap-highlight-color: color-mix(in srgb, var(--cyan) 22%, transparent);
   }
 
+  @media (max-width: 768px) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   html.lenis,
   html.lenis body {
     height: auto;
@@ -196,25 +202,6 @@ html[data-theme="light"] .on-media,
     letter-spacing: 0.22em;
     text-transform: uppercase;
     font-weight: 600;
-  }
-
-  /* Keyboard-only: first Tab reveals it. Hidden from pointer UI. */
-  .skip-link {
-    position: fixed;
-    left: 1rem;
-    top: 1rem;
-    z-index: 100;
-    transform: translateY(calc(-100% - 2rem));
-    background: var(--color-mist);
-    color: var(--color-void);
-    padding: 0.75rem 1.1rem;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    transition: transform 0.2s ease;
-  }
-
-  .skip-link:focus-visible {
-    transform: none;
   }
 
   .sr-only {

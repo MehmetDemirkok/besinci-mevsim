@@ -130,7 +130,7 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
         trigger: section,
         start: "top top",
         end: "bottom bottom",
-        scrub: 0.45,
+        scrub: isMobile ? 0 : 0.45,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const next = self.progress;
@@ -143,25 +143,24 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
     }, section);
 
     const refresh = () => ScrollTrigger.refresh();
-    const t1 = window.setTimeout(refresh, 80);
-    const t2 = window.setTimeout(refresh, 500);
-    const t3 = window.setTimeout(refresh, 1200);
+    const t1 = window.setTimeout(refresh, isMobile ? 300 : 80);
     window.addEventListener("load", refresh);
 
-    // Images loading can shift layout above the journey
-    const images = Array.from(document.images);
-    images.forEach((img) => {
-      if (!img.complete) img.addEventListener("load", refresh, { once: true });
-    });
+    let lastWidth = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      refresh();
+    };
+    window.addEventListener("resize", onResize);
 
     return () => {
       window.clearTimeout(t1);
-      window.clearTimeout(t2);
-      window.clearTimeout(t3);
       window.removeEventListener("load", refresh);
+      window.removeEventListener("resize", onResize);
       ctx.revert();
     };
-  }, [trackVh]);
+  }, [trackVh, isMobile]);
 
   const copyFor = (id: string) =>
     t.journey.scenes.find((s) => s.id === id) ?? t.journey.scenes[0];

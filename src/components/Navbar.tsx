@@ -175,10 +175,6 @@ export function Navbar() {
 
   return (
     <>
-      <a href="#main" className="skip-link">
-        {t.nav.skipToContent}
-      </a>
-
       <header
         className={`fixed inset-x-0 top-0 z-50 safe-pt transition-[background-color,border-color,padding,backdrop-filter,box-shadow] duration-500 ${
           condensed

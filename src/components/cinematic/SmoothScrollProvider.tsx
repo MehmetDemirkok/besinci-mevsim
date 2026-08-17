@@ -11,9 +11,31 @@ const HEADER_OFFSET = -96;
 const SCROLL_DURATION = 1.45;
 const ease = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
 
+function headerOffset() {
+  return window.matchMedia("(max-width: 768px)").matches ? -112 : HEADER_OFFSET;
+}
+
+function prefersNativeScroll() {
+  return (
+    window.matchMedia("(max-width: 768px)").matches ||
+    window.matchMedia("(pointer: coarse)").matches
+  );
+}
+
+function nativeScrollTo(target: HTMLElement, immediate: boolean) {
+  const top = Math.max(
+    0,
+    target.getBoundingClientRect().top + window.scrollY + headerOffset(),
+  );
+  window.scrollTo({
+    top,
+    behavior: immediate ? "auto" : "smooth",
+  });
+}
+
 /**
- * Lenis smooth scroll synced with GSAP ScrollTrigger.
- * Hash links (header / footer / CTAs) ease down to the section.
+ * Lenis on desktop only. Phones keep native momentum — Lenis + iOS chrome
+ * refresh fights the finger and feels like the page bouncing back.
  */
 export function SmoothScrollProvider({
   children,
@@ -24,43 +46,23 @@ export function SmoothScrollProvider({
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
-
-    document.documentElement.classList.add("lenis", "lenis-smooth");
-    document.documentElement.style.scrollBehavior = "auto";
-
-    const headerOffset = () =>
-      window.matchMedia("(max-width: 768px)").matches ? -112 : HEADER_OFFSET;
-
-    const lenis = new Lenis({
-      duration: 1.15,
-      easing: ease,
-      smoothWheel: true,
-      touchMultiplier: 1.35,
-      syncTouch: false,
-      autoRaf: false,
-    });
-    lenisRef.current = lenis;
+    const native = reduce || prefersNativeScroll();
 
     const scrollToHash = (hash: string, immediate = false) => {
       const id = hash.replace(/^#/, "");
       if (!id) return;
       const target = document.getElementById(id);
       if (!target) return;
-      lenis.scrollTo(target, {
+      if (native || !lenisRef.current) {
+        nativeScrollTo(target, immediate || native);
+        return;
+      }
+      lenisRef.current.scrollTo(target, {
         offset: headerOffset(),
         duration: immediate ? 0 : SCROLL_DURATION,
         easing: ease,
       });
     };
-
-    lenis.on("scroll", ScrollTrigger.update);
-
-    const ticker = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-    gsap.ticker.add(ticker);
-    gsap.ticker.lagSmoothing(0);
 
     const onClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0) return;
@@ -94,23 +96,59 @@ export function SmoothScrollProvider({
 
     document.addEventListener("click", onClick);
 
-    const refresh = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", refresh);
-    window.addEventListener("load", refresh);
+    let lastWidth = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("resize", onResize);
 
+    const tHash = window.setTimeout(() => {
+      if (window.location.hash) scrollToHash(window.location.hash, true);
+    }, 180);
+
+    if (native) {
+      return () => {
+        window.clearTimeout(tHash);
+        document.removeEventListener("click", onClick);
+        window.removeEventListener("resize", onResize);
+      };
+    }
+
+    document.documentElement.classList.add("lenis", "lenis-smooth");
+    document.documentElement.style.scrollBehavior = "auto";
+
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: ease,
+      smoothWheel: true,
+      touchMultiplier: 1,
+      syncTouch: false,
+      autoRaf: false,
+    });
+    lenisRef.current = lenis;
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    const ticker = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(ticker);
+    gsap.ticker.lagSmoothing(0);
+
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refresh);
     requestAnimationFrame(refresh);
     const t1 = window.setTimeout(refresh, 120);
     const t2 = window.setTimeout(refresh, 600);
-    const t3 = window.setTimeout(() => {
-      if (window.location.hash) scrollToHash(window.location.hash);
-    }, 180);
 
     return () => {
+      window.clearTimeout(tHash);
       window.clearTimeout(t1);
       window.clearTimeout(t2);
-      window.clearTimeout(t3);
       document.removeEventListener("click", onClick);
-      window.removeEventListener("resize", refresh);
+      window.removeEventListener("resize", onResize);
       window.removeEventListener("load", refresh);
       gsap.ticker.remove(ticker);
       lenis.destroy();
