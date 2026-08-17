@@ -2,29 +2,28 @@ import type { Dictionary } from "@/i18n/types";
 
 export const tr: Dictionary = {
   meta: {
-    title: "Beşinci Mevsim | VIP Transfer & Turizm Taşımacılık",
+    title: "Beşinci Mevsim | Ankara VIP Transfer ve Turizm Taşımacılık",
     description:
-      "Beşinci Mevsim ile VIP transfer, havaalanı transferi, turizm taşımacılığı, kurumsal seyahat ve konaklama hizmetleri. Konforlu ve güvenilir yolculuk deneyimi.",
+      "Ankara merkezli Beşinci Mevsim — İlkRüzgar Seyahat Acentası (TURSAB 18563). VIP transfer, Esenboğa havaalanı transferi, kurumsal ve turizm taşımacılığı, şoförlü araç ve konaklama.",
     keywords: [
       "Beşinci Mevsim",
       "Besinci Mevsim",
       "İlkRüzgar Seyahat Acentası",
       "TURSAB 18563",
-      "VIP transfer",
+      "Ankara VIP transfer",
+      "Ankara havaalanı transferi",
+      "Esenboğa transfer",
+      "Esenboğa havaalanı transferi",
       "VIP transfer Türkiye",
-      "havaalanı transfer",
       "havaalanı transferi",
       "turizm taşımacılığı",
-      "turizm taşımacılık",
-      "kurumsal seyahat",
-      "kurumsal transfer",
-      "konaklama hizmetleri",
+      "kurumsal transfer Ankara",
+      "şoförlü araç Ankara",
       "Mercedes Vito transfer",
       "Mercedes Sprinter",
-      "Audi A6 transfer",
-      "Renault Megane",
-      "özel transfer",
-      "seyahat acentesi",
+      "özel transfer Ankara",
+      "seyahat acentesi Ankara",
+      "konaklama hizmetleri",
     ],
   },
   nav: {
@@ -232,15 +231,15 @@ export const tr: Dictionary = {
     fleetLabel: "Bu hizmette kullanılan araçlar",
     ctaLabel: "Bu hizmet için yazın",
     ctaHint: "Rezervasyon formu yok — talebinizi e-posta ile iletin, size dönüş yapalım.",
-    indexTitle: "VIP Transfer ve Turizm Taşımacılık Hizmetleri",
+    indexTitle: "Ankara VIP Transfer ve Turizm Hizmetleri",
     indexDescription:
-      "Beşinci Mevsim hizmetleri: VIP transfer, havaalanı transferi, kurumsal taşımacılık, turizm taşımacılığı, özel araç ve konaklama.",
+      "Beşinci Mevsim Ankara: VIP transfer, Esenboğa havaalanı transferi, kurumsal taşımacılık, turizm taşımacılığı, şoförlü özel araç ve konaklama.",
     pages: [
       {
         id: "vip",
-        metaTitle: "VIP Transfer",
+        metaTitle: "Ankara VIP Transfer",
         metaDescription:
-          "Beşinci Mevsim VIP transfer: özel yolculuklar, gruplar ve özel günler için konforlu Mercedes Vito taşımacılığı.",
+          "Ankara VIP transfer | Beşinci Mevsim. Özel gün, grup ve kapıdan kapıya yolculuklar için Mercedes Vito ile konforlu, TURSAB belgeli taşımacılık.",
         imageAlt: "Mercedes-Benz Vito ile VIP transfer",
         lead: "Kapıdan kapıya, sessiz ve düzenli bir VIP yolculuk — deneyimin destinasyon kadar önemli olduğu anlar için.",
         body: [
@@ -271,9 +270,9 @@ export const tr: Dictionary = {
       },
       {
         id: "airport",
-        metaTitle: "Havaalanı Transferleri",
+        metaTitle: "Esenboğa Havaalanı Transferi",
         metaDescription:
-          "Havaalanı, otel ve destinasyon arasında Beşinci Mevsim ile güvenilir karşılama ve transfer.",
+          "Esenboğa ve diğer havalimanlarından Ankara otel, ofis veya adrese karşılama. Beşinci Mevsim ile uçuşa göre planlanan havaalanı transferi.",
         imageAlt: "Havaalanı ve şehir varış atmosferi",
         lead: "Uçuştan sonraki ilk temas sakin olsun: bagaj, zaman ve güzergâh tek elde toplanır.",
         body: [
@@ -304,9 +303,9 @@ export const tr: Dictionary = {
       },
       {
         id: "corporate",
-        metaTitle: "Kurumsal Taşımacılık",
+        metaTitle: "Ankara Kurumsal Taşımacılık",
         metaDescription:
-          "Toplantı, etkinlik ve kurumsal seyahat için Beşinci Mevsim profesyonel mobilite çözümleri.",
+          "Ankara kurumsal transfer: toplantı, fuar ve yönetici ulaşımı. Beşinci Mevsim ile dakik, temsilî şoförlü araç hizmeti.",
         imageAlt: "Kurumsal seyahat için executive araç",
         lead: "İş gününün temposuna uyan, sakin ve temsilî bir mobilite — toplantıdan etkinliğe kadar.",
         body: [
@@ -337,9 +336,9 @@ export const tr: Dictionary = {
       },
       {
         id: "tourism",
-        metaTitle: "Turizm Taşımacılığı",
+        metaTitle: "Turizm Taşımacılığı Ankara",
         metaDescription:
-          "Tur, grup ve seyahat organizasyonları için Beşinci Mevsim turizm taşımacılığı.",
+          "Grup, tur ve organizasyonlar için Ankara çıkışlı turizm taşımacılığı. Kafileye göre Vito veya Travego — Beşinci Mevsim.",
         imageAlt: "Turizm destinasyonu ve grup yolculuğu atmosferi",
         lead: "Grup ritmini bozmayan, konforlu ve düzenli bir turizm taşıması — destinasyon kadar yol da önemli.",
         body: [
@@ -370,9 +369,9 @@ export const tr: Dictionary = {
       },
       {
         id: "private",
-        metaTitle: "Özel Araç Hizmetleri",
+        metaTitle: "Şoförlü Özel Araç Ankara",
         metaDescription:
-          "Farklı seyahat ihtiyaçlarına göre şekillenen Beşinci Mevsim özel araç ve şoförlü taşımacılık.",
+          "Ankara’da şoförlü özel araç: çok duraklı program, beklemeli gün ve kişiye özel güzergâh. Beşinci Mevsim ile planlanır.",
         imageAlt: "Gece yolunda özel araç yolculuğu",
         lead: "Tek bir kalıba sığmayan yolculuklar için: güzergâh, süre ve araç sizin ritminize göre kurulur.",
         body: [
@@ -403,9 +402,9 @@ export const tr: Dictionary = {
       },
       {
         id: "accommodation",
-        metaTitle: "Konaklama Hizmetleri",
+        metaTitle: "Konaklama ve Transfer",
         metaDescription:
-          "Beşinci Mevsim konaklama desteği: transferle bütünleşen otel ve seyahat deneyimi.",
+          "Ankara ve seyahat güzergâhında transferle bütünleşen konaklama. Otel ve yolculuk aynı planda — Beşinci Mevsim.",
         imageAlt: "Konaklama ve otel atmosferi",
         lead: "Yolculuk kapıda bitmez. Konaklama, transferle aynı dilde konuşan bir devamdır.",
         body: [
@@ -510,7 +509,7 @@ export const tr: Dictionary = {
   visionPage: {
     metaTitle: "Vizyon ve Misyon | Beşinci Mevsim",
     metaDescription:
-      "Beşinci Mevsim’in vizyonu ve misyonu: VIP transfer, turizm taşımacılığı ve konaklamada konfor, zaman ve güven.",
+      "Beşinci Mevsim vizyon ve misyonu: Ankara merkezli VIP transfer, turizm taşımacılığı ve konaklamada konfor, zaman ve güven. TURSAB 18563.",
     breadcrumb: "Sayfa yolu",
     eyebrow: "Vizyon & Misyon",
     titleLine1: "Yolculuğu",

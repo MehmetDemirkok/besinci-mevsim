@@ -22,11 +22,12 @@ export const metadata: Metadata = pageMetadata({
   path: "/hizmetler",
   keywords: [
     "Beşinci Mevsim hizmetler",
-    "VIP transfer",
+    "Ankara VIP transfer",
+    "Esenboğa transfer",
     "havaalanı transferi",
     "kurumsal taşımacılık",
     "turizm taşımacılığı",
-    "özel araç",
+    "şoförlü araç Ankara",
     "konaklama",
   ],
 });

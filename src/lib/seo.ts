@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { siteConfig, contactDigits } from "@/lib/site";
+import {
+  siteConfig,
+  contactDigits,
+  mapsHref,
+  whatsappHref,
+} from "@/lib/site";
 import { fleet } from "@/data/fleet";
 import { services, servicePath } from "@/data/services";
 import { getDictionary } from "@/i18n";
@@ -45,11 +50,11 @@ export function pageMetadata({
     title: title.includes(siteConfig.name) ? { absolute: title } : title,
     description,
     keywords,
+    metadataBase: new URL(siteConfig.url),
     alternates: {
       canonical: url,
       languages: {
         "tr-TR": url,
-        "en-US": url,
         "x-default": url,
       },
     },
@@ -80,13 +85,22 @@ export function pageMetadata({
         "max-video-preview": -1,
       },
     },
+    other: {
+      "geo.region": "TR-06",
+      "geo.placename": "Ankara",
+    },
   };
 }
 
 export function organizationJsonLd() {
   const tr = getDictionary("tr");
+  const phone = siteConfig.contact.phone
+    ? `+${contactDigits(siteConfig.contact.phone)}`
+    : undefined;
+  const address = siteConfig.contact.address;
+
   return {
-    "@type": "TravelAgency",
+    "@type": ["TravelAgency", "LocalBusiness"],
     "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.name,
     legalName: siteConfig.agency.name,
@@ -94,6 +108,7 @@ export function organizationJsonLd() {
       "Besinci Mevsim",
       "5. Mevsim",
       "Besinci Mevsim Seyahat",
+      "Beşinci Mevsim Turizm",
       siteConfig.agency.name,
       "IlkRuzgar Seyahat Acentasi",
     ],
@@ -102,8 +117,15 @@ export function organizationJsonLd() {
     logo: {
       "@type": "ImageObject",
       url: absoluteUrl(siteConfig.logo),
+      width: 223,
+      height: 209,
     },
-    image: absoluteUrl(siteConfig.ogImage),
+    image: {
+      "@type": "ImageObject",
+      url: absoluteUrl(siteConfig.ogImage),
+      width: 1200,
+      height: 630,
+    },
     sameAs: [siteConfig.social.instagram],
     identifier: {
       "@type": "PropertyValue",
@@ -111,14 +133,13 @@ export function organizationJsonLd() {
       value: siteConfig.agency.tursabNo,
     },
     email: siteConfig.contact.email ?? undefined,
-    telephone: siteConfig.contact.phone
-      ? `+${contactDigits(siteConfig.contact.phone)}`
-      : undefined,
-    address: siteConfig.contact.address
+    telephone: phone,
+    hasMap: address ? mapsHref(address) : undefined,
+    address: address
       ? {
           "@type": "PostalAddress",
           streetAddress: "Yukarı Bahçelievler Mahallesi Aşkabat Caddesi No:37/6",
-          addressLocality: "Bahçelievler",
+          addressLocality: "Ankara",
           addressRegion: "Ankara",
           addressCountry: "TR",
         }
@@ -127,20 +148,41 @@ export function organizationJsonLd() {
       "@type": "City",
       name: "Ankara",
     },
-    areaServed: {
-      "@type": "Country",
-      name: "Turkey",
-    },
+    areaServed: [
+      { "@type": "City", name: "Ankara" },
+      { "@type": "Country", name: "Turkey" },
+    ],
     inLanguage: ["tr", "en"],
     knowsAbout: [
+      "Ankara VIP transfer",
+      "Esenboğa havaalanı transferi",
       "VIP transfer",
       "Havaalanı transferi",
       "Kurumsal taşımacılık",
       "Turizm taşımacılığı",
-      "Özel araç hizmetleri",
+      "Şoförlü araç",
       "Konaklama hizmetleri",
       ...fleet.map((vehicle) => vehicle.name),
     ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: tr.nav.services,
+      itemListElement: services.map((service) => {
+        const item = tr.services.items.find((entry) => entry.id === service.id);
+        return {
+          "@type": "OfferCatalog",
+          name: item?.title,
+          itemListElement: {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: item?.title,
+              url: absoluteUrl(servicePath(service.slug)),
+            },
+          },
+        };
+      }),
+    },
     makesOffer: services.map((service) => {
       const item = tr.services.items.find((entry) => entry.id === service.id);
       return {
@@ -152,20 +194,29 @@ export function organizationJsonLd() {
         },
       };
     }),
-    contactPoint: siteConfig.contact.email
-      ? [
-          {
+    contactPoint: [
+      siteConfig.contact.email
+        ? {
             "@type": "ContactPoint",
             contactType: "customer service",
             email: siteConfig.contact.email,
-            telephone: siteConfig.contact.phone
-              ? `+${contactDigits(siteConfig.contact.phone)}`
-              : undefined,
+            telephone: phone,
             availableLanguage: ["Turkish", "English"],
+            areaServed: "TR",
             url: absoluteUrl("/#contact"),
-          },
-        ]
-      : undefined,
+          }
+        : null,
+      siteConfig.contact.whatsapp
+        ? {
+            "@type": "ContactPoint",
+            contactType: "customer support",
+            telephone: phone,
+            url: whatsappHref(siteConfig.contact.whatsapp),
+            availableLanguage: ["Turkish", "English"],
+            areaServed: "TR",
+          }
+        : null,
+    ].filter(Boolean),
   };
 }
 
@@ -185,9 +236,13 @@ export function webPageJsonLd({
     url,
     name: title,
     description,
-    inLanguage: ["tr-TR", "en-US"],
+    inLanguage: "tr-TR",
     isPartOf: { "@id": `${siteConfig.url}/#website` },
     about: { "@id": `${siteConfig.url}/#organization` },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: absoluteUrl(siteConfig.ogImage),
+    },
   };
 }
 
@@ -198,9 +253,11 @@ export function websiteJsonLd() {
     "@id": `${siteConfig.url}/#website`,
     url: siteConfig.url,
     name: siteConfig.name,
+    alternateName: ["Besinci Mevsim", "5. Mevsim"],
     description: tr.meta.description,
-    inLanguage: ["tr-TR", "en-US"],
+    inLanguage: "tr-TR",
     publisher: { "@id": `${siteConfig.url}/#organization` },
+    about: { "@id": `${siteConfig.url}/#organization` },
   };
 }
 
@@ -254,9 +311,21 @@ export function serviceJsonLd(slug: string) {
     url,
     image: absoluteUrl(service.image),
     serviceType: item?.title,
+    category: "Ground transportation",
+    brand: { "@id": `${siteConfig.url}/#organization` },
     provider: { "@id": `${siteConfig.url}/#organization` },
-    areaServed: { "@type": "Country", name: "Turkey" },
+    areaServed: [
+      { "@type": "City", name: "Ankara" },
+      { "@type": "Country", name: "Turkey" },
+    ],
     inLanguage: ["tr", "en"],
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: absoluteUrl("/#contact"),
+      servicePhone: siteConfig.contact.phone
+        ? `+${contactDigits(siteConfig.contact.phone)}`
+        : undefined,
+    },
   };
 }
 

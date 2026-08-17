@@ -47,7 +47,8 @@ export async function generateMetadata({
       item.title,
       "Beşinci Mevsim",
       "Besinci Mevsim",
-      "VIP transfer",
+      "Ankara VIP transfer",
+      "Esenboğa transfer",
       "turizm taşımacılığı",
     ],
   });

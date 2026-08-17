@@ -2,24 +2,24 @@ import type { Dictionary } from "@/i18n/types";
 
 export const en: Dictionary = {
   meta: {
-    title: "Beşinci Mevsim | VIP Transfer & Tourism Transportation",
+    title: "Beşinci Mevsim | Ankara VIP Transfer and Tourism Transportation",
     description:
-      "Beşinci Mevsim offers VIP transfer, airport transfer, tourism transportation, corporate travel and accommodation services — comfortable, reliable journeys.",
+      "Ankara-based Beşinci Mevsim — İlkRüzgar Travel Agency (TURSAB 18563). VIP transfer, Esenboğa airport transfer, corporate and tourism transportation, chauffeur-driven cars and accommodation.",
     keywords: [
       "Beşinci Mevsim",
       "Besinci Mevsim",
       "İlkRüzgar Seyahat Acentası",
       "TURSAB 18563",
+      "Ankara VIP transfer",
+      "Esenboğa airport transfer",
+      "Ankara airport transfer",
       "VIP transfer Turkey",
-      "airport transfer",
-      "tourism transportation",
-      "corporate travel",
-      "private transfer",
+      "tourism transportation Ankara",
+      "corporate transfer Ankara",
+      "chauffeur Ankara",
       "Mercedes Vito transfer",
-      "Mercedes Sprinter",
-      "Audi A6",
-      "accommodation services",
-      "travel agency Turkey",
+      "travel agency Ankara",
+      "accommodation services Turkey",
     ],
   },
   nav: {
@@ -227,15 +227,15 @@ export const en: Dictionary = {
     fleetLabel: "Vehicles used for this service",
     ctaLabel: "Write about this service",
     ctaHint: "No booking form — send your request by email and we will reply.",
-    indexTitle: "VIP Transfer and Tourism Transportation Services",
+    indexTitle: "Ankara VIP Transfer and Tourism Services",
     indexDescription:
-      "Beşinci Mevsim services: VIP transfer, airport transfer, corporate transportation, tourism transportation, private vehicles and accommodation.",
+      "Beşinci Mevsim in Ankara: VIP transfer, Esenboğa airport transfer, corporate transportation, tourism transport, chauffeur-driven cars and accommodation.",
     pages: [
       {
         id: "vip",
-        metaTitle: "VIP Transfer",
+        metaTitle: "Ankara VIP Transfer",
         metaDescription:
-          "Beşinci Mevsim VIP transfer: comfortable Mercedes Vito transportation for private journeys, groups and special occasions.",
+          "Ankara VIP transfer | Beşinci Mevsim. TURSAB-licensed chauffeur service with Mercedes Vito for private journeys, groups and special occasions.",
         imageAlt: "VIP transfer with Mercedes-Benz Vito",
         lead: "Door to door, quiet and composed — for journeys where the experience matters as much as the destination.",
         body: [
@@ -266,9 +266,9 @@ export const en: Dictionary = {
       },
       {
         id: "airport",
-        metaTitle: "Airport Transfers",
+        metaTitle: "Esenboğa Airport Transfer",
         metaDescription:
-          "Reliable airport, hotel and destination transfers with Beşinci Mevsim.",
+          "Airport meet-and-greet from Esenboğa and other hubs to Ankara hotels, offices or home. Flight-aware transfers with Beşinci Mevsim.",
         imageAlt: "Airport arrival and city atmosphere",
         lead: "Let the first moment after landing feel orderly: luggage, timing and route held in one place.",
         body: [
@@ -299,9 +299,9 @@ export const en: Dictionary = {
       },
       {
         id: "corporate",
-        metaTitle: "Corporate Transportation",
+        metaTitle: "Corporate Transportation in Ankara",
         metaDescription:
-          "Professional mobility for meetings, events and corporate travel with Beşinci Mevsim.",
+          "Ankara corporate transfer for meetings, fairs and executive travel. Punctual chauffeur service with Beşinci Mevsim.",
         imageAlt: "Executive vehicle for corporate travel",
         lead: "Mobility that matches the pace of a working day — from meetings to events, composed and representative.",
         body: [
@@ -332,9 +332,9 @@ export const en: Dictionary = {
       },
       {
         id: "tourism",
-        metaTitle: "Tourism Transportation",
+        metaTitle: "Tourism Transportation from Ankara",
         metaDescription:
-          "Tourism transportation for tours, groups and travel organizations with Beşinci Mevsim.",
+          "Group and tour transport from Ankara. Vehicle sized to the party — Vito or Travego — with Beşinci Mevsim.",
         imageAlt: "Tourism destination and group journey atmosphere",
         lead: "Group travel that keeps its rhythm — the road is part of the destination, not an interruption.",
         body: [
@@ -365,9 +365,9 @@ export const en: Dictionary = {
       },
       {
         id: "private",
-        metaTitle: "Private Vehicle Services",
+        metaTitle: "Chauffeur-Driven Car in Ankara",
         metaDescription:
-          "Chauffeured private vehicle services shaped around different travel needs with Beşinci Mevsim.",
+          "Chauffeur-driven private car in Ankara: multi-stop days, waiting time and routes written for you. Planned with Beşinci Mevsim.",
         imageAlt: "Night road private vehicle journey",
         lead: "For journeys that do not fit a template: route, duration and vehicle follow your rhythm.",
         body: [
@@ -398,9 +398,9 @@ export const en: Dictionary = {
       },
       {
         id: "accommodation",
-        metaTitle: "Accommodation Services",
+        metaTitle: "Accommodation and Transfer",
         metaDescription:
-          "Accommodation support with Beşinci Mevsim — hotels and overnight stays planned with the transfer.",
+          "Accommodation planned with the transfer — hotels and overnight stays on the same itinerary as Beşinci Mevsim.",
         imageAlt: "Hotel and accommodation atmosphere",
         lead: "The journey does not end at the door. Accommodation continues in the same language as the transfer.",
         body: [
@@ -505,7 +505,7 @@ export const en: Dictionary = {
   visionPage: {
     metaTitle: "Vision and Mission | Beşinci Mevsim",
     metaDescription:
-      "Beşinci Mevsim’s vision and mission: comfort, time and trust in VIP transfer, tourism transportation and accommodation.",
+      "Beşinci Mevsim’s vision and mission: comfort, time and trust in Ankara-based VIP transfer, tourism transportation and accommodation. TURSAB 18563.",
     breadcrumb: "Breadcrumb",
     eyebrow: "Vision & Mission",
     titleLine1: "Make the journey",

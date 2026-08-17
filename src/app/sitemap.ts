@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
-      images: [`${base}/images/hero/hero-vito.png`, `${base}${siteConfig.ogImage}`],
+      images: [`${base}/images/hero/hero-vito.png`, `${base}${siteConfig.logo}`, `${base}${siteConfig.ogImage}`],
     },
     {
       url: `${base}/hizmetler`,

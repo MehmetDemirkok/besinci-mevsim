@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Beşinci Mevsim",
   tagline: "SEYAHAT & TURİZM TAŞIMACILIK",
-  title: "Beşinci Mevsim | VIP Transfer & Turizm Taşımacılık",
+  title: "Beşinci Mevsim | Ankara VIP Transfer ve Turizm Taşımacılık",
   description:
-    "Beşinci Mevsim ile VIP transfer, havaalanı transferi, turizm taşımacılığı, kurumsal seyahat ve konaklama hizmetleri. Konforlu ve güvenilir yolculuk deneyimi.",
+    "Ankara merkezli Beşinci Mevsim — İlkRüzgar Seyahat Acentası (TURSAB 18563). VIP transfer, Esenboğa havaalanı transferi, kurumsal ve turizm taşımacılığı, şoförlü araç ve konaklama.",
   url: "https://besincimevsim.com",
   /** Production / preview host used in sitemap & canonicals */
   locale: "tr_TR",

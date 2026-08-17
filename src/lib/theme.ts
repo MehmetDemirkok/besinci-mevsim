@@ -1,5 +1,7 @@
 /** Light / auto theme is paused — the site is dark-only for now. */
 
+export const themeStorageKey = "besinci-mevsim-theme";
+
 export type ThemeMode = "light" | "dark" | "auto";
 export type ResolvedTheme = "light" | "dark";
 

@@ -36,6 +36,13 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  alternates: {
+    canonical: siteConfig.url,
+    languages: {
+      "tr-TR": siteConfig.url,
+      "x-default": siteConfig.url,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "tr_TR",

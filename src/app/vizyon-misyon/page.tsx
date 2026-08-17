@@ -23,7 +23,7 @@ export const metadata: Metadata = pageMetadata({
   keywords: [
     "Beşinci Mevsim vizyon",
     "Beşinci Mevsim misyon",
-    "VIP transfer vizyon",
+    "Ankara VIP transfer",
     "turizm taşımacılığı",
     "İlkRüzgar Seyahat Acentası",
     "TURSAB 18563",
