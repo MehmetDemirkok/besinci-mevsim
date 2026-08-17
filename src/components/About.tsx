@@ -44,7 +44,7 @@ export function About() {
         </Reveal>
 
         <Reveal className="lg:col-span-6" delay={0.12} y={36}>
-          <div className="relative aspect-[4/5] overflow-hidden md:aspect-[5/4]">
+          <div className="relative aspect-[4/5] overflow-hidden on-media md:aspect-[5/4]">
             <BrandImage
               src="/images/about/atmosphere.png"
               alt={t.about.imageAlt}

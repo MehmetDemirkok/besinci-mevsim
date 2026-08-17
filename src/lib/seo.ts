@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteConfig } from "@/lib/site";
+import { siteConfig, contactDigits } from "@/lib/site";
 import { fleet } from "@/data/fleet";
 import { services, servicePath } from "@/data/services";
 import { getDictionary } from "@/i18n";
@@ -111,10 +111,21 @@ export function organizationJsonLd() {
       value: siteConfig.agency.tursabNo,
     },
     email: siteConfig.contact.email ?? undefined,
-    telephone: siteConfig.contact.phone ?? undefined,
+    telephone: siteConfig.contact.phone
+      ? `+${contactDigits(siteConfig.contact.phone)}`
+      : undefined,
+    address: siteConfig.contact.address
+      ? {
+          "@type": "PostalAddress",
+          streetAddress: "Yukarı Bahçelievler Mahallesi Aşkabat Caddesi No:37/6",
+          addressLocality: "Bahçelievler",
+          addressRegion: "Ankara",
+          addressCountry: "TR",
+        }
+      : undefined,
     foundingLocation: {
-      "@type": "Country",
-      name: "Turkey",
+      "@type": "City",
+      name: "Ankara",
     },
     areaServed: {
       "@type": "Country",
@@ -147,6 +158,9 @@ export function organizationJsonLd() {
             "@type": "ContactPoint",
             contactType: "customer service",
             email: siteConfig.contact.email,
+            telephone: siteConfig.contact.phone
+              ? `+${contactDigits(siteConfig.contact.phone)}`
+              : undefined,
             availableLanguage: ["Turkish", "English"],
             url: absoluteUrl("/#contact"),
           },

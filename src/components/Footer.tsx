@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { InstagramLink } from "@/components/ui/InstagramLink";
 import { AgencyCredential } from "@/components/ui/AgencyCredential";
-import { siteConfig } from "@/lib/site";
+import { siteConfig, telHref, whatsappHref, mapsHref } from "@/lib/site";
 import { homeHref, menuHref } from "@/lib/nav";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -15,7 +15,8 @@ export function Footer() {
   const pathname = usePathname();
   const year = new Date().getFullYear();
 
-  const navItems = siteConfig.nav.map((item) => ({
+  const navItems = siteConfig.footerNav.map((item) => ({
+    key: item.key,
     href: menuHref(item, pathname, "footer"),
     label: t.nav[item.key],
   }));
@@ -32,13 +33,41 @@ export function Footer() {
               {t.footer.blurb}
             </p>
             <AgencyCredential className="mt-5 max-w-sm text-sm" />
+            {siteConfig.contact.phone ? (
+              <a
+                href={telHref(siteConfig.contact.phone)}
+                className="mt-5 block text-sm tracking-[0.04em] text-mist-muted transition-colors hover:text-mist"
+              >
+                {siteConfig.contact.phone}
+              </a>
+            ) : null}
+            {siteConfig.contact.whatsapp ? (
+              <a
+                href={whatsappHref(siteConfig.contact.whatsapp)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-2 text-sm tracking-[0.04em] text-mist-muted transition-colors hover:text-mist"
+              >
+                {t.contact.whatsappCta}
+              </a>
+            ) : null}
+            {siteConfig.contact.address ? (
+              <a
+                href={mapsHref(siteConfig.contact.address)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 block max-w-sm text-sm leading-relaxed tracking-[0.02em] text-mist-muted transition-colors hover:text-mist"
+              >
+                {siteConfig.contact.address}
+              </a>
+            ) : null}
             <InstagramLink className="mt-6" />
           </div>
 
           <nav aria-label={t.footer.navLabel}>
             <ul className="flex flex-wrap gap-x-8 gap-y-4">
               {navItems.map((item) => (
-                <li key={item.href}>
+                <li key={item.key}>
                   <FooterLink href={item.href}>{item.label}</FooterLink>
                 </li>
               ))}

@@ -37,6 +37,13 @@ export const en: Dictionary = {
     home: "Beşinci Mevsim home",
     language: "Language",
     skipToContent: "Skip to content",
+    aboutStory: "Our story",
+    servicesMenu: "Services submenu",
+    aboutMenu: "About submenu",
+    theme: "Appearance",
+    themeLight: "Day",
+    themeDark: "Night",
+    themeAuto: "Automatic (day / night)",
   },
   hero: {
     eyebrow: "Travel & Tourism Transportation",
@@ -53,7 +60,7 @@ export const en: Dictionary = {
       "CORPORATE TRAVEL",
       "ACCOMMODATION",
     ],
-    imageAlt: "Comfortable travel atmosphere with Beşinci Mevsim",
+    imageAlt: "Anıtkabir in Ankara through the windshield of a VIP transfer vehicle",
   },
   manifesto: {
     quote: "A journey is more than getting from one place to another.",
@@ -487,10 +494,10 @@ export const en: Dictionary = {
   },
   about: {
     eyebrow: "About",
-    titleLine1: "More than",
-    titleLine2: "transportation.",
-    body: "Beşinci Mevsim combines transportation, tourism and accommodation services to create comfortable and professional travel experiences.",
-    note: "A mobility and travel company built around comfort, reliability and a seamless journey — from the first mile to the final stay.",
+    titleLine1: "A new kind",
+    titleLine2: "of travel.",
+    body: "Beşinci Mevsim is an Ankara-based travel agency. With more than thirty years of experience, we run VIP transfer, organization and chauffeur-driven service — from Ankara across Turkey — to the same standard.",
+    note: "Honesty, reliability and quality. A wide fleet and a professional team: fast, calm answers.",
     imageAlt: "Beşinci Mevsim brand atmosphere",
     agency: "Licensed travel agency",
     visionCta: "Vision and mission",
@@ -616,6 +623,8 @@ export const en: Dictionary = {
     submit: "Open in email",
     formHint: "Submit opens your email app with the details filled in. If it doesn’t, copy the address.",
     mailtoFallback: "Open email directly",
+    whatsappCta: "Message on WhatsApp",
+    openMap: "Open in maps",
   },
   footer: {
     blurb:
@@ -703,7 +712,7 @@ export const en: Dictionary = {
         title: "1. Data Controller",
         paragraphs: [
           "Data controller: İlkRüzgar Seyahat Acentası (TURSAB Licence No: 18563). Beşinci Mevsim is the service brand of this agency.",
-          "Contact: through the channels on our website. Official address, phone and email will be published here or on the contact page when available.",
+          "Contact: through the channels on our website (email, phone, WhatsApp and address).",
         ],
       },
       {

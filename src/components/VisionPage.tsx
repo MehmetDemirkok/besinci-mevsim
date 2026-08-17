@@ -13,7 +13,7 @@ export function VisionPage() {
 
   return (
     <main id="main">
-      <section className="relative min-h-[78svh] overflow-hidden">
+      <section className="relative min-h-[78svh] overflow-hidden on-media">
         <BrandImage
           src="/images/about/atmosphere.png"
           alt={page.imageAlt}

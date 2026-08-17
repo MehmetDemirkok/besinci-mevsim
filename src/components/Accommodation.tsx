@@ -12,7 +12,7 @@ export function Accommodation() {
   return (
     <section
       id="accommodation"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden on-media"
       aria-labelledby="accommodation-heading"
     >
       <div className="relative min-h-[42svh] md:min-h-[48svh]">

@@ -37,7 +37,7 @@ export function ServicePage({ service }: { service: ServiceItemBase }) {
     <>
       <Navbar />
       <main id="main">
-        <section className="relative min-h-[88svh] overflow-hidden">
+        <section className="relative min-h-[88svh] overflow-hidden on-media">
           <BrandImage
             src={service.image}
             alt={page.imageAlt}
@@ -164,7 +164,7 @@ export function ServicePage({ service }: { service: ServiceItemBase }) {
                     <Link
                       href="/#contact"
                       onClick={() => setContactIntent("fleet", vehicle.name)}
-                      className="group relative block overflow-hidden border border-line transition-colors hover:border-cyan/35"
+                      className="group relative block overflow-hidden border border-line transition-colors hover:border-cyan/35 on-media"
                     >
                       <div className="relative aspect-[16/10]">
                         <BrandImage

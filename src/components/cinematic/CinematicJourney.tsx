@@ -74,7 +74,7 @@ function JourneyReduced() {
           const copy =
             t.journey.scenes.find((s) => s.id === scene.id) ?? t.journey.scenes[0];
           return (
-            <li key={scene.id} className="relative min-h-[70svh] overflow-hidden">
+            <li key={scene.id} className="relative min-h-[70svh] overflow-hidden on-media">
               <Image
                 src={scene.media.image}
                 alt={copy.title}
@@ -177,7 +177,7 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
       <h2 id="journey-heading" className="sr-only">
         {t.journey.reducedTitle}
       </h2>
-      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden on-media">
         <JourneyViewport
           scenes={journeyScenes}
           progress={progress}
@@ -214,7 +214,7 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
 
         <a
           href="#fleet"
-          className="absolute right-4 top-[max(5.5rem,env(safe-area-inset-top))] z-40 rounded-full border border-white/15 bg-void/55 px-3 py-2 text-[0.65rem] tracking-[0.14em] text-mist backdrop-blur-sm transition-colors hover:border-cyan/40 hover:text-cyan sm:right-6 sm:top-28"
+          className="absolute right-4 top-[max(5.5rem,env(safe-area-inset-top))] z-40 rounded-full border border-glass-border bg-void/55 px-3 py-2 text-[0.65rem] tracking-[0.14em] text-mist backdrop-blur-sm transition-colors hover:border-cyan/40 hover:text-cyan sm:right-6 sm:top-28"
         >
           {t.journey.skip}
         </a>

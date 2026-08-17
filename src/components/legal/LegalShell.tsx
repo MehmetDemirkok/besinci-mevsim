@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BrandWordmark } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { InstagramLink } from "@/components/ui/InstagramLink";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { AgencyCredential } from "@/components/ui/AgencyCredential";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -28,6 +29,7 @@ export function LegalShell({
             <BrandWordmark compact />
           </Link>
           <div className="flex items-center gap-3">
+            <ThemeToggle className="border border-glass-border" />
             <InstagramLink />
             <LanguageSwitcher />
           </div>

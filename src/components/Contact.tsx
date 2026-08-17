@@ -4,14 +4,15 @@ import { useEffect, useState, type FormEvent } from "react";
 import { ArrowUpRight, Check, Copy, Mail } from "lucide-react";
 import { BrandImage } from "@/components/ui/BrandImage";
 import { Reveal } from "@/components/motion/Reveal";
-import { siteConfig } from "@/lib/site";
+import { siteConfig, telHref, whatsappHref, mapsHref } from "@/lib/site";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { InstagramLink } from "@/components/ui/InstagramLink";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { readContactIntent } from "@/lib/contact-intent";
 
 export function Contact() {
   const { t } = useLanguage();
-  const { email, phone, address } = siteConfig.contact;
+  const { email, phone, address, whatsapp } = siteConfig.contact;
   const [activeTopic, setActiveTopic] = useState(t.contact.topics[0]?.id ?? "general");
   const [copied, setCopied] = useState(false);
   const [name, setName] = useState("");
@@ -73,7 +74,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden scroll-mt-24"
+      className="relative overflow-hidden scroll-mt-24 on-media"
       aria-labelledby="contact-heading"
     >
       <div className="absolute inset-0">
@@ -248,25 +249,48 @@ export function Contact() {
               <p className="mt-6 text-mist-muted">{t.contact.comingSoon}</p>
             )}
 
-            {(phone || address) && (
+            {(phone || whatsapp || address) && (
               <div className="mt-12 grid gap-6 border-t border-line pt-8 sm:grid-cols-2">
                 {phone ? (
                   <div>
                     <p className="text-eyebrow text-mist-muted">{t.contact.phone}</p>
                     <a
-                      href={`tel:${phone}`}
-                      className="mt-3 inline-block text-mist transition-colors hover:text-cyan"
+                      href={telHref(phone)}
+                      className="mt-3 inline-block text-lg font-medium tracking-tight text-mist transition-colors hover:text-cyan"
                     >
                       {phone}
                     </a>
                   </div>
                 ) : null}
-                {address ? (
+                {whatsapp ? (
                   <div>
+                    <p className="text-eyebrow text-mist-muted">WhatsApp</p>
+                    <a
+                      href={whatsappHref(whatsapp)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group mt-3 inline-flex items-center gap-2 border border-cyan/40 bg-cyan/10 px-5 py-3 text-sm tracking-[0.1em] text-mist transition-colors hover:border-cyan hover:bg-cyan hover:text-void"
+                    >
+                      <WhatsAppIcon className="h-4 w-4" />
+                      {t.contact.whatsappCta}
+                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+                  </div>
+                ) : null}
+                {address ? (
+                  <div className="sm:col-span-2">
                     <p className="text-eyebrow text-mist-muted">
                       {t.contact.address}
                     </p>
-                    <p className="mt-3 text-mist">{address}</p>
+                    <a
+                      href={mapsHref(address)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-block max-w-md text-mist transition-colors hover:text-cyan"
+                    >
+                      {address}
+                    </a>
+                    <p className="mt-2 text-sm text-mist-muted">{t.contact.openMap}</p>
                   </div>
                 ) : null}
               </div>

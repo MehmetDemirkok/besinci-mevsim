@@ -15,28 +15,17 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.1]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 100]);
+  const cabinScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.08]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 80]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] items-end overflow-hidden"
+      className="relative flex min-h-[100svh] items-end overflow-hidden on-media"
     >
-      <motion.div style={{ scale: imageScale }} className="absolute inset-0">
-        <BrandImage
-          src="/images/hero/hero-vito.png"
-          alt={t.hero.imageAlt}
-          atmosphere="city"
-          priority
-          className="h-full w-full"
-          sizes="100vw"
-          imageClassName="object-cover object-[center_35%]"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.58)_0%,rgba(7,16,20,0.22)_32%,rgba(7,16,20,0.68)_68%,rgba(7,16,20,0.96)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_40%,transparent_0%,rgba(7,16,20,0.5)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_85%,rgba(24,187,208,0.12),transparent_45%)]" />
+      <motion.div style={{ scale: cabinScale }} className="absolute inset-0">
+        <CabinBackground reduce={!!reduce} alt={t.hero.imageAlt} />
       </motion.div>
 
       <motion.div
@@ -104,7 +93,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="mt-10 hidden items-center gap-x-3 text-[0.62rem] tracking-[0.2em] text-mist-soft/80 md:mt-14 md:flex"
+          className="mt-10 hidden items-center gap-x-3 text-[0.62rem] tracking-[0.2em] text-mist-muted md:mt-14 md:flex"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
@@ -135,5 +124,59 @@ export function Hero() {
         </motion.div>
       </motion.div>
     </section>
+  );
+}
+
+function CabinBackground({
+  reduce,
+  alt,
+}: {
+  reduce: boolean;
+  alt: string;
+}) {
+  return (
+    <div className="absolute inset-0 overflow-hidden bg-void">
+      <motion.div
+        className="absolute inset-[-10%] will-change-transform"
+        animate={
+          reduce
+            ? undefined
+            : {
+                x: [0, 5, -3, 0],
+                y: [0, -4, 2, 0],
+              }
+        }
+        transition={
+          reduce
+            ? undefined
+            : { duration: 22, repeat: Infinity, ease: "easeInOut" }
+        }
+      >
+        <BrandImage
+          src="/travel/ankara/cabin.jpg"
+          alt={alt}
+          atmosphere="city"
+          priority
+          className="h-full w-full"
+          sizes="100vw"
+          imageClassName="object-cover object-[center_40%]"
+        />
+      </motion.div>
+
+      <div
+        className="pointer-events-none absolute inset-0 opacity-25 mix-blend-screen"
+        aria-hidden
+        style={{
+          background:
+            "linear-gradient(118deg, transparent 8%, rgba(244,181,27,0.12) 28%, transparent 42%, transparent 70%, rgba(24,187,208,0.06) 88%, transparent 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_58%_36%,transparent_42%,rgba(7,16,20,0.58)_100%)]"
+        aria-hidden
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,16,20,0.72)_0%,rgba(7,16,20,0.38)_34%,rgba(7,16,20,0.12)_58%,rgba(7,16,20,0.48)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,16,20,0.5)_0%,rgba(7,16,20,0.08)_24%,rgba(7,16,20,0.2)_52%,rgba(7,16,20,0.9)_100%)]" />
+    </div>
   );
 }

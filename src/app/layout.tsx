@@ -4,8 +4,10 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { SmoothScrollProvider } from "@/components/cinematic/SmoothScrollProvider";
 import { getDictionary, isLocale, localeStorageKey, defaultLocale } from "@/i18n";
+import { isThemeMode, themeInitScript, themeStorageKey } from "@/lib/theme";
 
 const manrope = Manrope({
   subsets: ["latin", "latin-ext"],
@@ -87,8 +89,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#071014",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#eef3f4" },
+    { media: "(prefers-color-scheme: dark)", color: "#071014" },
+  ],
+  colorScheme: "dark light",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -103,12 +108,23 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const raw = cookieStore.get(localeStorageKey)?.value;
   const initialLocale = raw && isLocale(raw) ? raw : defaultLocale;
+  const themeRaw = cookieStore.get(themeStorageKey)?.value;
+  const initialThemeMode = themeRaw && isThemeMode(themeRaw) ? themeRaw : "auto";
 
   return (
-    <html lang={initialLocale} className={`${manrope.variable} antialiased`}>
+    <html
+      lang={initialLocale}
+      className={`${manrope.variable} antialiased`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-screen bg-void text-mist">
         <LanguageProvider initialLocale={initialLocale}>
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          <ThemeProvider initialMode={initialThemeMode}>
+            <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          </ThemeProvider>
         </LanguageProvider>
       </body>
     </html>

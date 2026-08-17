@@ -25,6 +25,13 @@ export type Dictionary = {
     home: string;
     language: string;
     skipToContent: string;
+    aboutStory: string;
+    servicesMenu: string;
+    aboutMenu: string;
+    theme: string;
+    themeLight: string;
+    themeDark: string;
+    themeAuto: string;
   };
   hero: {
     eyebrow: string;
@@ -205,6 +212,8 @@ export type Dictionary = {
     submit: string;
     formHint: string;
     mailtoFallback: string;
+    whatsappCta: string;
+    openMap: string;
   };
   footer: {
     blurb: string;

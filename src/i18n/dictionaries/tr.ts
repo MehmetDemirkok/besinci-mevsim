@@ -42,6 +42,13 @@ export const tr: Dictionary = {
     home: "Beşinci Mevsim ana sayfa",
     language: "Dil seçimi",
     skipToContent: "İçeriğe geç",
+    aboutStory: "Hikâyemiz",
+    servicesMenu: "Hizmet alt menüsü",
+    aboutMenu: "Hakkımızda alt menüsü",
+    theme: "Görünüm",
+    themeLight: "Gündüz",
+    themeDark: "Gece",
+    themeAuto: "Otomatik (gündüz / gece)",
   },
   hero: {
     eyebrow: "Seyahat & Turizm Taşımacılık",
@@ -58,7 +65,7 @@ export const tr: Dictionary = {
       "KURUMSAL SEYAHAT",
       "KONAKLAMA",
     ],
-    imageAlt: "Beşinci Mevsim ile konforlu seyahat atmosferi",
+    imageAlt: "VIP transfer aracının ön camından Anıtkabir, Ankara",
   },
   manifesto: {
     quote: "Bir yolculuk, bir yerden başka bir yere gitmekten ibaret değildir.",
@@ -492,10 +499,10 @@ export const tr: Dictionary = {
   },
   about: {
     eyebrow: "Hakkımızda",
-    titleLine1: "Taşımacılıktan",
-    titleLine2: "fazlası.",
-    body: "Beşinci Mevsim; taşımacılık, turizm ve konaklama hizmetlerini bir araya getirerek konforlu ve profesyonel seyahat deneyimleri sunar.",
-    note: "Konfor, güvenilirlik ve sorunsuz bir yolculuk etrafında şekillenen bir mobilite ve seyahat markası — ilk kilometreden son konaklamaya.",
+    titleLine1: "Yeni nesil",
+    titleLine2: "seyahat.",
+    body: "Beşinci Mevsim, Ankara merkezli bir seyahat acentesidir. Otuz yılı aşkın deneyimle VIP transfer, organizasyon ve şoförlü araç hizmetini — başta Ankara, tüm Türkiye’de — aynı özenle yürütür.",
+    note: "Dürüstlük, güvenilirlik ve kalite. Geniş filo ve profesyonel ekip; her talebe hızlı, sakin cevap.",
     imageAlt: "Beşinci Mevsim marka atmosferi",
     agency: "Yetkili seyahat acentesi",
     visionCta: "Vizyon ve misyon",
@@ -622,6 +629,8 @@ export const tr: Dictionary = {
     submit: "Talebi e-postaya aktar",
     formHint: "Gönderince e-posta uygulamanız açılır. Açılmazsa adresi kopyalayın.",
     mailtoFallback: "Doğrudan e-posta aç",
+    whatsappCta: "WhatsApp ile yazın",
+    openMap: "Haritada aç",
   },
   footer: {
     blurb:
@@ -710,7 +719,7 @@ export const tr: Dictionary = {
         title: "1. Veri Sorumlusu",
         paragraphs: [
           "Veri sorumlusu: İlkRüzgar Seyahat Acentası (TURSAB Belge No: 18563). Beşinci Mevsim, bu acentenin hizmet markasıdır.",
-          "İletişim: Web sitemizdeki iletişim kanalları üzerinden. Resmi adres, telefon ve e-posta bilgileri güncellendiğinde bu metinde veya iletişim sayfasında paylaşılır.",
+          "İletişim: Web sitemizdeki iletişim kanalları (e-posta, telefon, WhatsApp ve adres) üzerinden.",
         ],
       },
       {

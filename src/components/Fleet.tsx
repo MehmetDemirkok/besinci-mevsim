@@ -156,8 +156,8 @@ function FleetPanel({
       onClick={() => setContactIntent("fleet", vehicle.name)}
       className={
         size === "desktop"
-          ? "group relative block overflow-hidden rounded-2xl"
-          : "group relative w-[min(78vw,340px)] shrink-0 snap-center overflow-hidden rounded-2xl"
+          ? "group relative block overflow-hidden rounded-2xl on-media"
+          : "group relative w-[min(78vw,340px)] shrink-0 snap-center overflow-hidden rounded-2xl on-media"
       }
       aria-label={`${vehicle.name} — ${requestLabel}`}
     >
