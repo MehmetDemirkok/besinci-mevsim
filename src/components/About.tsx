@@ -4,6 +4,8 @@ import { BrandImage } from "@/components/ui/BrandImage";
 import { Reveal } from "@/components/motion/Reveal";
 import { AgencyCredential } from "@/components/ui/AgencyCredential";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import Link from "next/link";
+import { visionPath } from "@/lib/nav";
 
 export function About() {
   const { t } = useLanguage();
@@ -29,9 +31,15 @@ export function About() {
           <div className="mt-12 border-t border-line pt-8">
             <p className="text-eyebrow text-gold">{t.about.agency}</p>
             <AgencyCredential className="mt-3 max-w-md text-sm md:text-base" />
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-mist-soft">
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-mist-muted">
               {t.about.note}
             </p>
+            <Link
+              href={visionPath}
+              className="mt-6 inline-flex text-sm tracking-[0.1em] text-cyan transition-colors hover:text-mist"
+            >
+              {t.about.visionCta}
+            </Link>
           </div>
         </Reveal>
 

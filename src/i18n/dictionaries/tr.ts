@@ -29,6 +29,7 @@ export const tr: Dictionary = {
   },
   nav: {
     about: "Hakkımızda",
+    vision: "Vizyon",
     services: "Hizmetler",
     fleet: "Filo",
     travel: "Seyahat",
@@ -497,6 +498,51 @@ export const tr: Dictionary = {
     note: "Konfor, güvenilirlik ve sorunsuz bir yolculuk etrafında şekillenen bir mobilite ve seyahat markası — ilk kilometreden son konaklamaya.",
     imageAlt: "Beşinci Mevsim marka atmosferi",
     agency: "Yetkili seyahat acentesi",
+    visionCta: "Vizyon ve misyon",
+  },
+  visionPage: {
+    metaTitle: "Vizyon ve Misyon | Beşinci Mevsim",
+    metaDescription:
+      "Beşinci Mevsim’in vizyonu ve misyonu: VIP transfer, turizm taşımacılığı ve konaklamada konfor, zaman ve güven.",
+    breadcrumb: "Sayfa yolu",
+    eyebrow: "Vizyon & Misyon",
+    titleLine1: "Yolculuğu",
+    titleLine2: "mevsim yapmak.",
+    lead:
+      "Beşinci Mevsim bir transfer şirketi olmanın ötesinde; konforun, zamanın ve güvenin yeni bir mevsimi olarak yolculuğu tasarlar.",
+    imageAlt: "Beşinci Mevsim yolculuk atmosferi",
+    visionLabel: "Vizyon",
+    visionTitle: "Hatırlanan yol.",
+    visionBody: [
+      "Türkiye’de VIP transferi ve turizm taşımacılığını, varış kadar yolun da konuşulduğu bir deneyime dönüştürmek.",
+      "Misafirlerimiz araçtan önce bir ritim hissetsin: sakin, dakik, görünmez bir özen. Beşinci Mevsim bu ritmin adı olsun.",
+    ],
+    missionLabel: "Misyon",
+    missionTitle: "İlk kilometreden son odaya.",
+    missionBody: [
+      "Havalimanı karşılama, kurumsal seyahat, tur rotası ve konaklamayı tek bir profesyonel hat olarak yürütmek.",
+      "İlkRüzgar Seyahat Acentası (TURSAB 18563) çatısı altında; bakımlı filo, eğitimli sürücü ve net iletişimle belirsizliği yoldan çıkarmak.",
+    ],
+    commitmentsLabel: "Nasıl seyahat ederiz",
+    commitments: [
+      {
+        kicker: "Zaman",
+        title: "Dakika kadar sessiz.",
+        text: "Karşılama, bekleme ve teslim saatleri tahmin konusu değildir. Plan, yola çıkmadan kapanır.",
+      },
+      {
+        kicker: "Araç",
+        title: "Filo bir vitrin değil.",
+        text: "Vito’dan Travego’ya her araç, o günün rotasına göre seçilir; bakımı ve sürücüsü ayrı düşünülmez.",
+      },
+      {
+        kicker: "İnsan",
+        title: "Görünmez lojistik.",
+        text: "Misafir kapıyı açtığında iş bitmiş olmalıdır. Gürültü, karmaşa ve “bir bakarız” yok.",
+      },
+    ],
+    ctaLabel: "Yolculuğu planlayın",
+    ctaHint: "Güzergâh, tarih ve yolcu sayınızı yazın — size dönüş yapalım.",
   },
   trust: {
     eyebrow: "İlkeler",

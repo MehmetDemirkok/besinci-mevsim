@@ -7,7 +7,7 @@ import { BrandWordmark } from "@/components/ui/Logo";
 import { InstagramLink } from "@/components/ui/InstagramLink";
 import { AgencyCredential } from "@/components/ui/AgencyCredential";
 import { siteConfig } from "@/lib/site";
-import { resolveNavHref, homeHref } from "@/lib/nav";
+import { homeHref, menuHref } from "@/lib/nav";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 export function Footer() {
@@ -16,10 +16,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   const navItems = siteConfig.nav.map((item) => ({
-    href:
-      item.key === "services"
-        ? "/hizmetler"
-        : resolveNavHref(item.href, pathname),
+    href: menuHref(item, pathname, "footer"),
     label: t.nav[item.key],
   }));
 

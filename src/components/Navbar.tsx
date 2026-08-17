@@ -9,7 +9,7 @@ import { BrandWordmark } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { InstagramLink } from "@/components/ui/InstagramLink";
 import { siteConfig } from "@/lib/site";
-import { homeHref, resolveNavHref } from "@/lib/nav";
+import { homeHref, menuHref, resolveNavHref, visionPath } from "@/lib/nav";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const SECTION_BY_KEY: Record<string, string> = {
@@ -108,17 +108,14 @@ export function Navbar() {
   }, [open]);
 
   const navItems = siteConfig.nav.map((item) => {
-    const href =
-      item.key === "services"
-        ? pathname === "/"
-          ? "#services"
-          : "/hizmetler"
-        : resolveNavHref(item.href, pathname);
+    const href = menuHref(item, pathname, "nav");
     const sectionId = SECTION_BY_KEY[item.key];
     const active =
-      item.key === "services"
-        ? pathname.startsWith("/hizmetler") || activeSection === "services"
-        : activeSection === sectionId;
+      item.key === "vision"
+        ? pathname.startsWith(visionPath)
+        : item.key === "services"
+          ? pathname.startsWith("/hizmetler") || activeSection === "services"
+          : activeSection === sectionId;
     return {
       href,
       label: t.nav[item.key],
@@ -286,7 +283,7 @@ function NavItem({
   label: string;
   active: boolean;
 }) {
-  const className = `group relative px-3 py-2 text-[0.72rem] tracking-[0.16em] transition-colors ${
+  const className = `group relative px-2.5 py-2 text-[0.68rem] tracking-[0.12em] transition-colors lg:px-3 ${
     active ? "text-mist" : "text-mist-muted hover:text-mist"
   }`;
 

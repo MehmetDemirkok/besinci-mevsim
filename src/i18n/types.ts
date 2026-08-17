@@ -12,6 +12,7 @@ export type Dictionary = {
   };
   nav: {
     about: string;
+    vision: string;
     services: string;
     fleet: string;
     travel: string;
@@ -149,6 +150,27 @@ export type Dictionary = {
     note: string;
     imageAlt: string;
     agency: string;
+    visionCta: string;
+  };
+  visionPage: {
+    metaTitle: string;
+    metaDescription: string;
+    breadcrumb: string;
+    eyebrow: string;
+    titleLine1: string;
+    titleLine2: string;
+    lead: string;
+    imageAlt: string;
+    visionLabel: string;
+    visionTitle: string;
+    visionBody: string[];
+    missionLabel: string;
+    missionTitle: string;
+    missionBody: string[];
+    commitmentsLabel: string;
+    commitments: { kicker: string; title: string; text: string }[];
+    ctaLabel: string;
+    ctaHint: string;
   };
   trust: {
     eyebrow: string;

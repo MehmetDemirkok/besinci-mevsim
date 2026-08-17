@@ -10,10 +10,11 @@ export const siteConfig = {
   logo: "/images/brand/logo.png",
   ogImage: "/images/brand/og.png",
   nav: [
-    { key: "about" as const, href: "#about" },
     { key: "services" as const, href: "#services" },
-    { key: "fleet" as const, href: "#fleet" },
     { key: "travel" as const, href: "#journey" },
+    { key: "fleet" as const, href: "#fleet" },
+    { key: "about" as const, href: "#about" },
+    { key: "vision" as const, href: "/vizyon-misyon" },
     { key: "contact" as const, href: "#contact" },
   ],
   /**

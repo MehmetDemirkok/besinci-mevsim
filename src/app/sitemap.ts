@@ -29,6 +29,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: [`${base}${service.image}`],
     })),
     {
+      url: `${base}/vizyon-misyon`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      images: [`${base}/images/about/atmosphere.png`],
+    },
+    {
       url: `${base}/privacy`,
       lastModified: now,
       changeFrequency: "yearly",

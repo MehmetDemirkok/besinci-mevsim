@@ -24,6 +24,7 @@ export const en: Dictionary = {
   },
   nav: {
     about: "About",
+    vision: "Vision",
     services: "Services",
     fleet: "Fleet",
     travel: "Travel",
@@ -492,6 +493,51 @@ export const en: Dictionary = {
     note: "A mobility and travel company built around comfort, reliability and a seamless journey — from the first mile to the final stay.",
     imageAlt: "Beşinci Mevsim brand atmosphere",
     agency: "Licensed travel agency",
+    visionCta: "Vision and mission",
+  },
+  visionPage: {
+    metaTitle: "Vision and Mission | Beşinci Mevsim",
+    metaDescription:
+      "Beşinci Mevsim’s vision and mission: comfort, time and trust in VIP transfer, tourism transportation and accommodation.",
+    breadcrumb: "Breadcrumb",
+    eyebrow: "Vision & Mission",
+    titleLine1: "Make the journey",
+    titleLine2: "a season.",
+    lead:
+      "Beşinci Mevsim is more than a transfer company. It designs travel as a fifth season — comfort, time and trust.",
+    imageAlt: "Beşinci Mevsim travel atmosphere",
+    visionLabel: "Vision",
+    visionTitle: "A road worth remembering.",
+    visionBody: [
+      "To turn VIP transfer and tourism transportation in Turkey into an experience where the journey is discussed as much as the destination.",
+      "Guests should feel a rhythm before they feel the vehicle: calm, punctual, quietly precise. Beşinci Mevsim is the name of that rhythm.",
+    ],
+    missionLabel: "Mission",
+    missionTitle: "From the first mile to the last room.",
+    missionBody: [
+      "To run airport greeting, corporate travel, tour routing and accommodation as one professional line.",
+      "Under İlkRüzgar Seyahat Acentası (TURSAB 18563): a maintained fleet, trained drivers and clear communication — so uncertainty never boards.",
+    ],
+    commitmentsLabel: "How we travel",
+    commitments: [
+      {
+        kicker: "Time",
+        title: "As quiet as a minute.",
+        text: "Pick-up, wait and drop-off are not guesses. The plan closes before the engine starts.",
+      },
+      {
+        kicker: "Vehicle",
+        title: "The fleet is not a vitrine.",
+        text: "From the Vito to the Travego, each vehicle is chosen for that day’s route — and never separated from its driver.",
+      },
+      {
+        kicker: "People",
+        title: "Invisible logistics.",
+        text: "When the guest opens the door, the work should already be done. No noise, no clutter, no “we’ll see”.",
+      },
+    ],
+    ctaLabel: "Plan the journey",
+    ctaHint: "Share your route, date and passenger count — we will reply.",
   },
   trust: {
     eyebrow: "Principles",
