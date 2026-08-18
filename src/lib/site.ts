@@ -27,7 +27,7 @@ export const siteConfig = {
    * İletişim bilgileri.
    */
   contact: {
-    email: "info@besincimevsim.com" as string | null,
+    email: "info@besincimevsimturizm.com.tr" as string | null,
     phone: "+90 533 746 07 98" as string | null,
     whatsapp: "+90 533 746 07 98" as string | null,
     address:
