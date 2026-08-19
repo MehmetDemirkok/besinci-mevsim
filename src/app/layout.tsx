@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
 import { Manrope } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
@@ -115,6 +116,7 @@ export default async function RootLayout({
         <LanguageProvider initialLocale={initialLocale}>
           <SmoothScrollProvider>{children}</SmoothScrollProvider>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
