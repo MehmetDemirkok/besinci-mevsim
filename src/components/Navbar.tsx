@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -42,6 +43,7 @@ export function Navbar() {
   const panelRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
   const condensed = scrolled || onSubpage || open;
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -76,13 +78,57 @@ export function Navbar() {
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    document.documentElement.style.overflow = open ? "hidden" : "";
-    document.body.dataset.nav = open ? "open" : "";
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+
+    const sync = () => {
+      document.documentElement.style.setProperty(
+        "--vv-top",
+        `${vv.offsetTop}px`,
+      );
+      document.documentElement.style.setProperty(
+        "--vv-height",
+        `${vv.height}px`,
+      );
+    };
+
+    sync();
+    vv.addEventListener("resize", sync);
+    vv.addEventListener("scroll", sync);
+    window.addEventListener("orientationchange", sync);
     return () => {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-      delete document.body.dataset.nav;
+      vv.removeEventListener("resize", sync);
+      vv.removeEventListener("scroll", sync);
+      window.removeEventListener("orientationchange", sync);
+      document.documentElement.style.removeProperty("--vv-top");
+      document.documentElement.style.removeProperty("--vv-height");
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const { body, documentElement } = document;
+    const prev = {
+      bodyOverflow: body.style.overflow,
+      bodyTouch: body.style.touchAction,
+      htmlOverflow: documentElement.style.overflow,
+    };
+
+    body.style.overflow = "hidden";
+    documentElement.style.overflow = "hidden";
+    body.style.touchAction = "none";
+    body.dataset.nav = "open";
+
+    return () => {
+      body.style.overflow = prev.bodyOverflow;
+      body.style.touchAction = prev.bodyTouch;
+      documentElement.style.overflow = prev.htmlOverflow;
+      delete body.dataset.nav;
     };
   }, [open]);
 
@@ -173,14 +219,15 @@ export function Navbar() {
 
   const closeDrawer = () => setOpen(false);
 
-  return (
+  const ui = (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 safe-pt transition-[background-color,border-color,padding,backdrop-filter,box-shadow] duration-500 ${
+        className={`pointer-events-auto fixed inset-x-0 z-[100] isolate safe-pt transition-[background-color,border-color,padding,backdrop-filter,box-shadow] duration-500 ${
           condensed
             ? "header-solid border-b border-line bg-void/80 py-2.5 backdrop-blur-xl"
             : "on-media border-b border-transparent bg-transparent py-3 sm:py-4"
         }`}
+        style={{ top: "var(--vv-top, 0px)" }}
       >
         {!condensed ? (
           <div
@@ -189,10 +236,10 @@ export function Navbar() {
           />
         ) : null}
 
-        <div className="relative mx-auto flex max-w-[1440px] items-center justify-between safe-px md:px-8 lg:px-12">
+        <div className="relative mx-auto flex max-w-[1440px] items-center justify-between gap-2 safe-px md:px-8 lg:px-12">
           <a
             href={homeHref(pathname)}
-            className="relative z-50 min-w-0 shrink-0 transition-opacity hover:opacity-90"
+            className="relative z-0 min-w-0 max-w-[calc(100%-7.5rem)] shrink overflow-hidden transition-opacity hover:opacity-90"
             aria-label={t.nav.home}
           >
             <BrandWordmark compact={condensed} />
@@ -278,7 +325,7 @@ export function Navbar() {
             })}
           </nav>
 
-          <div className="relative z-50 flex items-center gap-2">
+          <div className="relative z-10 flex shrink-0 items-center gap-1.5 sm:gap-2">
             <div className="hidden h-11 items-center rounded-full border border-glass-border bg-glass pl-0.5 pr-1 backdrop-blur-sm sm:flex">
               <InstagramLink
                 variant="ghost"
@@ -304,11 +351,14 @@ export function Navbar() {
             <button
               ref={menuButtonRef}
               type="button"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-glass-border bg-glass text-mist backdrop-blur-sm transition-colors hover:border-cyan/40 hover:text-cyan lg:hidden"
+              className="relative z-10 inline-flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-full border border-glass-border bg-glass text-mist backdrop-blur-sm transition-colors hover:border-cyan/40 hover:text-cyan lg:hidden"
               aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
               aria-expanded={open}
               aria-controls={titleId}
-              onClick={() => setOpen((v) => !v)}
+              onClick={(event) => {
+                event.stopPropagation();
+                setOpen((v) => !v);
+              }}
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -331,14 +381,18 @@ export function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label={t.nav.mobile}
-            className="fixed inset-0 z-40 overscroll-contain bg-void lg:hidden"
+            className="fixed inset-x-0 z-[90] overscroll-contain bg-void lg:hidden"
+            style={{
+              top: "var(--vv-top, 0px)",
+              height: "var(--vv-height, 100dvh)",
+            }}
             initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
           >
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(24,187,208,0.12),transparent_42%)]" />
-            <div className="relative flex h-full flex-col justify-between overflow-y-auto overscroll-contain safe-px pt-[calc(6.75rem+env(safe-area-inset-top))] pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+            <div className="relative flex h-full flex-col justify-between overflow-y-auto overscroll-contain touch-pan-y safe-px pt-[calc(6.75rem+env(safe-area-inset-top))] pb-[max(2.5rem,env(safe-area-inset-bottom))]">
               <nav className="flex flex-col" aria-label={t.nav.mobile}>
                 {navItems.map((item, index) => {
                   if (item.key === "services" || item.key === "about") {
@@ -478,6 +532,9 @@ export function Navbar() {
       </AnimatePresence>
     </>
   );
+
+  if (mounted) return createPortal(ui, document.body);
+  return ui;
 }
 
 function isHashHref(href: string) {

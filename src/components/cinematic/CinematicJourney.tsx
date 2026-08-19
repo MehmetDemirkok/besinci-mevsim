@@ -169,14 +169,14 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
     <section
       id="journey"
       ref={sectionRef}
-      className="relative z-10 bg-void"
+      className="relative z-0 bg-void"
       style={{ height: `${trackVh}vh` }}
       aria-labelledby="journey-heading"
     >
       <h2 id="journey-heading" className="sr-only">
         {t.journey.reducedTitle}
       </h2>
-      <div className="sticky top-0 h-[100svh] w-full overflow-hidden on-media">
+      <div className="pointer-events-none sticky top-0 z-0 h-[100svh] w-full overflow-hidden on-media">
         <JourneyViewport
           scenes={journeyScenes}
           progress={progress}
@@ -213,7 +213,7 @@ function JourneyPinned({ isMobile }: { isMobile: boolean }) {
 
         <a
           href="#fleet"
-          className="absolute right-4 z-40 inline-flex min-h-11 items-center rounded-full border border-glass-border bg-void/55 px-4 py-2 text-[0.65rem] tracking-[0.14em] text-mist backdrop-blur-sm transition-colors hover:border-cyan/40 hover:text-cyan top-[calc(5.75rem+env(safe-area-inset-top))] sm:right-6 sm:top-28"
+          className="pointer-events-auto absolute right-4 z-40 inline-flex min-h-11 items-center rounded-full border border-glass-border bg-void/55 px-4 py-2 text-[0.65rem] tracking-[0.14em] text-mist backdrop-blur-sm transition-colors hover:border-cyan/40 hover:text-cyan top-[calc(5.75rem+env(safe-area-inset-top))] sm:right-6 sm:top-28"
         >
           {t.journey.skip}
         </a>

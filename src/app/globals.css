@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --vv-top: 0px;
+  --vv-height: 100dvh;
   --void: #071014;
   --ink: #0b151a;
   --panel: #101a1f;
@@ -83,12 +85,17 @@ html[data-theme="light"] .on-media,
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* clip (not hidden) — overflow-x:hidden on html/body breaks sticky + GSAP pin */
-    overflow-x: clip;
     overscroll-behavior-x: none;
     scroll-padding-top: calc(6rem + env(safe-area-inset-top));
     touch-action: manipulation;
     -webkit-tap-highlight-color: color-mix(in srgb, var(--cyan) 22%, transparent);
+  }
+
+  /* Clip on the content column only — overflow on html/body makes
+     position:fixed track the document instead of the visual viewport. */
+  #main,
+  footer {
+    overflow-x: clip;
   }
 
   @media (max-width: 768px) {

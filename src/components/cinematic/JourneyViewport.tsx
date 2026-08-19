@@ -75,7 +75,7 @@ export function JourneyViewport({
           : "saturate(1.05) contrast(1.03)";
 
   return (
-    <div ref={rootRef} className="absolute inset-0 z-0 overflow-hidden bg-void">
+    <div ref={rootRef} className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-void">
       <div
         ref={swayRef}
         className="absolute inset-[-10%] will-change-transform"

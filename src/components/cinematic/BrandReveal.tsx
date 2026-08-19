@@ -13,9 +13,7 @@ export function BrandReveal({ line, brand, progress }: BrandRevealProps) {
 
   return (
     <div
-      className={`absolute inset-0 z-40 flex items-center justify-center px-6 ${
-        visible ? "" : "pointer-events-none"
-      }`}
+      className="pointer-events-none absolute inset-0 z-40 flex items-center justify-center px-6"
       style={{ opacity }}
       aria-hidden={!visible}
     >
